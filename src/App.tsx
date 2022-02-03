@@ -322,13 +322,13 @@ const HeaderNavUlVariants = {
 
 const WaveTitle = {
   offscreen: {
-    x: 300,
+    x: "10vw",
     opacity: 0,
     transition: { duration: 0.5 },
   },
   onscreen: {
-    y: 10,
-    x: -580,
+    x: "-39vw",
+    y: "3vh",
     opacity: 1,
     transition: {
       duration: 0.5,
@@ -338,17 +338,16 @@ const WaveTitle = {
 
 const IntroTitle = {
   endscreen: {
-    x: 300,
-    y: -100,
+    x: "30vw",
+    y: "-10vh",
     opacity: 0,
     transition: { duration: 0.5 },
   },
   startscreen: {
-    y: -100,
-    x: 60,
+    x: "5vw",
+    y: "-10vh",
     opacity: 1,
     transition: {
-      type: "tween",
       duration: 0.5,
     },
   },
@@ -366,7 +365,6 @@ const BodyContainerAboutMeAnimation = {
   aboutmeboxanimationinvisible: {
     x: 800,
     opacity: 0,
-    backgroundColor: "#001cf0",
     transition: {
       duration: 0.5,
     },
