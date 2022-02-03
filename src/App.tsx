@@ -1,10 +1,38 @@
 import styled, { keyframes } from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect } from "react";
+import backimg from "./images/backgroundimg.png";
+import profile from "./images/profileimg.jpg";
 
-const Containder = styled.div`
+const Container = styled.div`
+  padding: 0;
+  margin: 0;
   width: 100%;
-  height: 1000vh;
+  height: 100vh;
+`;
+
+const ContainerInline = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const ContainerBackImg = styled.div`
+  position: relative;
+  background-image: url(${backimg});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+`;
+
+const ContainerImgOverlay = styled.div`
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
 `;
 
 const HeaderNav = styled(motion.nav)`
@@ -20,7 +48,6 @@ const HeaderNav = styled(motion.nav)`
   border-bottom-right-radius: 5px;
   z-index: 99;
   background-color: transparent;
-  /* background: linear-gradient(blue, pink); */
 `;
 
 const HeaderUl = styled(motion.ul)`
@@ -32,13 +59,12 @@ const HeaderUl = styled(motion.ul)`
 const HeaderList = styled.li`
   margin: 20px 50px;
   font-size: 20px;
-  border: 1px solid black;
   padding: 10px;
   border-radius: 5px;
 `;
 
 const MainContainer = styled.div`
-  padding-top: 12rem;
+  padding-top: 9rem;
 `;
 
 const wavaAnimation = keyframes`
@@ -47,7 +73,7 @@ const wavaAnimation = keyframes`
 `;
 
 const MainWaveBox = styled.div`
-  margin-top: 5rem;
+  margin-top: 3rem;
   width: 100%;
   height: 400px;
   border-radius: 5px;
@@ -58,8 +84,6 @@ const MainWaveBox = styled.div`
   &::after {
     content: "";
     display: block;
-    left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -76,10 +100,10 @@ const MainWaveTop = styled.div`
   opacity: 0.4;
   position: absolute;
   top: 3%;
-  left: 50%;
-  background: #0af;
-  width: 500px;
-  height: 500px;
+  left: 20%;
+  background: #72cbf8;
+  width: 450px;
+  height: 450px;
   margin-left: -250px;
   margin-bottom: -250px;
   transform-origin: 50% 48%;
@@ -91,10 +115,9 @@ const MainWaveMiddle = styled.div`
   opacity: 0.4;
   position: absolute;
   top: 3%;
-  left: 50%;
-  background: #0af;
-  width: 500px;
-  height: 500px;
+  left: 20%;
+  width: 450px;
+  height: 450px;
   margin-left: -250px;
   margin-bottom: -250px;
   transform-origin: 50% 48%;
@@ -102,17 +125,17 @@ const MainWaveMiddle = styled.div`
   animation: ${wavaAnimation} 3000ms infinite linear;
   animation: ${wavaAnimation} 7000ms infinite linear;
   opacity: 0.1;
-  background: yellow;
+  background: #40b3c2;
 `;
 
 const MainWaveBottom = styled.div`
   opacity: 0.4;
   position: absolute;
   top: 3%;
-  left: 50%;
+  left: 20%;
   background: #0af;
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   margin-left: -250px;
   margin-bottom: -250px;
   transform-origin: 50% 48%;
@@ -121,29 +144,17 @@ const MainWaveBottom = styled.div`
   animation: ${wavaAnimation} 5000ms infinite linear;
 `;
 
-const MainTitleAnimation = keyframes`
-  0% { top: 0; } 
-  20% { top: -0.5rem; } 
-  40% { top: 0 } 
-  60% { top: 0 } 
-  80% { top: 0 }
-  100% { top: 0 } 
-`;
-
 const MainTitleBox = styled(motion.div)`
   position: absolute;
-  justify-content: center;
-  align-items: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
-const MainTitleSpanTop = styled(motion.div)`
+const MainTitleSpanTop = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
-  align-items: center;
   width: 100%;
   z-index: 1;
   text-transform: uppercase;
@@ -155,26 +166,16 @@ const MainTitleSpanTop = styled(motion.div)`
   font-size: 24px;
   text-shadow: 0 1px 0 rgba(black, 0.1);
   text-indent: 0.3em;
-  animation: ${MainTitleAnimation} 1s infinite;
 `;
 
-// const asdf = {
-//   good: {
-//     transition: {
-//       delay: 1,
-//     },
-//   },
-// };
-
-const MainTiTleSpan1 = styled(motion.span)`
+const MainTiTleSpan = styled(motion.span)`
   position: relative;
 `;
 
-const MainTitleSpanBottom = styled(motion.div)`
+const MainTitleSpanBottom = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
-  align-items: center;
   width: 100%;
   z-index: 1;
   text-transform: uppercase;
@@ -186,7 +187,117 @@ const MainTitleSpanBottom = styled(motion.div)`
   font-size: 24px;
   text-shadow: 0 1px 0 rgba(black, 0.1);
   text-indent: 0.3em;
-  animation: ${MainTitleAnimation} 1s infinite;
+`;
+
+const MainIntroTitleBox = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const MainIntroTitle = styled.h2`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 50px;
+  font-weight: bolder;
+  text-align: center;
+  margin: 10px;
+`;
+
+const MainIntroSubTitle = styled.h3`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 40px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 20px;
+`;
+
+const MainIntroDetailTitle = styled.h4`
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+`;
+
+// bodyHome 부분
+const BodyContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(100, 99, 99, 0.4);
+`;
+
+const BodyContainerAboutMeBox = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
+const BodyContainerAboutMeTitleBox = styled.div`
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bolder;
+  font-family: "Playfair Display", serif;
+  margin-top: 8rem;
+`;
+
+const BodyContainerAboutMe = styled(motion.div)`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const BodyContainerAboutMeImgBox = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+`;
+
+const BodyContainerAboutMeImg = styled(motion.div)`
+  width: 20vw;
+  height: 40vh;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(${profile});
+  cursor: pointer;
+`;
+
+const BodyContainerAboutMeUlBox = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BodyContainerAboutMeUlTitle = styled.h2`
+  font-size: 30px;
+  margin-bottom: 30px;
+`;
+
+const BodyContainerAboutMeUl = styled.ul`
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  list-style-type: circle;
+`;
+
+const BodyContainerAboutMeList = styled.li`
+  padding: 10px;
 `;
 
 const HeaderNavVariants = {
@@ -201,29 +312,77 @@ const HeaderNavVariants = {
 const HeaderNavUlVariants = {
   top: {
     color: "rgba(0, 0, 0, 1)",
-    // x: -300,
-    opacity: 1,
     transition: { duration: 0.5 },
   },
   scroll: {
     color: "rgba(255, 255, 255, 1)",
-    // x: 50,
-    opacity: 1,
     transition: { duration: 0.5 },
   },
 };
 
 const WaveTitle = {
   offscreen: {
-    x: 400,
+    x: 300,
+    opacity: 0,
+    transition: { duration: 0.5 },
   },
   onscreen: {
-    x: -140,
+    y: 10,
+    x: -580,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const IntroTitle = {
+  endscreen: {
+    x: 300,
+    y: -100,
+    opacity: 0,
+    transition: { duration: 0.5 },
+  },
+  startscreen: {
+    y: -100,
+    x: 60,
+    opacity: 1,
     transition: {
       type: "tween",
-      bounce: 0.4,
-      duration: 1,
+      duration: 0.5,
     },
+  },
+};
+
+const BodyContainerAboutMeAnimation = {
+  aboutmeboxanimationvisible: {
+    x: 0,
+    opacity: 1,
+    backgroundColor: "rgba(115, 117, 216, 0.4)",
+    transition: {
+      duration: 0.5,
+    },
+  },
+  aboutmeboxanimationinvisible: {
+    x: 800,
+    opacity: 0,
+    backgroundColor: "#001cf0",
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const BodyContainerAboutMeImgAnimation = {
+  aboutmeimganimationvisible: {
+    scale: 1,
+    transition: { duration: 0.5 },
+    opacity: 1,
+  },
+  aboutmeimganimationinvisible: {
+    scale: 0,
+    transition: { duration: 0.5 },
+    opacity: 0,
   },
 };
 
@@ -239,55 +398,151 @@ function Home() {
       }
     });
   }, [scrollY, navAnimation]);
+
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (scrollY.get() > 400) {
+        navAnimation.start("offscreen");
+        navAnimation.start("endscreen");
+      } else {
+        navAnimation.start("onscreen");
+        navAnimation.start("startscreen");
+      }
+    });
+  }, [scrollY, navAnimation]);
+
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (scrollY.get() > 400) {
+        navAnimation.start("aboutmeimganimationvisible");
+        navAnimation.start("aboutmeboxanimationvisible");
+      } else {
+        navAnimation.start("aboutmeimganimationinvisible");
+        navAnimation.start("aboutmeboxanimationinvisible");
+      }
+    });
+  }, [scrollY, navAnimation]);
+
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   return (
-    <Containder>
-      <HeaderNav
-        variants={HeaderNavVariants}
-        animate={navAnimation}
-        initial={"top"}
-      >
-        <HeaderUl variants={HeaderNavUlVariants}>
-          <HeaderList>Home</HeaderList>
-          <HeaderList>About Me</HeaderList>
-          <HeaderList>Skil</HeaderList>
-          <HeaderList>contact</HeaderList>
-        </HeaderUl>
-      </HeaderNav>
-      <MainContainer>
-        <MainWaveBox>
-          <MainWaveTop></MainWaveTop>
-          <MainWaveMiddle></MainWaveMiddle>
-          <MainWaveBottom></MainWaveBottom>
-          <MainTitleBox
-            variants={WaveTitle}
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
+    <Container>
+      <ContainerInline>
+        <ContainerBackImg>
+          <ContainerImgOverlay />
+          <HeaderNav
+            variants={HeaderNavVariants}
+            animate={navAnimation}
+            initial={"top"}
           >
-            <MainTitleSpanTop>
-              <MainTiTleSpan1>Y</MainTiTleSpan1>
-              <span>E</span>
-              <span>C</span>
-              <span>H</span>
-              <span>A</span>
-              <span>N</span>
-              <span>'S</span>
-            </MainTitleSpanTop>
-            <MainTitleSpanBottom>
-              <span>P</span>
-              <span>O</span>
-              <span>R</span>
-              <span>T</span>
-              <span>F</span>
-              <span>O</span>
-              <span>L</span>
-              <span>I</span>
-              <span>O</span>
-            </MainTitleSpanBottom>
-          </MainTitleBox>
-        </MainWaveBox>
-      </MainContainer>
-    </Containder>
+            <HeaderUl variants={HeaderNavUlVariants}>
+              <HeaderList>Home</HeaderList>
+              <HeaderList>About Me</HeaderList>
+              <HeaderList>Skils</HeaderList>
+              <HeaderList>Project</HeaderList>
+              <HeaderList>contact</HeaderList>
+            </HeaderUl>
+          </HeaderNav>
+          <MainContainer>
+            <MainWaveBox>
+              <MainWaveTop></MainWaveTop>
+              <MainWaveMiddle></MainWaveMiddle>
+              <MainWaveBottom></MainWaveBottom>
+              <MainTitleBox
+                variants={WaveTitle}
+                animate={navAnimation}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ once: true, amount: 0 }}
+              >
+                <MainTitleSpanTop>
+                  <MainTiTleSpan>YECHAN'S</MainTiTleSpan>
+                </MainTitleSpanTop>
+                <MainTitleSpanBottom>
+                  <MainTiTleSpan>PORTFOLIO</MainTiTleSpan>
+                </MainTitleSpanBottom>
+              </MainTitleBox>
+            </MainWaveBox>
+            <MainIntroTitleBox
+              variants={IntroTitle}
+              animate={navAnimation}
+              initial="endscreen"
+              whileInView="startscreen"
+              viewport={{ once: true, amount: 0 }}
+            >
+              <MainIntroTitle> - 은예찬 - </MainIntroTitle>
+              <MainIntroSubTitle>웹 프론트엔드 개발자</MainIntroSubTitle>
+              <br />
+              <hr style={{ opacity: 0.4 }} />
+              <MainIntroDetailTitle>
+                좋은 개발자가 되기위해 열심히 공부를 합니다.
+              </MainIntroDetailTitle>
+              <MainIntroDetailTitle>
+                끈기를 가지고 안되는것에 대해 의문을 가지고 파고드는 성격이
+                장점입니다.
+              </MainIntroDetailTitle>
+            </MainIntroTitleBox>
+          </MainContainer>
+        </ContainerBackImg>
+      </ContainerInline>
+      {/* body */}
+
+      <BodyContainer>
+        <BodyContainerAboutMeBox
+          variants={BodyContainerAboutMeAnimation}
+          animate={navAnimation}
+          initial="aboutmeboxanimationinvisible"
+          whileInView="aboutmeboxanimationvisible"
+          viewport={{ once: true, amount: 0 }}
+        >
+          <BodyContainerAboutMeTitleBox>
+            <h2>AboutMe</h2>
+          </BodyContainerAboutMeTitleBox>
+
+          <BodyContainerAboutMe>
+            <BodyContainerAboutMeImgBox
+              variants={BodyContainerAboutMeImgAnimation}
+              animate={navAnimation}
+              initial="aboutmeimganimationinvisible"
+              whileInView="aboutmeimganimationvisible"
+              viewport={{ once: true, amount: 0 }}
+            >
+              <BodyContainerAboutMeImg whileHover={{ scale: 1.2 }} />
+            </BodyContainerAboutMeImgBox>
+
+            <BodyContainerAboutMeUlBox>
+              <BodyContainerAboutMeUlTitle>
+                😀프론트엔드 개발자가 되고싶습니다!
+              </BodyContainerAboutMeUlTitle>
+              <BodyContainerAboutMeUl>
+                <BodyContainerAboutMeList>
+                  군대에서 우연히 책으로 접하게 된 코딩 해보고싶다는 생각이
+                  들었습니다. <br />
+                  제대 후 맨땅에 해딩으로 학원에 가서 공부를 배웠습니다.
+                </BodyContainerAboutMeList>
+                <BodyContainerAboutMeList>
+                  학원을 다니고 나서도 많이 부족하다고 느껴 1년동안 인강을 보구
+                  공부를 하며 <br /> 프론트개발자를 준비했습니다
+                </BodyContainerAboutMeList>
+                <BodyContainerAboutMeList>
+                  프론트를 열심히 배우고 많은 것들이 익숙해지고 이해가 되면
+                  나중에는
+                  <br />
+                  백엔드도 도전 해보고 싶습니다.
+                </BodyContainerAboutMeList>
+                <BodyContainerAboutMeList>
+                  끊임없이 무언가를 배우고 공부하는 개발자가 되고싶습니다.
+                </BodyContainerAboutMeList>
+              </BodyContainerAboutMeUl>
+            </BodyContainerAboutMeUlBox>
+          </BodyContainerAboutMe>
+        </BodyContainerAboutMeBox>
+      </BodyContainer>
+    </Container>
   );
 }
 
