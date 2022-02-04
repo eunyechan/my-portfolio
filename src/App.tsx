@@ -1,8 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import backimg from "./images/backgroundimg.png";
 import profile from "./images/profileimg.jpg";
+import csslogo from "./images/csslogo.png";
+import jslogo from "./images/jslogo.png";
+import htmllogo from "./images/htmllogo.png";
+import reactlogo from "./images/reactlogo.png";
+import typescriptlogo from "./images/typescriptlogo.png";
 
 const Container = styled.div`
   padding: 0;
@@ -30,7 +35,7 @@ const ContainerImgOverlay = styled.div`
   padding: 0;
   margin: 0;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
 `;
@@ -219,10 +224,26 @@ const MainIntroDetailTitle = styled.h4`
 `;
 
 // bodyHome 부분
-const BodyContainer = styled.div`
+const BodyContainerBox = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(100, 99, 99, 0.4);
+  position: relative;
+  /* padding-top: 8rem; */
+`;
+
+const BodyContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const BodyContainerArrow = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  font-weight: bold;
 `;
 
 const BodyContainerAboutMeBox = styled(motion.div)`
@@ -300,6 +321,177 @@ const BodyContainerAboutMeList = styled.li`
   padding: 10px;
 `;
 
+// bodySkills 부분
+
+const BodySkilsprojectContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #9cc0e0;
+`;
+
+const BodyProjectsMenuContainer = styled(motion.div)`
+  display: flex;
+  flex: 1;
+  font-weight: bold;
+  overflow: hidden;
+`;
+
+const BodyProjectsMenuSmallInlineContainer = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+`;
+
+const BodyProjectsMenuSmallInlineTitle = styled(motion.span)`
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+  border: 2px solid white;
+`;
+
+const BodyProjectsMenuBigInlineContainer = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+`;
+
+const BodyProjectsMenuBigInlineTitle = styled(motion.span)`
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+`;
+
+const BodySkilsMenuContainerButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid black;
+`;
+
+const BodySkilsMenuContainerButtonInlineBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 8rem;
+`;
+
+const BodySkilsMenuContainerButton = styled(motion.button)`
+  border-radius: 99px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: 8rem;
+`;
+
+const BodySkilsContainerInlineBox = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const BodySkilsContainerBigInlineBox = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 6;
+  margin-top: 8rem;
+`;
+
+const BodySkilsContainerInlineTitle = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+`;
+
+const BodySkilsContainerInlineIconBox = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
+const BodySkilsContainerInlineTopIconBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+`;
+
+const BodySkilsContainerInlineTopHtmlIcon = styled.img`
+  background-image: url(${htmllogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+`;
+
+const BodySkilsContainerInlineTopJsIcon = styled.img`
+  background-image: url(${jslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+`;
+
+const BodySkilsContainerInlineTopCssIcon = styled.img`
+  background-image: url(${csslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+`;
+
+const BodySkilsContainerSmallInlineBox = styled(motion.div)`
+  display: flex;
+`;
+
+const BodySkilsContainerInlineBottomIconBox = styled.div`
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const BodySkilsContainerInlineBottomReactIcon = styled.img`
+  background-image: url(${reactlogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+`;
+
+const BodySkilsContainerInlineBottomTypeScriptIcon = styled.img`
+  background-image: url(${typescriptlogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+`;
+
 const HeaderNavVariants = {
   top: {
     backgroundColor: "rgba(0, 0, 0, 0)",
@@ -311,7 +503,7 @@ const HeaderNavVariants = {
 
 const HeaderNavUlVariants = {
   top: {
-    color: "rgba(0, 0, 0, 1)",
+    color: "rgba(255, 255, 255, 1)",
     transition: { duration: 0.5 },
   },
   scroll: {
@@ -320,7 +512,7 @@ const HeaderNavUlVariants = {
   },
 };
 
-const WaveTitle = {
+const WaveTitleVariants = {
   offscreen: {
     x: "10vw",
     opacity: 0,
@@ -336,7 +528,7 @@ const WaveTitle = {
   },
 };
 
-const IntroTitle = {
+const IntroTitleVariants = {
   endscreen: {
     x: "30vw",
     y: "-10vh",
@@ -353,7 +545,7 @@ const IntroTitle = {
   },
 };
 
-const BodyContainerAboutMeAnimation = {
+const BodyContainerAboutMeVariants = {
   aboutmeboxanimationvisible: {
     x: 0,
     opacity: 1,
@@ -371,10 +563,11 @@ const BodyContainerAboutMeAnimation = {
   },
 };
 
-const BodyContainerAboutMeImgAnimation = {
+const BodyContainerAboutMeImgVariants = {
   aboutmeimganimationvisible: {
     scale: 1,
     transition: { duration: 0.5 },
+    delay: 1,
     opacity: 1,
   },
   aboutmeimganimationinvisible: {
@@ -384,7 +577,104 @@ const BodyContainerAboutMeImgAnimation = {
   },
 };
 
+const BodyContainerAboutmeArrowVariants = {
+  aboutmearrowvisible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  aboutmearrowinvisible: {
+    x: -800,
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+// project Variants
+const BodyProjectsMenuContainerVariants = {
+  projectopenmenu: {
+    flex: 6,
+    opcity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+  projectclosemenu: {
+    flex: 1,
+    opcity: 0,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
+const BodyProjectsMenuInlineBoxVariants = {
+  projectmenuopenbox: {
+    opacity: 1,
+    display: "flex",
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+  projectmenuclosebox: {
+    opacity: 0,
+    display: "none",
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
+// skils variants
+const BodySkilsContainerVariants = {
+  skilsopenmenu: {
+    flex: 1,
+    opcity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+  skilsclosemenu: {
+    flex: 6,
+    opcity: 0,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
+const BodySkilsMenuInlineBoxVariants = {
+  skilmenuopenbox: {
+    opacity: 1,
+    display: "flex",
+    transition: {
+      duration: 0.5,
+      type: "tween",
+      delay: 0.3,
+    },
+  },
+  skilmenuclosebox: {
+    opacity: 0,
+    display: "none",
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
 function Home() {
+  const [isOpen, setIsOpen] = useState(false);
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
   useEffect(() => {
@@ -411,12 +701,14 @@ function Home() {
 
   useEffect(() => {
     scrollY.onChange(() => {
-      if (scrollY.get() > 400) {
-        navAnimation.start("aboutmeimganimationvisible");
+      if (scrollY.get() > 300) {
         navAnimation.start("aboutmeboxanimationvisible");
+        navAnimation.start("aboutmeimganimationvisible");
+        navAnimation.start("aboutmearrowinvisible");
       } else {
-        navAnimation.start("aboutmeimganimationinvisible");
         navAnimation.start("aboutmeboxanimationinvisible");
+        navAnimation.start("aboutmeimganimationinvisible");
+        navAnimation.start("aboutmearrowvisible");
       }
     });
   }, [scrollY, navAnimation]);
@@ -451,7 +743,7 @@ function Home() {
               <MainWaveMiddle></MainWaveMiddle>
               <MainWaveBottom></MainWaveBottom>
               <MainTitleBox
-                variants={WaveTitle}
+                variants={WaveTitleVariants}
                 animate={navAnimation}
                 initial="offscreen"
                 whileInView="onscreen"
@@ -466,7 +758,7 @@ function Home() {
               </MainTitleBox>
             </MainWaveBox>
             <MainIntroTitleBox
-              variants={IntroTitle}
+              variants={IntroTitleVariants}
               animate={navAnimation}
               initial="endscreen"
               whileInView="startscreen"
@@ -487,59 +779,142 @@ function Home() {
           </MainContainer>
         </ContainerBackImg>
       </ContainerInline>
-      {/* body */}
 
-      <BodyContainer>
-        <BodyContainerAboutMeBox
-          variants={BodyContainerAboutMeAnimation}
-          animate={navAnimation}
-          initial="aboutmeboxanimationinvisible"
-          whileInView="aboutmeboxanimationvisible"
-          viewport={{ once: true, amount: 0 }}
-        >
-          <BodyContainerAboutMeTitleBox>
-            <h2>AboutMe</h2>
-          </BodyContainerAboutMeTitleBox>
+      {/* **********************body AboutMe 부분********************* */}
 
-          <BodyContainerAboutMe>
-            <BodyContainerAboutMeImgBox
-              variants={BodyContainerAboutMeImgAnimation}
-              animate={navAnimation}
-              initial="aboutmeimganimationinvisible"
-              whileInView="aboutmeimganimationvisible"
-              viewport={{ once: true, amount: 0 }}
+      <BodyContainerBox>
+        <BodyContainer>
+          <BodyContainerArrow
+            variants={BodyContainerAboutmeArrowVariants}
+            animate={navAnimation}
+            initial="aboutmearrowvisible"
+            whileInView="aboutmearrowinvisible"
+          >
+            &lt;
+          </BodyContainerArrow>
+
+          <BodyContainerAboutMeBox
+            variants={BodyContainerAboutMeVariants}
+            animate={navAnimation}
+            initial="aboutmeboxanimationvisible"
+            whileInView="aboutmeboxanimationinvisible"
+            viewport={{ once: true, amount: 0 }}
+          >
+            <BodyContainerAboutMeTitleBox>
+              <h2>AboutMe</h2>
+            </BodyContainerAboutMeTitleBox>
+
+            <BodyContainerAboutMe>
+              <BodyContainerAboutMeImgBox
+                variants={BodyContainerAboutMeImgVariants}
+                animate={navAnimation}
+                initial="aboutmeimganimationinvisible"
+                whileInView="aboutmeimganimationvisible"
+                viewport={{ once: true, amount: 0 }}
+              >
+                <BodyContainerAboutMeImg whileHover={{ scale: 1.2 }} />
+              </BodyContainerAboutMeImgBox>
+
+              <BodyContainerAboutMeUlBox>
+                <BodyContainerAboutMeUlTitle>
+                  😀프론트엔드 개발자가 되고싶습니다!
+                </BodyContainerAboutMeUlTitle>
+                <BodyContainerAboutMeUl>
+                  <BodyContainerAboutMeList>
+                    군대에서 우연히 책으로 접하게 된 코딩 해보고싶다는 생각이
+                    들었습니다. <br />
+                    제대 후 맨땅에 해딩으로 학원에 가서 공부를 배웠습니다.
+                  </BodyContainerAboutMeList>
+                  <BodyContainerAboutMeList>
+                    학원을 다니고 나서도 많이 부족하다고 느껴 1년동안 인강으로
+                    공부를 하며 <br /> 프론트개발자를 준비했습니다
+                  </BodyContainerAboutMeList>
+                  <BodyContainerAboutMeList>
+                    프론트를 열심히 배우고 많은 것들이 익숙해지고 이해가 되면
+                    나중에는
+                    <br />
+                    백엔드도 도전 해보고 싶습니다.
+                  </BodyContainerAboutMeList>
+                  <BodyContainerAboutMeList>
+                    끊임없이 무언가를 배우고 공부하는 개발자가 되고싶습니다.
+                  </BodyContainerAboutMeList>
+                </BodyContainerAboutMeUl>
+              </BodyContainerAboutMeUlBox>
+            </BodyContainerAboutMe>
+          </BodyContainerAboutMeBox>
+        </BodyContainer>
+
+        {/* **********************body Skils 부분********************* */}
+
+        <BodySkilsprojectContainer>
+          {/* project부분 */}
+          <BodyProjectsMenuContainer
+            variants={BodyProjectsMenuContainerVariants}
+            animate={isOpen ? "projectopenmenu" : "projectclosemenu"}
+            initial="projectclosemenu"
+          >
+            <BodyProjectsMenuSmallInlineContainer
+              variants={BodyProjectsMenuInlineBoxVariants}
+              animate={isOpen ? "projectmenuclosebox" : "projectmenuopenbox"}
             >
-              <BodyContainerAboutMeImg whileHover={{ scale: 1.2 }} />
-            </BodyContainerAboutMeImgBox>
+              <BodyProjectsMenuSmallInlineTitle>
+                Projects
+              </BodyProjectsMenuSmallInlineTitle>
+            </BodyProjectsMenuSmallInlineContainer>
 
-            <BodyContainerAboutMeUlBox>
-              <BodyContainerAboutMeUlTitle>
-                😀프론트엔드 개발자가 되고싶습니다!
-              </BodyContainerAboutMeUlTitle>
-              <BodyContainerAboutMeUl>
-                <BodyContainerAboutMeList>
-                  군대에서 우연히 책으로 접하게 된 코딩 해보고싶다는 생각이
-                  들었습니다. <br />
-                  제대 후 맨땅에 해딩으로 학원에 가서 공부를 배웠습니다.
-                </BodyContainerAboutMeList>
-                <BodyContainerAboutMeList>
-                  학원을 다니고 나서도 많이 부족하다고 느껴 1년동안 인강을 보구
-                  공부를 하며 <br /> 프론트개발자를 준비했습니다
-                </BodyContainerAboutMeList>
-                <BodyContainerAboutMeList>
-                  프론트를 열심히 배우고 많은 것들이 익숙해지고 이해가 되면
-                  나중에는
-                  <br />
-                  백엔드도 도전 해보고 싶습니다.
-                </BodyContainerAboutMeList>
-                <BodyContainerAboutMeList>
-                  끊임없이 무언가를 배우고 공부하는 개발자가 되고싶습니다.
-                </BodyContainerAboutMeList>
-              </BodyContainerAboutMeUl>
-            </BodyContainerAboutMeUlBox>
-          </BodyContainerAboutMe>
-        </BodyContainerAboutMeBox>
-      </BodyContainer>
+            <BodyProjectsMenuBigInlineContainer
+              variants={BodyProjectsMenuInlineBoxVariants}
+              animate={isOpen ? "projectmenuopenbox" : "projectmenuclosebox"}
+            >
+              <BodyProjectsMenuBigInlineTitle>
+                asffff
+              </BodyProjectsMenuBigInlineTitle>
+            </BodyProjectsMenuBigInlineContainer>
+          </BodyProjectsMenuContainer>
+
+          <BodySkilsMenuContainerButtonBox>
+            <BodySkilsMenuContainerButtonInlineBox>
+              <BodySkilsMenuContainerButton
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              ></BodySkilsMenuContainerButton>
+            </BodySkilsMenuContainerButtonInlineBox>
+          </BodySkilsMenuContainerButtonBox>
+
+          {/* skils부분 늘어났을 때 */}
+          <BodySkilsContainerInlineBox
+            variants={BodySkilsContainerVariants}
+            animate={isOpen ? "skilsopenmenu" : "skilsclosemenu"}
+          >
+            <BodySkilsContainerBigInlineBox>
+              <BodySkilsContainerInlineIconBox
+                variants={BodySkilsMenuInlineBoxVariants}
+                animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
+              >
+                <BodySkilsContainerInlineTitle>
+                  Skils
+                </BodySkilsContainerInlineTitle>
+                <BodySkilsContainerInlineTopIconBox>
+                  <BodySkilsContainerInlineTopHtmlIcon />
+                  <BodySkilsContainerInlineTopJsIcon />
+                  <BodySkilsContainerInlineTopCssIcon />
+                </BodySkilsContainerInlineTopIconBox>
+                <BodySkilsContainerInlineBottomIconBox>
+                  {/* <BodySkilsContainerInlineBottomReactIcon />
+                <BodySkilsContainerInlineBottomTypeScriptIcon /> */}
+                </BodySkilsContainerInlineBottomIconBox>
+              </BodySkilsContainerInlineIconBox>
+            </BodySkilsContainerBigInlineBox>
+
+            {/* 줄어들었을 때 */}
+            <BodySkilsContainerSmallInlineBox
+              variants={BodySkilsMenuInlineBoxVariants}
+              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
+            ></BodySkilsContainerSmallInlineBox>
+          </BodySkilsContainerInlineBox>
+        </BodySkilsprojectContainer>
+      </BodyContainerBox>
     </Container>
   );
 }
