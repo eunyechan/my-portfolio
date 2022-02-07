@@ -3,11 +3,13 @@ import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import backimg from "./images/backgroundimg.png";
 import profile from "./images/profileimg.jpg";
-import csslogo from "./images/csslogo.png";
-import jslogo from "./images/jslogo.png";
-import htmllogo from "./images/htmllogo.png";
-import reactlogo from "./images/reactlogo.png";
-import typescriptlogo from "./images/typescriptlogo.png";
+import csslogo from "./images/css_logo.png";
+import jslogo from "./images/js_logo.png";
+import htmllogo from "./images/html_logo.png";
+import reactlogo from "./images/react_logo.png";
+import typescriptlogo from "./images/ts_logo.png";
+import gitlogo from "./images/git_logo.png";
+import githublogo from "./images/github_logo.png";
 
 const Container = styled.div`
   padding: 0;
@@ -47,7 +49,6 @@ const HeaderNav = styled(motion.nav)`
   align-items: center;
   width: 100%;
   font-size: 14px;
-  padding: 10px 60px;
   color: white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -227,9 +228,8 @@ const MainIntroDetailTitle = styled.h4`
 const BodyContainerBox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: rgba(100, 99, 99, 0.4);
+  background-color: rgba(33, 50, 94, 1);
   position: relative;
-  /* padding-top: 8rem; */
 `;
 
 const BodyContainer = styled.div`
@@ -251,6 +251,7 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  padding: 4rem;
 `;
 
 const BodyContainerAboutMeTitleBox = styled.div`
@@ -259,10 +260,34 @@ const BodyContainerAboutMeTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: bolder;
-  font-family: "Playfair Display", serif;
-  margin-top: 8rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  letter-spacing: 5px;
+  z-index: 1;
+`;
+
+const BodyContainerAboutMeTitle = styled.h2`
+  position: relative;
+  z-index: 0;
+  display: flex;
+  width: 100%;
+  &::before {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: -1;
+    left: -10px;
+    content: "";
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e3f7fa;
+  }
 `;
 
 const BodyContainerAboutMe = styled(motion.div)`
@@ -272,6 +297,8 @@ const BodyContainerAboutMe = styled(motion.div)`
   align-items: center;
   width: 100%;
   height: 100%;
+  border-radius: 10px;
+  background-color: white;
 `;
 
 const BodyContainerAboutMeImgBox = styled(motion.div)`
@@ -327,7 +354,6 @@ const BodySkilsprojectContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: #9cc0e0;
 `;
 
 const BodyProjectsMenuContainer = styled(motion.div)`
@@ -335,6 +361,7 @@ const BodyProjectsMenuContainer = styled(motion.div)`
   flex: 1;
   font-weight: bold;
   overflow: hidden;
+  background-color: rgba(62, 73, 122, 1);
 `;
 
 const BodyProjectsMenuSmallInlineContainer = styled(motion.div)`
@@ -350,7 +377,6 @@ const BodyProjectsMenuSmallInlineTitle = styled(motion.span)`
   font-size: 25px;
   font-weight: bold;
   font-family: "Playfair Display", serif;
-  border: 2px solid white;
 `;
 
 const BodyProjectsMenuBigInlineContainer = styled(motion.div)`
@@ -389,7 +415,7 @@ const BodySkilsMenuContainerButton = styled(motion.button)`
   position: absolute;
   width: 50px;
   height: 50px;
-  margin-top: 8rem;
+  z-index: 1;
 `;
 
 const BodySkilsContainerInlineBox = styled(motion.div)`
@@ -397,25 +423,16 @@ const BodySkilsContainerInlineBox = styled(motion.div)`
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: rgba(241, 208, 10, 1);
 `;
 
 const BodySkilsContainerBigInlineBox = styled(motion.div)`
   display: flex;
   width: 100%;
   height: 100%;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex: 6;
-  margin-top: 8rem;
-`;
-
-const BodySkilsContainerInlineTitle = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 40px;
 `;
 
 const BodySkilsContainerInlineIconBox = styled(motion.div)`
@@ -423,73 +440,192 @@ const BodySkilsContainerInlineIconBox = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  padding: 50px;
 `;
 
-const BodySkilsContainerInlineTopIconBox = styled.div`
+const BodySkilsContainerInlineTitle = styled.span`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+  letter-spacing: 0.4em;
+  -webkit-box-reflect: below -10px -webkit-linear-gradient(
+      top,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 10%,
+      rgba(0, 0, 0, 0.7)
+    );
+  line-height: normal;
+`;
+
+const BodySkilsContainerRightLeftIconBox = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  grid-gap: 20px;
+`;
+
+const BodySkilsContainerInlineLeftIconBox = styled.div`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+`;
+
+const BodySkilsContainerInlineRightIconBox = styled.div`
+  display: grid;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+`;
+
+const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex: 1;
 `;
 
-const BodySkilsContainerInlineTopHtmlIcon = styled.img`
+const BodySkilsContainerInlineLeftIconBoxBottomDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+`;
+
+const BodySkilsContainerInlineRightIconBoxTopDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex: 1;
+`;
+
+const BodySkilsContainerInlineRightIconBoxBottomDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+`;
+
+const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
   background-image: url(${htmllogo});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   width: 130px;
   height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
 `;
 
-const BodySkilsContainerInlineTopJsIcon = styled.img`
-  background-image: url(${jslogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
-`;
-
-const BodySkilsContainerInlineTopCssIcon = styled.img`
+const BodySkilsContainerInlineTopCssIcon = styled(motion.img)`
   background-image: url(${csslogo});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   width: 130px;
   height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
+`;
+
+const BodySkilsContainerInlineTopJsIcon = styled(motion.img)`
+  background-image: url(${jslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
 `;
 
 const BodySkilsContainerSmallInlineBox = styled(motion.div)`
   display: flex;
-`;
-
-const BodySkilsContainerInlineBottomIconBox = styled.div`
   width: 100%;
   height: 100%;
-  flex: 1;
-  display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  border: 1px solid black;
+  background-color: #f5f5f5;
 `;
 
-const BodySkilsContainerInlineBottomReactIcon = styled.img`
+const BodySkilsContainerSmallInlineBoxTitle = styled.span`
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+`;
+
+const BodySkilsContainerInlineBottomReactIcon = styled(motion.img)`
   background-image: url(${reactlogo});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   width: 130px;
   height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
 `;
 
-const BodySkilsContainerInlineBottomTypeScriptIcon = styled.img`
-  background-image: url(${typescriptlogo});
+const BodySkilsContainerInlineBottomTypeScriptIcon = styled(motion.img)`
+  background: url(${typescriptlogo});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   width: 130px;
   height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
+`;
+
+const BodySkilsContainerInlineGittIcon = styled(motion.img)`
+  background: url(${gitlogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
+`;
+
+const BodySkilsContainerInlineGithubIcon = styled(motion.img)`
+  background: url(${githublogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 130px;
+  height: 130px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
 `;
 
 const HeaderNavVariants = {
@@ -549,7 +685,6 @@ const BodyContainerAboutMeVariants = {
   aboutmeboxanimationvisible: {
     x: 0,
     opacity: 1,
-    backgroundColor: "rgba(115, 117, 216, 0.4)",
     transition: {
       duration: 0.5,
     },
@@ -667,7 +802,7 @@ const BodySkilsMenuInlineBoxVariants = {
     opacity: 0,
     display: "none",
     transition: {
-      duration: 0.5,
+      duration: 0.2,
       type: "tween",
     },
   },
@@ -801,7 +936,7 @@ function Home() {
             viewport={{ once: true, amount: 0 }}
           >
             <BodyContainerAboutMeTitleBox>
-              <h2>AboutMe</h2>
+              <BodyContainerAboutMeTitle>AboutMe</BodyContainerAboutMeTitle>
             </BodyContainerAboutMeTitleBox>
 
             <BodyContainerAboutMe>
@@ -895,15 +1030,69 @@ function Home() {
                 <BodySkilsContainerInlineTitle>
                   Skils
                 </BodySkilsContainerInlineTitle>
-                <BodySkilsContainerInlineTopIconBox>
-                  <BodySkilsContainerInlineTopHtmlIcon />
-                  <BodySkilsContainerInlineTopJsIcon />
-                  <BodySkilsContainerInlineTopCssIcon />
-                </BodySkilsContainerInlineTopIconBox>
-                <BodySkilsContainerInlineBottomIconBox>
-                  {/* <BodySkilsContainerInlineBottomReactIcon />
-                <BodySkilsContainerInlineBottomTypeScriptIcon /> */}
-                </BodySkilsContainerInlineBottomIconBox>
+                <BodySkilsContainerRightLeftIconBox>
+                  <BodySkilsContainerInlineLeftIconBox>
+                    <span
+                      style={{
+                        display: "flex",
+                        textAlign: "center",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        height: "15vh",
+                      }}
+                    >
+                      Front-end
+                    </span>
+                    <BodySkilsContainerInlineLeftIconBoxTopDiv>
+                      <BodySkilsContainerInlineTopHtmlIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                      <BodySkilsContainerInlineTopCssIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                      <BodySkilsContainerInlineTopJsIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                    </BodySkilsContainerInlineLeftIconBoxTopDiv>
+                    <BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                      <BodySkilsContainerInlineBottomReactIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                      <BodySkilsContainerInlineBottomTypeScriptIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                    </BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                  </BodySkilsContainerInlineLeftIconBox>
+
+                  <BodySkilsContainerInlineRightIconBox>
+                    <span
+                      style={{
+                        display: "flex",
+                        textAlign: "center",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        height: "15vh",
+                      }}
+                    >
+                      Version Control
+                    </span>
+
+                    <BodySkilsContainerInlineRightIconBoxTopDiv>
+                      <BodySkilsContainerInlineGittIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                      <BodySkilsContainerInlineGithubIcon
+                        whileHover={{ y: "-20px" }}
+                      />
+                    </BodySkilsContainerInlineRightIconBoxTopDiv>
+                  </BodySkilsContainerInlineRightIconBox>
+                </BodySkilsContainerRightLeftIconBox>
               </BodySkilsContainerInlineIconBox>
             </BodySkilsContainerBigInlineBox>
 
@@ -911,7 +1100,11 @@ function Home() {
             <BodySkilsContainerSmallInlineBox
               variants={BodySkilsMenuInlineBoxVariants}
               animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
-            ></BodySkilsContainerSmallInlineBox>
+            >
+              <BodySkilsContainerSmallInlineBoxTitle>
+                Skil List
+              </BodySkilsContainerSmallInlineBoxTitle>
+            </BodySkilsContainerSmallInlineBox>
           </BodySkilsContainerInlineBox>
         </BodySkilsprojectContainer>
       </BodyContainerBox>
