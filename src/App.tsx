@@ -1,15 +1,23 @@
 import styled, { keyframes } from "styled-components";
-import { motion, useAnimation, useViewportScroll } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useViewportScroll,
+  AnimatePresence,
+} from "framer-motion";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import backimg from "./images/backgroundimg.png";
-import profile from "./images/profileimg.jpg";
-import csslogo from "./images/css_logo.png";
-import jslogo from "./images/js_logo.png";
-import htmllogo from "./images/html_logo.png";
-import reactlogo from "./images/react_logo.png";
-import typescriptlogo from "./images/ts_logo.png";
-import gitlogo from "./images/git_logo.png";
-import githublogo from "./images/github_logo.png";
+import { images } from "./data/imageData";
+import { wrap } from "popmotion";
+import backimg from "./images/imagesLogo/backgroundimg.png";
+import profile from "./images/imagesLogo/profileimg.jpg";
+import csslogo from "./images/imagesLogo/css_logo.png";
+import jslogo from "./images/imagesLogo/js_logo.png";
+import htmllogo from "./images/imagesLogo/html_logo.png";
+import reactlogo from "./images/imagesLogo/react_logo.png";
+import typescriptlogo from "./images/imagesLogo/ts_logo.png";
+import gitlogo from "./images/imagesLogo/git_logo.png";
+import githublogo from "./images/imagesLogo/github_logo.png";
 
 const Container = styled.div`
   padding: 0;
@@ -37,7 +45,7 @@ const ContainerImgOverlay = styled.div`
   padding: 0;
   margin: 0;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
 `;
@@ -107,7 +115,7 @@ const MainWaveTop = styled.div`
   position: absolute;
   top: 3%;
   left: 20%;
-  background: #72cbf8;
+  background: #7882a4;
   width: 450px;
   height: 450px;
   margin-left: -250px;
@@ -131,7 +139,7 @@ const MainWaveMiddle = styled.div`
   animation: ${wavaAnimation} 3000ms infinite linear;
   animation: ${wavaAnimation} 7000ms infinite linear;
   opacity: 0.1;
-  background: #40b3c2;
+  background: #c0a080;
 `;
 
 const MainWaveBottom = styled.div`
@@ -139,7 +147,7 @@ const MainWaveBottom = styled.div`
   position: absolute;
   top: 3%;
   left: 20%;
-  background: #0af;
+  background: #d1d1d1;
   width: 450px;
   height: 450px;
   margin-left: -250px;
@@ -348,7 +356,7 @@ const BodyContainerAboutMeList = styled.li`
   padding: 10px;
 `;
 
-// bodySkills 부분
+// Body Project 부분
 
 const BodySkilsprojectContainer = styled.div`
   display: flex;
@@ -358,40 +366,187 @@ const BodySkilsprojectContainer = styled.div`
 
 const BodyProjectsMenuContainer = styled(motion.div)`
   display: flex;
-  flex: 1;
-  font-weight: bold;
   overflow: hidden;
-  background-color: rgba(62, 73, 122, 1);
-`;
-
-const BodyProjectsMenuSmallInlineContainer = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8rem;
-`;
-
-const BodyProjectsMenuSmallInlineTitle = styled(motion.span)`
-  font-size: 25px;
-  font-weight: bold;
-  font-family: "Playfair Display", serif;
-`;
-
-const BodyProjectsMenuBigInlineContainer = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8rem;
+  background-color: rgba(62, 73, 122, 0.6);
 `;
 
 const BodyProjectsMenuBigInlineTitle = styled(motion.span)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+  letter-spacing: 0.4em;
+  -webkit-box-reflect: below -7px -webkit-linear-gradient(
+      top,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 10%,
+      rgba(0, 0, 0, 0.4)
+    );
+  line-height: normal;
+  background-color: white;
+  /* border-radius: 99px; */
+`;
+
+const BodyProjectsMenuBiglineContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+`;
+
+const BodyProjectsMenuBigInlineContainerBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* grid-gap: 5px; */
+`;
+
+const BodyProjectsMenuBigInlineContainerImageDetailTitleBox = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+  padding: 30px;
+`;
+
+const BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox = styled.div`
+  border: 5px solid black;
+  width: 100%;
+  display: flex;
+  padding: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  border-radius: 99px;
+  background-color: #f1eaea;
+`;
+
+const BodyProjectsMenuBigInlineContainerImageDetailBigTitle = styled.span`
+  width: 100%;
+  height: 100%;
   font-size: 25px;
   font-weight: bold;
-  font-family: "Playfair Display", serif;
+  color: black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+`;
+
+const BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+`;
+
+const BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle = styled.span`
+  font-size: 16px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: flex;
+
+  a {
+    &:hover {
+      color: #3f3fec;
+    }
+  }
+`;
+
+const BodyProjectsMenuBigInlineContainerImageBox = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #eee;
+`;
+
+const BodyProjectsMenuBigInlineContainerImage = styled(motion.img)`
+  max-width: 100vw;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+`;
+
+const BodyProjectsMenuBigInlineContainerImageTotalNumberBox = styled.div`
+  width: 100%;
+  height: 2rem;
+  z-index: 1;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  bottom: 4rem;
+`;
+
+const BodyProjectsMenuBigInlineContainerImageTotalNumber = styled.span`
+  font-size: 16px;
+  display: flex;
+  color: white;
+`;
+
+const BodySkilsProjectImageSliderRightButton = styled(motion.button)`
+  top: calc(50% - 20px);
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 2;
+  right: 10px;
+`;
+
+const BodySkilsProjectImageSliderLeftButton = styled(motion.button)`
+  top: calc(50% - 20px);
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 2;
+  left: 10px;
+  transform: scale(-1);
+`;
+
+const BodyProjectsMenuSmallInlineTitle = styled(motion.span)`
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  margin-bottom: 5rem;
+`;
+
+const BodyProjectsMenuSmallInlineContainer = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #313552;
+  letter-spacing: 0.3rem;
 `;
 
 const BodySkilsMenuContainerButtonBox = styled.div`
@@ -407,7 +562,6 @@ const BodySkilsMenuContainerButtonInlineBox = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 8rem;
 `;
 
 const BodySkilsMenuContainerButton = styled(motion.button)`
@@ -418,21 +572,14 @@ const BodySkilsMenuContainerButton = styled(motion.button)`
   z-index: 1;
 `;
 
+// Body Skil 부분
+
 const BodySkilsContainerInlineBox = styled(motion.div)`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  background-color: rgba(241, 208, 10, 1);
-`;
-
-const BodySkilsContainerBigInlineBox = styled(motion.div)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  flex: 6;
+  overflow: hidden;
+  background-color: rgba(241, 208, 10, 0.6);
 `;
 
 const BodySkilsContainerInlineIconBox = styled(motion.div)`
@@ -455,13 +602,15 @@ const BodySkilsContainerInlineTitle = styled.span`
   margin-bottom: 4rem;
   margin-top: 2rem;
   letter-spacing: 0.4em;
-  -webkit-box-reflect: below -10px -webkit-linear-gradient(
+  -webkit-box-reflect: below -15px -webkit-linear-gradient(
       top,
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0) 10%,
-      rgba(0, 0, 0, 0.7)
+      rgba(0, 0, 0, 0.4)
     );
   line-height: normal;
+  background-color: white;
+  border-radius: 99px;
 `;
 
 const BodySkilsContainerRightLeftIconBox = styled.div`
@@ -494,28 +643,18 @@ const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex: 1;
 `;
 
 const BodySkilsContainerInlineLeftIconBoxBottomDiv = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex: 1;
 `;
 
 const BodySkilsContainerInlineRightIconBoxTopDiv = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  flex: 1;
-`;
-
-const BodySkilsContainerInlineRightIconBoxBottomDiv = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex: 1;
 `;
 
 const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
@@ -564,8 +703,8 @@ const BodySkilsContainerSmallInlineBox = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  background-color: #f5f5f5;
+  background-color: #313552;
+  letter-spacing: 0.3rem;
 `;
 
 const BodySkilsContainerSmallInlineBoxTitle = styled.span`
@@ -574,6 +713,7 @@ const BodySkilsContainerSmallInlineBoxTitle = styled.span`
   border-radius: 10px;
   padding: 10px;
   font-size: 22px;
+  margin-bottom: 5rem;
 `;
 
 const BodySkilsContainerInlineBottomReactIcon = styled(motion.img)`
@@ -732,7 +872,7 @@ const BodyContainerAboutmeArrowVariants = {
 // project Variants
 const BodyProjectsMenuContainerVariants = {
   projectopenmenu: {
-    flex: 6,
+    flex: 1,
     opcity: 1,
     transition: {
       duration: 0.5,
@@ -740,7 +880,7 @@ const BodyProjectsMenuContainerVariants = {
     },
   },
   projectclosemenu: {
-    flex: 1,
+    flex: 6,
     opcity: 0,
     transition: {
       duration: 0.5,
@@ -756,6 +896,7 @@ const BodyProjectsMenuInlineBoxVariants = {
     transition: {
       duration: 0.5,
       type: "tween",
+      delay: 0.3,
     },
   },
   projectmenuclosebox: {
@@ -764,6 +905,7 @@ const BodyProjectsMenuInlineBoxVariants = {
     transition: {
       duration: 0.5,
       type: "tween",
+      delay: 0.3,
     },
   },
 };
@@ -771,7 +913,7 @@ const BodyProjectsMenuInlineBoxVariants = {
 // skils variants
 const BodySkilsContainerVariants = {
   skilsopenmenu: {
-    flex: 1,
+    flex: 6,
     opcity: 1,
     transition: {
       duration: 0.5,
@@ -779,7 +921,7 @@ const BodySkilsContainerVariants = {
     },
   },
   skilsclosemenu: {
-    flex: 6,
+    flex: 1,
     opcity: 0,
     transition: {
       duration: 0.5,
@@ -793,25 +935,59 @@ const BodySkilsMenuInlineBoxVariants = {
     opacity: 1,
     display: "flex",
     transition: {
+      duration: 0.2,
+      type: "tween",
+      delay: 0.3,
+    },
+  },
+
+  skilmenuclosebox: {
+    opacity: 0,
+    display: "none",
+    transition: {
       duration: 0.5,
       type: "tween",
       delay: 0.3,
     },
   },
-  skilmenuclosebox: {
-    opacity: 0,
-    display: "none",
-    transition: {
-      duration: 0.2,
-      type: "tween",
-    },
+};
+
+const ImageSliderVariants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+  },
+  exit: (direction: number) => {
+    return {
+      // zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+    };
   },
 };
 
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [[page, direction], setPage] = useState([0, 0]);
+
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
+
+  const swipeConfidenceValue = 10000;
+
+  const imageIndex = wrap(0, images.length, page);
+
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection]);
+  };
+
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -848,6 +1024,9 @@ function Home() {
     });
   }, [scrollY, navAnimation]);
 
+  // {
+  //   console.log(images[0][1]);
+  // }
   useEffect(() => {
     window.onbeforeunload = function pushRefresh() {
       window.scrollTo(0, 0);
@@ -986,27 +1165,206 @@ function Home() {
           <BodyProjectsMenuContainer
             variants={BodyProjectsMenuContainerVariants}
             animate={isOpen ? "projectopenmenu" : "projectclosemenu"}
-            initial="projectclosemenu"
+            initial="projectopenmenu"
           >
-            <BodyProjectsMenuSmallInlineContainer
+            <BodyProjectsMenuBiglineContainer
               variants={BodyProjectsMenuInlineBoxVariants}
               animate={isOpen ? "projectmenuclosebox" : "projectmenuopenbox"}
             >
-              <BodyProjectsMenuSmallInlineTitle>
-                Projects
-              </BodyProjectsMenuSmallInlineTitle>
-            </BodyProjectsMenuSmallInlineContainer>
+              <BodyProjectsMenuBigInlineTitle>
+                Project
+              </BodyProjectsMenuBigInlineTitle>
+              <BodyProjectsMenuBigInlineContainerBox>
+                {/* 프로젝트 상세설명 부분 */}
+                <BodyProjectsMenuBigInlineContainerImageDetailTitleBox>
+                  <BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox>
+                    <BodyProjectsMenuBigInlineContainerImageDetailBigTitle>
+                      ToDoList
+                    </BodyProjectsMenuBigInlineContainerImageDetailBigTitle>
+                  </BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox>
 
-            <BodyProjectsMenuBigInlineContainer
+                  <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox>
+                    <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
+                      style={{
+                        flexDirection: "column",
+
+                        flex: "1",
+                      }}
+                    >
+                      <span style={{ fontWeight: "bold" }}>
+                        오늘 할 일을 적어서 기록해두는 홈페이지
+                      </span>
+                      <br />
+                      <br />
+                      오늘 할 일을 다했으면 체크표시 버튼을 눌러 완료 가능
+                      삭제버튼을 눌러서 삭제가 가능하도록 만들었습니다.
+                      <br />
+                      <span
+                        style={{
+                          borderBottom: "1px solid rgba(226, 222, 222, 0.6)",
+                          paddingBottom: "2.5rem",
+                        }}
+                      >
+                        또한 오늘의 날짜표시 시간표시 그 지역의 날씨를 나오게
+                        했습니다.
+                      </span>
+                    </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: "2",
+                      }}
+                    >
+                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
+                        style={{ display: "flex", marginTop: "2rem" }}
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: "1",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                          }}
+                        >
+                          구현한 기능
+                        </span>
+                        <span style={{ display: "flex", flex: "3" }}>
+                          JS Clock, &nbsp; JS To Do List, &nbsp; Get
+                          Geolocation, &nbsp;
+                          <br /> Get Weather Information, &nbsp; Deploy to
+                          Github Pages
+                        </span>
+                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
+                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
+                        style={{ display: "flex", marginTop: "1rem" }}
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: "1",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                          }}
+                        >
+                          GitHub Code
+                        </span>
+
+                        <span style={{ display: "flex", flex: "3" }}>
+                          <a href="https://github.com/eunyechan/vanillaJS_app">
+                            github.com/eunyechan/vanillaJS_app
+                          </a>
+                        </span>
+                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
+
+                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
+                        style={{ display: "flex", marginTop: "1rem" }}
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: "1",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                          }}
+                        >
+                          deploy
+                        </span>
+
+                        <span style={{ display: "flex", flex: "3" }}>
+                          <a href="https://eunyechan.github.io/vaillajs_app.github.io/">
+                            eunyechan.github.io/vaillajs_app.github.io/
+                          </a>
+                        </span>
+                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
+
+                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
+                        style={{ display: "flex", marginTop: "1rem" }}
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: "1",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                          }}
+                        >
+                          Front-end
+                        </span>
+
+                        <span style={{ display: "flex", flex: "3" }}>
+                          JavaScript, Html, Css
+                        </span>
+                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
+                    </div>
+                  </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox>
+                </BodyProjectsMenuBigInlineContainerImageDetailTitleBox>
+
+                {/* 프로젝트 이미지 부분 */}
+                <BodyProjectsMenuBigInlineContainerImageBox>
+                  <>
+                    <AnimatePresence initial={false} custom={direction}>
+                      <BodyProjectsMenuBigInlineContainerImage
+                        key={page}
+                        src={images[imageIndex]}
+                        custom={direction}
+                        variants={ImageSliderVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                          opacity: { duration: 0.2 },
+                        }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                          const swipe = swipePower(offset.x, velocity.x);
+                          if (swipe < -swipeConfidenceValue) {
+                            paginate(1);
+                          } else if (swipe > swipeConfidenceValue) {
+                            paginate(-1);
+                          }
+                        }}
+                      />
+                      <BodyProjectsMenuBigInlineContainerImageTotalNumberBox>
+                        <BodyProjectsMenuBigInlineContainerImageTotalNumber>
+                          {imageIndex + 1} / {images.length}
+                        </BodyProjectsMenuBigInlineContainerImageTotalNumber>
+                      </BodyProjectsMenuBigInlineContainerImageTotalNumberBox>
+                    </AnimatePresence>
+                    <BodySkilsProjectImageSliderRightButton
+                      onClick={() => paginate(1)}
+                    >
+                      {"‣"}
+                    </BodySkilsProjectImageSliderRightButton>
+                    <BodySkilsProjectImageSliderLeftButton
+                      onClick={() => paginate(-1)}
+                    >
+                      {"‣"}
+                    </BodySkilsProjectImageSliderLeftButton>
+                  </>
+                </BodyProjectsMenuBigInlineContainerImageBox>
+              </BodyProjectsMenuBigInlineContainerBox>
+            </BodyProjectsMenuBiglineContainer>
+
+            {/* Project 줄어들었을 때  */}
+            <BodyProjectsMenuSmallInlineContainer
               variants={BodyProjectsMenuInlineBoxVariants}
               animate={isOpen ? "projectmenuopenbox" : "projectmenuclosebox"}
             >
-              <BodyProjectsMenuBigInlineTitle>
-                asffff
-              </BodyProjectsMenuBigInlineTitle>
-            </BodyProjectsMenuBigInlineContainer>
+              <BodyProjectsMenuSmallInlineTitle>
+                Projects List
+              </BodyProjectsMenuSmallInlineTitle>
+            </BodyProjectsMenuSmallInlineContainer>
           </BodyProjectsMenuContainer>
 
+          {/* 버튼 부분 */}
           <BodySkilsMenuContainerButtonBox>
             <BodySkilsMenuContainerButtonInlineBox>
               <BodySkilsMenuContainerButton
@@ -1021,85 +1379,86 @@ function Home() {
           <BodySkilsContainerInlineBox
             variants={BodySkilsContainerVariants}
             animate={isOpen ? "skilsopenmenu" : "skilsclosemenu"}
+            initial="skilsclosemenu"
           >
-            <BodySkilsContainerBigInlineBox>
-              <BodySkilsContainerInlineIconBox
-                variants={BodySkilsMenuInlineBoxVariants}
-                animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
-              >
-                <BodySkilsContainerInlineTitle>
-                  Skils
-                </BodySkilsContainerInlineTitle>
-                <BodySkilsContainerRightLeftIconBox>
-                  <BodySkilsContainerInlineLeftIconBox>
-                    <span
-                      style={{
-                        display: "flex",
-                        textAlign: "center",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                        height: "15vh",
-                      }}
-                    >
-                      Front-end
-                    </span>
-                    <BodySkilsContainerInlineLeftIconBoxTopDiv>
-                      <BodySkilsContainerInlineTopHtmlIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                      <BodySkilsContainerInlineTopCssIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                      <BodySkilsContainerInlineTopJsIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                    </BodySkilsContainerInlineLeftIconBoxTopDiv>
-                    <BodySkilsContainerInlineLeftIconBoxBottomDiv>
-                      <BodySkilsContainerInlineBottomReactIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                      <BodySkilsContainerInlineBottomTypeScriptIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                    </BodySkilsContainerInlineLeftIconBoxBottomDiv>
-                  </BodySkilsContainerInlineLeftIconBox>
+            <BodySkilsContainerInlineIconBox
+              variants={BodySkilsMenuInlineBoxVariants}
+              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
+            >
+              <BodySkilsContainerInlineTitle>
+                Skils
+              </BodySkilsContainerInlineTitle>
+              <BodySkilsContainerRightLeftIconBox>
+                <BodySkilsContainerInlineLeftIconBox>
+                  <span
+                    style={{
+                      display: "flex",
+                      textAlign: "center",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
+                      fontSize: "26px",
+                      fontWeight: "bold",
+                      height: "15vh",
+                      color: "#D9534F",
+                    }}
+                  >
+                    Front-end
+                  </span>
+                  <BodySkilsContainerInlineLeftIconBoxTopDiv>
+                    <BodySkilsContainerInlineTopHtmlIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineTopCssIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineTopJsIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                  </BodySkilsContainerInlineLeftIconBoxTopDiv>
+                  <BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                    <BodySkilsContainerInlineBottomReactIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineBottomTypeScriptIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                  </BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                </BodySkilsContainerInlineLeftIconBox>
 
-                  <BodySkilsContainerInlineRightIconBox>
-                    <span
-                      style={{
-                        display: "flex",
-                        textAlign: "center",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                        height: "15vh",
-                      }}
-                    >
-                      Version Control
-                    </span>
+                <BodySkilsContainerInlineRightIconBox>
+                  <span
+                    style={{
+                      display: "flex",
+                      textAlign: "center",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
+                      fontSize: "26px",
+                      fontWeight: "bold",
+                      height: "15vh",
+                      color: "#D9534F",
+                    }}
+                  >
+                    Version Control
+                  </span>
 
-                    <BodySkilsContainerInlineRightIconBoxTopDiv>
-                      <BodySkilsContainerInlineGittIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                      <BodySkilsContainerInlineGithubIcon
-                        whileHover={{ y: "-20px" }}
-                      />
-                    </BodySkilsContainerInlineRightIconBoxTopDiv>
-                  </BodySkilsContainerInlineRightIconBox>
-                </BodySkilsContainerRightLeftIconBox>
-              </BodySkilsContainerInlineIconBox>
-            </BodySkilsContainerBigInlineBox>
+                  <BodySkilsContainerInlineRightIconBoxTopDiv>
+                    <BodySkilsContainerInlineGittIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineGithubIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                  </BodySkilsContainerInlineRightIconBoxTopDiv>
+                </BodySkilsContainerInlineRightIconBox>
+              </BodySkilsContainerRightLeftIconBox>
+            </BodySkilsContainerInlineIconBox>
 
             {/* 줄어들었을 때 */}
             <BodySkilsContainerSmallInlineBox
               variants={BodySkilsMenuInlineBoxVariants}
-              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
+              animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
             >
               <BodySkilsContainerSmallInlineBoxTitle>
                 Skil List
