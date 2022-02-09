@@ -5,9 +5,8 @@ import {
   useViewportScroll,
   AnimatePresence,
 } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { images } from "./data/imageData";
+import { vanillajsImages, youtubeImages } from "./data/imageData";
 import { wrap } from "popmotion";
 import backimg from "./images/imagesLogo/backgroundimg.png";
 import profile from "./images/imagesLogo/profileimg.jpg";
@@ -23,7 +22,8 @@ const Container = styled.div`
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100vh;
+  /* height: 100%; */
+  /* height: 100vh; */
 `;
 
 const ContainerInline = styled.div`
@@ -232,22 +232,22 @@ const MainIntroDetailTitle = styled.h4`
   font-size: 18px;
 `;
 
-// bodyHome 부분
+// body 부분
 const BodyContainerBox = styled.div`
   width: 100%;
   height: 100%;
-  background-color: rgba(33, 50, 94, 1);
   position: relative;
 `;
 
 const BodyContainer = styled.div`
   width: 100%;
   height: 100%;
+  background-color: rgba(33, 50, 94, 0.8);
 `;
 
 const BodyContainerArrow = styled(motion.div)`
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 100px;
@@ -259,7 +259,7 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 4rem;
+  padding: 2rem 6rem;
 `;
 
 const BodyContainerAboutMeTitleBox = styled.div`
@@ -307,13 +307,15 @@ const BodyContainerAboutMe = styled(motion.div)`
   height: 100%;
   border-radius: 10px;
   background-color: white;
+  border: 2px solid black;
+  padding: 4rem 2rem;
+  margin-bottom: 5rem;
 `;
 
 const BodyContainerAboutMeImgBox = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   width: 100%;
   height: 100%;
 `;
@@ -334,7 +336,6 @@ const BodyContainerAboutMeUlBox = styled(motion.div)`
   height: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
   justify-content: center;
   align-items: center;
 `;
@@ -358,19 +359,16 @@ const BodyContainerAboutMeList = styled.li`
 
 // Body Project 부분
 
-const BodySkilsprojectContainer = styled.div`
+const BodyprojectsContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-`;
-
-const BodyProjectsMenuContainer = styled(motion.div)`
-  display: flex;
-  overflow: hidden;
+  padding: 4rem 4rem;
   background-color: rgba(62, 73, 122, 0.6);
 `;
 
-const BodyProjectsMenuBigInlineTitle = styled(motion.span)`
+const BodyProjectsTitle = styled(motion.span)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -390,34 +388,33 @@ const BodyProjectsMenuBigInlineTitle = styled(motion.span)`
     );
   line-height: normal;
   background-color: white;
-  /* border-radius: 99px; */
 `;
 
-const BodyProjectsMenuBiglineContainer = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
+const BodyTotalProjectsBox = styled.div`
   width: 100%;
   height: 100%;
-  padding: 50px;
+  border: 4px solid black;
+  padding: 3rem;
 `;
 
-const BodyProjectsMenuBigInlineContainerBox = styled.div`
+const BodyTotalProjectsBoxInline = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  /* grid-gap: 5px; */
+  grid-gap: 2px;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageDetailTitleBox = styled.div`
+const BodyProjectsImageDetailExplainContainer = styled.div`
   width: 100%;
   height: 100%;
   border: 1px solid black;
-  border-radius: 10px;
   background-color: white;
   padding: 30px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox = styled.div`
+const BodyProjectsImageDetailTitleBox = styled.div`
   border: 5px solid black;
   width: 100%;
   display: flex;
@@ -426,9 +423,10 @@ const BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox = styled.div`
   text-align: center;
   border-radius: 99px;
   background-color: #f1eaea;
+  letter-spacing: 0.3rem;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageDetailBigTitle = styled.span`
+const BodyProjectsImageDetailTitle = styled.span`
   width: 100%;
   height: 100%;
   font-size: 25px;
@@ -437,7 +435,7 @@ const BodyProjectsMenuBigInlineContainerImageDetailBigTitle = styled.span`
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox = styled.div`
+const BodyProjectsDetailExplainContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -445,7 +443,7 @@ const BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox = styled.div`
   margin-top: 2rem;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle = styled.span`
+const BodyProjectsDetailExplainTitle = styled.span`
   font-size: 16px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -458,25 +456,25 @@ const BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle = styled.span`
   }
 `;
 
-const BodyProjectsMenuBigInlineContainerImageBox = styled.div`
+const BodyProjectsImageContainer = styled.div`
   width: 100%;
-  height: 100%;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  overflow: hidden;
   background-color: #eee;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 `;
 
-const BodyProjectsMenuBigInlineContainerImage = styled(motion.img)`
+const BodyProjectsImage = styled(motion.img)`
   max-width: 100vw;
   width: 100%;
   height: 100%;
   position: absolute;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageTotalNumberBox = styled.div`
+const BodyProjectsImageTotalNumberBox = styled.div`
   width: 100%;
   height: 2rem;
   z-index: 1;
@@ -486,13 +484,13 @@ const BodyProjectsMenuBigInlineContainerImageTotalNumberBox = styled.div`
   bottom: 4rem;
 `;
 
-const BodyProjectsMenuBigInlineContainerImageTotalNumber = styled.span`
+const BodyProjectsImageTotalNumber = styled.span`
   font-size: 16px;
   display: flex;
   color: white;
 `;
 
-const BodySkilsProjectImageSliderRightButton = styled(motion.button)`
+const BodyProjectImageNextSlideButton = styled(motion.button)`
   top: calc(50% - 20px);
   position: absolute;
   background: white;
@@ -510,7 +508,7 @@ const BodySkilsProjectImageSliderRightButton = styled(motion.button)`
   right: 10px;
 `;
 
-const BodySkilsProjectImageSliderLeftButton = styled(motion.button)`
+const BodyProjectImagePrevSlideButton = styled(motion.button)`
   top: calc(50% - 20px);
   position: absolute;
   background: white;
@@ -527,6 +525,22 @@ const BodySkilsProjectImageSliderLeftButton = styled(motion.button)`
   z-index: 2;
   left: 10px;
   transform: scale(-1);
+`;
+
+// Body Contact
+
+const BodyContactContainer = styled(motion.div)`
+  display: flex;
+  overflow: scroll;
+  background-color: rgba(62, 73, 122, 0.6);
+`;
+
+const BodyProjectsMenuBiglineContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
 `;
 
 const BodyProjectsMenuSmallInlineTitle = styled(motion.span)`
@@ -870,7 +884,7 @@ const BodyContainerAboutmeArrowVariants = {
 };
 
 // project Variants
-const BodyProjectsMenuContainerVariants = {
+const BodyContactContainerVariants = {
   projectopenmenu: {
     flex: 1,
     opcity: 1,
@@ -953,7 +967,7 @@ const BodySkilsMenuInlineBoxVariants = {
 };
 
 const ImageSliderVariants = {
-  enter: (direction: number) => {
+  next: (direction: number) => {
     return {
       x: direction > 0 ? 1000 : -1000,
     };
@@ -962,7 +976,7 @@ const ImageSliderVariants = {
     zIndex: 1,
     x: 0,
   },
-  exit: (direction: number) => {
+  prev: (direction: number) => {
     return {
       // zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
@@ -972,22 +986,29 @@ const ImageSliderVariants = {
 
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const [[page, direction], setPage] = useState([0, 0]);
+  const [[vanilajspage, vanillajsdirection], setPage] = useState([0, 0]);
+  const [[youtubepage, youtubedirection], setPage2] = useState([0, 0]);
 
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
 
   const swipeConfidenceValue = 10000;
 
-  const imageIndex = wrap(0, images.length, page);
+  const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
+  const youtubeImageIndex = wrap(0, youtubeImages.length, youtubepage);
 
   const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
+    setPage([vanilajspage + newDirection, newDirection]);
+  };
+
+  const youtubepagenate = (newDirection: number) => {
+    setPage2([youtubepage + newDirection, newDirection]);
   };
 
   const swipePower = (offset: number, velocity: number) => {
     return Math.abs(offset) * velocity;
   };
+
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -1024,9 +1045,6 @@ function Home() {
     });
   }, [scrollY, navAnimation]);
 
-  // {
-  //   console.log(images[0][1]);
-  // }
   useEffect(() => {
     window.onbeforeunload = function pushRefresh() {
       window.scrollTo(0, 0);
@@ -1160,200 +1178,421 @@ function Home() {
 
         {/* **********************body Skils 부분********************* */}
 
-        <BodySkilsprojectContainer>
+        <BodyprojectsContainer>
           {/* project부분 */}
-          <BodyProjectsMenuContainer
-            variants={BodyProjectsMenuContainerVariants}
+
+          <BodyProjectsTitle>Project</BodyProjectsTitle>
+          {/* project 전체 div */}
+          <BodyTotalProjectsBox>
+            {/* vanillaJs Project */}
+
+            <BodyTotalProjectsBoxInline>
+              {/* 프로젝트 상세설명 부분 */}
+              <BodyProjectsImageDetailExplainContainer>
+                <BodyProjectsImageDetailTitleBox>
+                  <BodyProjectsImageDetailTitle>
+                    ToDoList
+                  </BodyProjectsImageDetailTitle>
+                </BodyProjectsImageDetailTitleBox>
+                <BodyProjectsDetailExplainContainer>
+                  <BodyProjectsDetailExplainTitle
+                    style={{
+                      flexDirection: "column",
+
+                      flex: "1",
+                    }}
+                  >
+                    <span style={{ fontWeight: "bold" }}>
+                      오늘 할 일을 적어서 기록해두는 홈페이지
+                    </span>
+                    <br />
+                    <br />
+                    오늘 할 일을 다했으면 체크표시 버튼을 눌러 완료 가능
+                    삭제버튼을 눌러서 삭제가 가능하도록 만들었습니다.
+                    <br />
+                    <span
+                      style={{
+                        borderBottom: "1px solid rgba(226, 222, 222, 0.6)",
+                        paddingBottom: "2.5rem",
+                      }}
+                    >
+                      또한 오늘의 날짜표시 시간표시 그 지역의 날씨를 나오게
+                      했습니다.
+                    </span>
+                  </BodyProjectsDetailExplainTitle>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      flex: "2",
+                    }}
+                  >
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "2rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        구현한 기능
+                      </span>
+                      <span style={{ display: "flex", flex: "3" }}>
+                        JS Clock, &nbsp; JS To Do List, &nbsp; Get Geolocation,
+                        &nbsp;
+                        <br /> Get Weather Information, &nbsp; Deploy to Github
+                        Pages
+                      </span>
+                    </BodyProjectsDetailExplainTitle>
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        GitHub Code
+                      </span>
+
+                      <div style={{ display: "flex", flex: "3" }}>
+                        <div>
+                          <a href="https://github.com/eunyechan/vanillaJS_app">
+                            github.com/eunyechan/vanillaJS_app
+                          </a>
+                          &nbsp;
+                          <span style={{ fontWeight: "bold" }}>(보기)</span>
+                        </div>
+                      </div>
+                    </BodyProjectsDetailExplainTitle>
+
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        deploy
+                      </span>
+
+                      <div style={{ display: "flex", flex: "3" }}>
+                        <div>
+                          <a href="https://eunyechan.github.io/vaillajs_app.github.io/">
+                            eunyechan.github.io/vaillajs_app.github.io
+                          </a>
+                          &nbsp;
+                          <span style={{ fontWeight: "bold" }}>(보기)</span>
+                        </div>
+                      </div>
+                    </BodyProjectsDetailExplainTitle>
+
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        Front-end
+                      </span>
+
+                      <span style={{ display: "flex", flex: "3" }}>
+                        JavaScript, Html, Css
+                      </span>
+                    </BodyProjectsDetailExplainTitle>
+                  </div>
+                </BodyProjectsDetailExplainContainer>
+              </BodyProjectsImageDetailExplainContainer>
+
+              {/* 프로젝트 이미지 부분 */}
+              <BodyProjectsImageContainer>
+                <>
+                  <AnimatePresence initial={false} custom={vanillajsdirection}>
+                    <BodyProjectsImage
+                      key={vanilajspage}
+                      src={vanillajsImages[vanillajsImageIndex]}
+                      custom={vanillajsdirection}
+                      variants={ImageSliderVariants}
+                      initial="next"
+                      animate="center"
+                      exit="prev"
+                      transition={{
+                        opacity: { duration: 0.2 },
+                      }}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={1}
+                      onDragEnd={(e, { offset, velocity }) => {
+                        const swipe = swipePower(offset.x, velocity.x);
+
+                        if (swipe < -swipeConfidenceValue) {
+                          paginate(1);
+                        } else if (swipe > swipeConfidenceValue) {
+                          paginate(-1);
+                        }
+                      }}
+                    />
+                    <BodyProjectsImageTotalNumberBox>
+                      <BodyProjectsImageTotalNumber>
+                        {vanillajsImageIndex + 1} / {vanillajsImages.length}
+                      </BodyProjectsImageTotalNumber>
+                    </BodyProjectsImageTotalNumberBox>
+                  </AnimatePresence>
+                  <BodyProjectImageNextSlideButton onClick={() => paginate(1)}>
+                    {"‣"}
+                  </BodyProjectImageNextSlideButton>
+                  <BodyProjectImagePrevSlideButton onClick={() => paginate(-1)}>
+                    {"‣"}
+                  </BodyProjectImagePrevSlideButton>
+                </>
+              </BodyProjectsImageContainer>
+            </BodyTotalProjectsBoxInline>
+
+            {/* youtubeProject */}
+            <BodyTotalProjectsBoxInline>
+              {/* 프로젝트 상세설명 부분 */}
+              <BodyProjectsImageDetailExplainContainer>
+                <BodyProjectsImageDetailTitleBox>
+                  <BodyProjectsImageDetailTitle>
+                    Youtube Clone
+                  </BodyProjectsImageDetailTitle>
+                </BodyProjectsImageDetailTitleBox>
+                <BodyProjectsDetailExplainContainer>
+                  <BodyProjectsDetailExplainTitle
+                    style={{
+                      flexDirection: "column",
+                      flex: "1",
+                    }}
+                  >
+                    <span style={{ fontWeight: "bold" }}>
+                      유튜브를 따라만든 홈페이지
+                    </span>
+                    <br />
+                    <br />
+                    로그인, 회원가입, 비디오 녹화, 업로드, 댓글 등등 구현한
+                    페이지 입니다
+                    <br />
+                    <span
+                      style={{
+                        borderBottom: "1px solid rgba(226, 222, 222, 0.6)",
+                        paddingBottom: "2.5rem",
+                      }}
+                    >
+                      비디오 삭제 수정, 댓글 삭제 수정 가능합니다.
+                    </span>
+                  </BodyProjectsDetailExplainTitle>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      flex: "2",
+                    }}
+                  >
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "2rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        구현한 기능
+                      </span>
+                      <span style={{ display: "flex", flex: "3" }}>
+                        Github Login, &nbsp; User Authentication, &nbsp; User
+                        Profile, <br /> Log In &nbsp; Log Out <br />
+                        Video Upload &nbsp; Video Recording &nbsp; Search Video
+                        <br /> AJAX Comments &nbsp; View Count...
+                      </span>
+                    </BodyProjectsDetailExplainTitle>
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        GitHub Code
+                      </span>
+
+                      <div style={{ display: "flex", flex: "3" }}>
+                        <div>
+                          <a href="https://github.com/eunyechan/wetube-reloaded">
+                            github.com/eunyechan/wetube-reloaded
+                          </a>
+                          &nbsp;
+                          <span style={{ fontWeight: "bold" }}>(보기)</span>
+                        </div>
+                      </div>
+                    </BodyProjectsDetailExplainTitle>
+
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        deploy
+                      </span>
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "3",
+                        }}
+                      >
+                        <div>
+                          <a href="https://wetubecloneapp.herokuapp.com/">
+                            wetubecloneapp.herokuapp.com
+                          </a>
+                          &nbsp;
+                          <span style={{ fontWeight: "bold" }}>(보기)</span>
+                        </div>
+                        <span>
+                          S3 Upload
+                          <br />
+                          Mongo Atlas
+                        </span>
+                      </span>
+                    </BodyProjectsDetailExplainTitle>
+
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        Front-end
+                      </span>
+
+                      <span style={{ display: "flex", flex: "3" }}>
+                        Babel, ES6, Express, Pug, Webpack, SCSS ,ESLint ,AJAX
+                      </span>
+                    </BodyProjectsDetailExplainTitle>
+
+                    <BodyProjectsDetailExplainTitle
+                      style={{ display: "flex", marginTop: "1rem" }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flex: "1",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                        }}
+                      >
+                        Back-end
+                      </span>
+
+                      <span style={{ display: "flex", flex: "3" }}>
+                        NodsJs, MongoDB, Mongoose, Multer
+                      </span>
+                    </BodyProjectsDetailExplainTitle>
+                  </div>
+                </BodyProjectsDetailExplainContainer>
+              </BodyProjectsImageDetailExplainContainer>
+
+              {/* 프로젝트 이미지 부분 */}
+              <BodyProjectsImageContainer>
+                <>
+                  <AnimatePresence initial={false} custom={youtubedirection}>
+                    <BodyProjectsImage
+                      key={youtubepage}
+                      src={youtubeImages[youtubeImageIndex]}
+                      custom={youtubedirection}
+                      variants={ImageSliderVariants}
+                      initial="next"
+                      animate="center"
+                      exit="prev"
+                      transition={{
+                        opacity: { duration: 0.2 },
+                      }}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={1}
+                      onDragEnd={(e, { offset, velocity }) => {
+                        const swipe = swipePower(offset.x, velocity.x);
+                        if (swipe < -swipeConfidenceValue) {
+                          youtubepagenate(1);
+                        } else if (swipe > swipeConfidenceValue) {
+                          youtubepagenate(-1);
+                        }
+                      }}
+                    />
+                    <BodyProjectsImageTotalNumberBox>
+                      <BodyProjectsImageTotalNumber>
+                        {youtubeImageIndex + 1} / {youtubeImages.length}
+                      </BodyProjectsImageTotalNumber>
+                    </BodyProjectsImageTotalNumberBox>
+                  </AnimatePresence>
+                  <BodyProjectImageNextSlideButton
+                    onClick={() => youtubepagenate(1)}
+                  >
+                    {"‣"}
+                  </BodyProjectImageNextSlideButton>
+                  <BodyProjectImagePrevSlideButton
+                    onClick={() => youtubepagenate(-1)}
+                  >
+                    {"‣"}
+                  </BodyProjectImagePrevSlideButton>
+                </>
+              </BodyProjectsImageContainer>
+            </BodyTotalProjectsBoxInline>
+          </BodyTotalProjectsBox>
+        </BodyprojectsContainer>
+
+        {/* <div>
+          <BodyContactContainer
+            variants={BodyContactContainerVariants}
             animate={isOpen ? "projectopenmenu" : "projectclosemenu"}
             initial="projectopenmenu"
           >
             <BodyProjectsMenuBiglineContainer
               variants={BodyProjectsMenuInlineBoxVariants}
               animate={isOpen ? "projectmenuclosebox" : "projectmenuopenbox"}
-            >
-              <BodyProjectsMenuBigInlineTitle>
-                Project
-              </BodyProjectsMenuBigInlineTitle>
-              <BodyProjectsMenuBigInlineContainerBox>
-                {/* 프로젝트 상세설명 부분 */}
-                <BodyProjectsMenuBigInlineContainerImageDetailTitleBox>
-                  <BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox>
-                    <BodyProjectsMenuBigInlineContainerImageDetailBigTitle>
-                      ToDoList
-                    </BodyProjectsMenuBigInlineContainerImageDetailBigTitle>
-                  </BodyProjectsMenuBigInlineContainerImageDetailBigTitleBox>
+            ></BodyProjectsMenuBiglineContainer>
 
-                  <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox>
-                    <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
-                      style={{
-                        flexDirection: "column",
-
-                        flex: "1",
-                      }}
-                    >
-                      <span style={{ fontWeight: "bold" }}>
-                        오늘 할 일을 적어서 기록해두는 홈페이지
-                      </span>
-                      <br />
-                      <br />
-                      오늘 할 일을 다했으면 체크표시 버튼을 눌러 완료 가능
-                      삭제버튼을 눌러서 삭제가 가능하도록 만들었습니다.
-                      <br />
-                      <span
-                        style={{
-                          borderBottom: "1px solid rgba(226, 222, 222, 0.6)",
-                          paddingBottom: "2.5rem",
-                        }}
-                      >
-                        또한 오늘의 날짜표시 시간표시 그 지역의 날씨를 나오게
-                        했습니다.
-                      </span>
-                    </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        flex: "2",
-                      }}
-                    >
-                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
-                        style={{ display: "flex", marginTop: "2rem" }}
-                      >
-                        <span
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            flex: "1",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                          }}
-                        >
-                          구현한 기능
-                        </span>
-                        <span style={{ display: "flex", flex: "3" }}>
-                          JS Clock, &nbsp; JS To Do List, &nbsp; Get
-                          Geolocation, &nbsp;
-                          <br /> Get Weather Information, &nbsp; Deploy to
-                          Github Pages
-                        </span>
-                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
-                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
-                        style={{ display: "flex", marginTop: "1rem" }}
-                      >
-                        <span
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            flex: "1",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                          }}
-                        >
-                          GitHub Code
-                        </span>
-
-                        <span style={{ display: "flex", flex: "3" }}>
-                          <a href="https://github.com/eunyechan/vanillaJS_app">
-                            github.com/eunyechan/vanillaJS_app
-                          </a>
-                        </span>
-                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
-
-                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
-                        style={{ display: "flex", marginTop: "1rem" }}
-                      >
-                        <span
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            flex: "1",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                          }}
-                        >
-                          deploy
-                        </span>
-
-                        <span style={{ display: "flex", flex: "3" }}>
-                          <a href="https://eunyechan.github.io/vaillajs_app.github.io/">
-                            eunyechan.github.io/vaillajs_app.github.io/
-                          </a>
-                        </span>
-                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
-
-                      <BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle
-                        style={{ display: "flex", marginTop: "1rem" }}
-                      >
-                        <span
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            flex: "1",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                          }}
-                        >
-                          Front-end
-                        </span>
-
-                        <span style={{ display: "flex", flex: "3" }}>
-                          JavaScript, Html, Css
-                        </span>
-                      </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitle>
-                    </div>
-                  </BodyProjectsMenuBigInlineContainerImageDetailiSmallTitleBox>
-                </BodyProjectsMenuBigInlineContainerImageDetailTitleBox>
-
-                {/* 프로젝트 이미지 부분 */}
-                <BodyProjectsMenuBigInlineContainerImageBox>
-                  <>
-                    <AnimatePresence initial={false} custom={direction}>
-                      <BodyProjectsMenuBigInlineContainerImage
-                        key={page}
-                        src={images[imageIndex]}
-                        custom={direction}
-                        variants={ImageSliderVariants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{
-                          opacity: { duration: 0.2 },
-                        }}
-                        drag="x"
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={1}
-                        onDragEnd={(e, { offset, velocity }) => {
-                          const swipe = swipePower(offset.x, velocity.x);
-                          if (swipe < -swipeConfidenceValue) {
-                            paginate(1);
-                          } else if (swipe > swipeConfidenceValue) {
-                            paginate(-1);
-                          }
-                        }}
-                      />
-                      <BodyProjectsMenuBigInlineContainerImageTotalNumberBox>
-                        <BodyProjectsMenuBigInlineContainerImageTotalNumber>
-                          {imageIndex + 1} / {images.length}
-                        </BodyProjectsMenuBigInlineContainerImageTotalNumber>
-                      </BodyProjectsMenuBigInlineContainerImageTotalNumberBox>
-                    </AnimatePresence>
-                    <BodySkilsProjectImageSliderRightButton
-                      onClick={() => paginate(1)}
-                    >
-                      {"‣"}
-                    </BodySkilsProjectImageSliderRightButton>
-                    <BodySkilsProjectImageSliderLeftButton
-                      onClick={() => paginate(-1)}
-                    >
-                      {"‣"}
-                    </BodySkilsProjectImageSliderLeftButton>
-                  </>
-                </BodyProjectsMenuBigInlineContainerImageBox>
-              </BodyProjectsMenuBigInlineContainerBox>
-            </BodyProjectsMenuBiglineContainer>
-
-            {/* Project 줄어들었을 때  */}
             <BodyProjectsMenuSmallInlineContainer
               variants={BodyProjectsMenuInlineBoxVariants}
               animate={isOpen ? "projectmenuopenbox" : "projectmenuclosebox"}
@@ -1362,9 +1601,8 @@ function Home() {
                 Projects List
               </BodyProjectsMenuSmallInlineTitle>
             </BodyProjectsMenuSmallInlineContainer>
-          </BodyProjectsMenuContainer>
+          </BodyContactContainer>
 
-          {/* 버튼 부분 */}
           <BodySkilsMenuContainerButtonBox>
             <BodySkilsMenuContainerButtonInlineBox>
               <BodySkilsMenuContainerButton
@@ -1375,7 +1613,6 @@ function Home() {
             </BodySkilsMenuContainerButtonInlineBox>
           </BodySkilsMenuContainerButtonBox>
 
-          {/* skils부분 늘어났을 때 */}
           <BodySkilsContainerInlineBox
             variants={BodySkilsContainerVariants}
             animate={isOpen ? "skilsopenmenu" : "skilsclosemenu"}
@@ -1455,7 +1692,6 @@ function Home() {
               </BodySkilsContainerRightLeftIconBox>
             </BodySkilsContainerInlineIconBox>
 
-            {/* 줄어들었을 때 */}
             <BodySkilsContainerSmallInlineBox
               variants={BodySkilsMenuInlineBoxVariants}
               animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
@@ -1465,7 +1701,7 @@ function Home() {
               </BodySkilsContainerSmallInlineBoxTitle>
             </BodySkilsContainerSmallInlineBox>
           </BodySkilsContainerInlineBox>
-        </BodySkilsprojectContainer>
+        </div> */}
       </BodyContainerBox>
     </Container>
   );
