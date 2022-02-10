@@ -14,7 +14,7 @@ import {
   netfilxImages,
 } from "./data/imageData";
 import { wrap } from "popmotion";
-import backimg from "./images/imagesLogo/backgroundimg.png";
+import backimg from "./images/imagesLogo/backgroundimg.jpg";
 import profile from "./images/imagesLogo/profileimg.jpg";
 import csslogo from "./images/imagesLogo/css_logo.png";
 import jslogo from "./images/imagesLogo/js_logo.png";
