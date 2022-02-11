@@ -13,6 +13,7 @@ import {
   coinImages,
   netfilxImages,
 } from "./data/imageData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { wrap } from "popmotion";
 import backimg from "./images/imagesLogo/backgroundimg.jpg";
 import profile from "./images/imagesLogo/profileimg.jpg";
@@ -23,6 +24,14 @@ import reactlogo from "./images/imagesLogo/react_logo.png";
 import typescriptlogo from "./images/imagesLogo/ts_logo.png";
 import gitlogo from "./images/imagesLogo/git_logo.png";
 import githublogo from "./images/imagesLogo/github_logo.png";
+import githubimage from "./images/imagesLogo/githubImage.png";
+import {
+  faCalendarWeek,
+  faEnvelope,
+  faMapLocation,
+  faPhone,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
   padding: 0;
@@ -251,7 +260,8 @@ const BodyContainer = styled.div`
 
 const BodyContainerArrow = styled(motion.div)`
   position: absolute;
-  top: 20%;
+  align-items: center;
+  top: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 100px;
@@ -372,33 +382,45 @@ const BodyprojectsContainer = styled.div`
   background-color: rgba(62, 73, 122, 0.6);
 `;
 
-const BodyProjectsTitle = styled(motion.span)`
+const BodyProjectsTitleBox = styled.div`
+  width: 100%;
+  height: 6rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 60px;
+  font-weight: bolder;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin-bottom: 4rem;
-  margin-top: 2rem;
-  letter-spacing: 0.4em;
-  -webkit-box-reflect: below -7px -webkit-linear-gradient(
-      top,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0) 10%,
-      rgba(0, 0, 0, 0.4)
-    );
-  line-height: normal;
-  background-color: white;
+  margin: 2rem 3rem;
+  letter-spacing: 5px;
+  z-index: 1;
+`;
+
+const BodyProjectsTitle = styled(motion.span)`
+  position: relative;
+  z-index: 0;
+  display: flex;
+  width: 100%;
+  &::before {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: -1;
+    left: -10px;
+    content: "";
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e3f7fa;
+  }
 `;
 
 const BodyTotalProjectsBox = styled.div`
   width: 100%;
   height: 100%;
-  border: 4px solid black;
-  padding: 3rem;
+  padding: 1rem 2rem;
 `;
 
 const BodyTotalProjectsBoxInlineContainer = styled.div`
@@ -407,7 +429,6 @@ const BodyTotalProjectsBoxInlineContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 4rem;
-  margin-top: 2rem;
   margin-bottom: 4rem;
   background-color: white;
   border-radius: 10px;
@@ -550,66 +571,15 @@ const BodyProjectImagePrevSlideButton = styled(motion.button)`
   }
 `;
 
-// Body Contact
+// BodyContactSkilContainer
 
-const BodyContactContainer = styled(motion.div)`
-  display: flex;
-  overflow: scroll;
-  background-color: rgba(62, 73, 122, 0.6);
-`;
-
-const BodyProjectsMenuBiglineContainer = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
+const BodyContactSkilsContainer = styled(motion.div)`
   width: 100%;
-  height: 100%;
-  padding: 50px;
-`;
-
-const BodyProjectsMenuSmallInlineTitle = styled(motion.span)`
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 22px;
-  margin-bottom: 5rem;
-`;
-
-const BodyProjectsMenuSmallInlineContainer = styled(motion.div)`
+  height: 100vh;
   display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #313552;
-  letter-spacing: 0.3rem;
 `;
 
-const BodySkilsMenuContainerButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  border: 1px solid black;
-`;
-
-const BodySkilsMenuContainerButtonInlineBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
-const BodySkilsMenuContainerButton = styled(motion.button)`
-  border-radius: 99px;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  z-index: 1;
-`;
-
-// Body Skil 부분
+// Body Skil
 
 const BodySkilsContainerInlineBox = styled(motion.div)`
   width: 100%;
@@ -658,20 +628,11 @@ const BodySkilsContainerRightLeftIconBox = styled.div`
 `;
 
 const BodySkilsContainerInlineLeftIconBox = styled.div`
-  display: grid;
   width: 100%;
-  height: 100%;
+  height: 65vh;
   padding: 10px;
-  background-color: white;
-  border-radius: 10px;
-`;
-
-const BodySkilsContainerInlineRightIconBox = styled.div`
-  display: grid;
+  display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
   background-color: white;
   border-radius: 10px;
 `;
@@ -680,18 +641,34 @@ const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 30px 0;
+  border-radius: 10px;
+  width: 100%;
 `;
 
 const BodySkilsContainerInlineLeftIconBoxBottomDiv = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
+`;
+
+const BodySkilsContainerInlineRightIconBox = styled.div`
+  width: 100%;
+  height: 65vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
 `;
 
 const BodySkilsContainerInlineRightIconBoxTopDiv = styled.div`
   display: flex;
+  width: 100%;
+  flex: 2;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
@@ -779,7 +756,7 @@ const BodySkilsContainerInlineBottomTypeScriptIcon = styled(motion.img)`
   background-color: #f5f5f5;
 `;
 
-const BodySkilsContainerInlineGittIcon = styled(motion.img)`
+const BodySkilsContainerInlineGitIcon = styled(motion.img)`
   background: url(${gitlogo});
   background-position: center;
   background-size: cover;
@@ -803,6 +780,158 @@ const BodySkilsContainerInlineGithubIcon = styled(motion.img)`
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+`;
+
+const BodySkilsMenuContainerButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid black;
+`;
+
+const BodySkilsMenuContainerButtonInlineBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+const BodySkilsMenuContainerButton = styled(motion.button)`
+  border-radius: 99px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+`;
+
+// Body Contact Big
+const BodyContactContainerInlineBox = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  background-color: rgba(62, 73, 122, 0.6);
+`;
+
+const BodyContactBigContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  background-color: rgba(202, 202, 202, 0.6);
+`;
+
+const BodyContactInlineTitle = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+  letter-spacing: 0.4em;
+  -webkit-box-reflect: below -15px -webkit-linear-gradient(
+      top,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 10%,
+      rgba(0, 0, 0, 0.4)
+    );
+  line-height: normal;
+  background-color: white;
+  border-radius: 99px;
+`;
+
+const BodyContactBigInlineContainerBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+`;
+
+const BodyContactBigInlineTopDiv = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+`;
+
+const BodyContactBigInlineBottomDiv = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+`;
+
+const BodyContactSmallContainer = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #313552;
+  letter-spacing: 0.3rem;
+`;
+
+const BodyContactSmallContainerInlineTitle = styled(motion.span)`
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  margin-bottom: 5rem;
+`;
+
+const FooterContainer = styled.div`
+  width: 100%;
+  height: 18vh;
+  background-color: #302727;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem, 3rem;
+  color: white;
+  a {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      z-index: 1;
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.9);
+    }
+  }
+`;
+
+const FooterContainerImg = styled.img`
+  background: url(${githubimage});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+`;
+
+const FooterTitle = styled.span`
+  display: flex;
+  width: 100%;
+  height: 100%;
 `;
 
 const HeaderNavVariants = {
@@ -926,8 +1055,8 @@ const BodyContactContainerVariants = {
   },
 };
 
-const BodyProjectsMenuInlineBoxVariants = {
-  projectmenuopenbox: {
+const BodyContactInlineContainerVariants = {
+  contactmenuopenbox: {
     opacity: 1,
     display: "flex",
     transition: {
@@ -936,7 +1065,7 @@ const BodyProjectsMenuInlineBoxVariants = {
       delay: 0.3,
     },
   },
-  projectmenuclosebox: {
+  contactmenuclosebox: {
     opacity: 0,
     display: "none",
     transition: {
@@ -1224,8 +1353,12 @@ function Home() {
         <BodyprojectsContainer>
           {/* project부분 */}
 
-          <BodyProjectsTitle>Project</BodyProjectsTitle>
+          <BodyProjectsTitleBox>
+            <BodyProjectsTitle>Project</BodyProjectsTitle>
+          </BodyProjectsTitleBox>
+
           {/* project 전체 div */}
+
           <BodyTotalProjectsBox>
             {/* vanillaJs Project */}
             <BodyTotalProjectsBoxInlineContainer>
@@ -1358,7 +1491,8 @@ function Home() {
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
                             <a href="https://github.com/eunyechan/vanillaJS_app">
-                              github.com/eunyechan/vanillaJS_app
+                              github.com/eunyechan/vanillaJS_app target=
+                              {"blank"}
                             </a>
                             &nbsp;
                             <span style={{ fontWeight: "bold" }}>(보기)</span>
@@ -1383,7 +1517,10 @@ function Home() {
 
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
-                            <a href="https://eunyechan.github.io/vaillajs_app.github.io">
+                            <a
+                              href="https://eunyechan.github.io/vaillajs_app.github.io"
+                              target={"blank"}
+                            >
                               eunyechan.github.io/vaillajs_app.github.io
                             </a>
                             &nbsp;
@@ -1544,7 +1681,10 @@ function Home() {
 
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
-                            <a href="https://github.com/eunyechan/wetube-reloaded">
+                            <a
+                              href="https://github.com/eunyechan/wetube-reloaded"
+                              target={"blank"}
+                            >
                               github.com/eunyechan/wetube-reloaded
                             </a>
                             &nbsp;
@@ -1575,7 +1715,10 @@ function Home() {
                           }}
                         >
                           <div>
-                            <a href="https://wetubecloneapp.herokuapp.com/">
+                            <a
+                              href="https://wetubecloneapp.herokuapp.com"
+                              target={"blank"}
+                            >
                               wetubecloneapp.herokuapp.com
                             </a>
                             &nbsp;
@@ -1758,7 +1901,10 @@ function Home() {
 
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
-                            <a href="https://github.com/eunyechan/react-selector-app">
+                            <a
+                              href="https://github.com/eunyechan/react-selector-app"
+                              target={"blank"}
+                            >
                               github.com/eunyechan/react-selector-app
                             </a>
                             <br />
@@ -1789,7 +1935,10 @@ function Home() {
                           }}
                         >
                           <div>
-                            <a href="https://eunyechan.github.io/masterclass-react-selector-app">
+                            <a
+                              href="https://eunyechan.github.io/masterclass-react-selector-app"
+                              target={"blank"}
+                            >
                               eunyechan.github.io/masterclass-react-selector-app
                             </a>
                             &nbsp;
@@ -1945,7 +2094,10 @@ function Home() {
 
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
-                            <a href="https://github.com/eunyechan/masterclass-react-coin-app">
+                            <a
+                              href="https://github.com/eunyechan/masterclass-react-coin-app"
+                              target={"blank"}
+                            >
                               github.com/eunyechan/masterclass-react-coin-app
                             </a>
                             &nbsp;
@@ -1976,7 +2128,10 @@ function Home() {
                           }}
                         >
                           <div>
-                            <a href="https://eunyechan.github.io/masterclass-react-coin-app">
+                            <a
+                              href="https://eunyechan.github.io/masterclass-react-coin-app"
+                              target={"blank"}
+                            >
                               eunyechan.github.io/masterclass-react-coin-app
                             </a>
                             &nbsp;
@@ -2136,7 +2291,10 @@ function Home() {
 
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
-                            <a href="https://github.com/eunyechan/masterclass-react-notflix">
+                            <a
+                              href="https://github.com/eunyechan/masterclass-react-notflix"
+                              target={"blank"}
+                            >
                               github.com/eunyechan/masterclass-react-notflix
                             </a>
                             &nbsp;
@@ -2167,7 +2325,10 @@ function Home() {
                           }}
                         >
                           <div>
-                            <a href="https://eunyechan.github.io/masterclass-react-notflix">
+                            <a
+                              href="https://eunyechan.github.io/masterclass-react-notflix"
+                              target={"blank"}
+                            >
                               eunyechan.github.io/masterclass-react-notflix
                             </a>
                             <br />
@@ -2203,45 +2364,15 @@ function Home() {
           </BodyTotalProjectsBox>
         </BodyprojectsContainer>
 
-        {/* <div>
-          <BodyContactContainer
-            variants={BodyContactContainerVariants}
-            animate={isOpen ? "projectopenmenu" : "projectclosemenu"}
-            initial="projectopenmenu"
-          >
-            <BodyProjectsMenuBiglineContainer
-              variants={BodyProjectsMenuInlineBoxVariants}
-              animate={isOpen ? "projectmenuclosebox" : "projectmenuopenbox"}
-            ></BodyProjectsMenuBiglineContainer>
-
-            <BodyProjectsMenuSmallInlineContainer
-              variants={BodyProjectsMenuInlineBoxVariants}
-              animate={isOpen ? "projectmenuopenbox" : "projectmenuclosebox"}
-            >
-              <BodyProjectsMenuSmallInlineTitle>
-                Projects List
-              </BodyProjectsMenuSmallInlineTitle>
-            </BodyProjectsMenuSmallInlineContainer>
-          </BodyContactContainer>
-
-          <BodySkilsMenuContainerButtonBox>
-            <BodySkilsMenuContainerButtonInlineBox>
-              <BodySkilsMenuContainerButton
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-              ></BodySkilsMenuContainerButton>
-            </BodySkilsMenuContainerButtonInlineBox>
-          </BodySkilsMenuContainerButtonBox>
-
+        <BodyContactSkilsContainer>
           <BodySkilsContainerInlineBox
             variants={BodySkilsContainerVariants}
-            animate={isOpen ? "skilsopenmenu" : "skilsclosemenu"}
-            initial="skilsclosemenu"
+            animate={isOpen ? "skilsclosemenu" : "skilsopenmenu"}
+            initial="skilsopenmenu"
           >
             <BodySkilsContainerInlineIconBox
               variants={BodySkilsMenuInlineBoxVariants}
-              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
+              animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
             >
               <BodySkilsContainerInlineTitle>
                 Skils
@@ -2302,7 +2433,7 @@ function Home() {
                   </span>
 
                   <BodySkilsContainerInlineRightIconBoxTopDiv>
-                    <BodySkilsContainerInlineGittIcon
+                    <BodySkilsContainerInlineGitIcon
                       whileHover={{ y: "-20px" }}
                     />
                     <BodySkilsContainerInlineGithubIcon
@@ -2315,15 +2446,189 @@ function Home() {
 
             <BodySkilsContainerSmallInlineBox
               variants={BodySkilsMenuInlineBoxVariants}
-              animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
+              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
             >
               <BodySkilsContainerSmallInlineBoxTitle>
                 Skil List
               </BodySkilsContainerSmallInlineBoxTitle>
             </BodySkilsContainerSmallInlineBox>
           </BodySkilsContainerInlineBox>
-        </div> */}
+
+          <BodySkilsMenuContainerButtonBox>
+            <BodySkilsMenuContainerButtonInlineBox>
+              <BodySkilsMenuContainerButton
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              ></BodySkilsMenuContainerButton>
+            </BodySkilsMenuContainerButtonInlineBox>
+          </BodySkilsMenuContainerButtonBox>
+
+          <BodyContactContainerInlineBox
+            variants={BodyContactContainerVariants}
+            animate={isOpen ? "projectclosemenu" : "projectopenmenu"}
+            initial="projectclosemenu"
+          >
+            <BodyContactBigContainer
+              variants={BodyContactInlineContainerVariants}
+              animate={isOpen ? "contactmenuopenbox" : "contactmenuclosebox"}
+            >
+              {/* contace 커졌을 때 부분 */}
+
+              <BodyContactInlineTitle>Contact</BodyContactInlineTitle>
+              <BodyContactBigInlineContainerBox>
+                <BodyContactBigInlineTopDiv>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      style={{ fontSize: "45px", padding: "20px" }}
+                    />
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "20px",
+                      }}
+                    >
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        이름
+                      </span>
+                      <span>은예찬</span>
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCalendarWeek}
+                      style={{ fontSize: "45px", padding: "20px" }}
+                    />
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "20px",
+                      }}
+                    >
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        생년월일
+                      </span>
+                      <span>981013</span>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPhone}
+                      style={{ fontSize: "45px", padding: "20px" }}
+                    />
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "20px",
+                      }}
+                    >
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        전화번호
+                      </span>
+                      <span>010-2508-5919</span>
+                    </div>
+                  </div>
+                </BodyContactBigInlineTopDiv>
+                <BodyContactBigInlineBottomDiv>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      style={{ fontSize: "45px", padding: "20px" }}
+                    />
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "20px",
+                      }}
+                    >
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        이메일
+                      </span>
+                      <span>ys101312@kakao.com</span>
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faMapLocation}
+                      style={{ fontSize: "45px", padding: "20px" }}
+                    />
+                    <div
+                      style={{
+                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "20px",
+                      }}
+                    >
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        주소
+                      </span>
+                      <span>서울특별시 동대문구</span>
+                    </div>
+                  </div>{" "}
+                </BodyContactBigInlineBottomDiv>
+              </BodyContactBigInlineContainerBox>
+            </BodyContactBigContainer>
+
+            <BodyContactSmallContainer
+              variants={BodyContactInlineContainerVariants}
+              animate={isOpen ? "contactmenuclosebox" : "contactmenuopenbox"}
+            >
+              <BodyContactSmallContainerInlineTitle>
+                Contact
+              </BodyContactSmallContainerInlineTitle>
+            </BodyContactSmallContainer>
+          </BodyContactContainerInlineBox>
+        </BodyContactSkilsContainer>
       </BodyContainerBox>
+      <FooterContainer>
+        <a href="https://github.com/eunyechan" target={"blank"}>
+          <FooterContainerImg />
+        </a>
+        <div>
+          <FooterTitle>© 2022 Yechan's PortFolio</FooterTitle>
+        </div>
+      </FooterContainer>
     </Container>
   );
 }
