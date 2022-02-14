@@ -5,7 +5,7 @@ import {
   useViewportScroll,
   AnimatePresence,
 } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   vanillajsImages,
   youtubeImages,
@@ -26,6 +26,10 @@ import gitlogo from "./images/imagesLogo/git_logo.png";
 import githublogo from "./images/imagesLogo/github_logo.png";
 import githubimage from "./images/imagesLogo/githubImage.png";
 import {
+  faArrowDown,
+  faArrowLeft,
+  faArrowRight,
+  faArrowUp,
   faCalendarWeek,
   faEnvelope,
   faMapLocation,
@@ -70,28 +74,40 @@ const HeaderNav = styled(motion.nav)`
   align-items: center;
   width: 100%;
   font-size: 14px;
-  color: white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   z-index: 99;
   background-color: transparent;
 `;
 
-const HeaderUl = styled(motion.ul)`
+const HeaderUl = styled.ul`
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 
-const HeaderList = styled.li`
+const HeaderList = styled(motion.li)`
   margin: 20px 50px;
+`;
+
+const HeaderListButton = styled(motion.button)`
+  background-color: transparent;
   font-size: 20px;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  &:hover {
+    transform: scale(1.2);
+    transition-duration: 0.5s;
+  }
 `;
 
 const MainContainer = styled.div`
-  padding-top: 9rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const wavaAnimation = keyframes`
@@ -99,41 +115,32 @@ const wavaAnimation = keyframes`
   from { transform: rotate(360deg); }
 `;
 
-const MainWaveBox = styled.div`
-  margin-top: 3rem;
+const MainContainerInline = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 400px;
-  border-radius: 5px;
-  box-shadow: 0 2px 30px rgba(black, 0.2);
-  background: lighten(#f0f4c3, 10%);
+  height: 100%;
+  padding-right: 6rem;
+  flex: 1;
+`;
+
+const MainTitleBox = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   position: relative;
-  transform: translate3d(0, 0, 0);
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba(#e8a, 1),
-      rgba(#def, 0) 80%,
-      rgba(white, 0.5)
-    );
-    transform: translate3d(0, 0, 0);
-  }
+  padding-right: 6rem;
 `;
 
 const MainWaveTop = styled.div`
   opacity: 0.4;
   position: absolute;
-  top: 3%;
-  left: 20%;
   background: #7882a4;
-  width: 450px;
-  height: 450px;
-  margin-left: -250px;
-  margin-bottom: -250px;
-  transform-origin: 50% 48%;
+  width: 400px;
+  height: 400px;
   border-radius: 43%;
   animation: ${wavaAnimation} 3000ms infinite linear;
 `;
@@ -141,47 +148,28 @@ const MainWaveTop = styled.div`
 const MainWaveMiddle = styled.div`
   opacity: 0.4;
   position: absolute;
-  top: 3%;
-  left: 20%;
-  width: 450px;
-  height: 450px;
-  margin-left: -250px;
-  margin-bottom: -250px;
-  transform-origin: 50% 48%;
-  border-radius: 43%;
-  animation: ${wavaAnimation} 3000ms infinite linear;
+  width: 400px;
+  height: 400px;
   animation: ${wavaAnimation} 7000ms infinite linear;
   opacity: 0.1;
+  border-radius: 43%;
   background: #c0a080;
 `;
 
 const MainWaveBottom = styled.div`
   opacity: 0.4;
   position: absolute;
-  top: 3%;
-  left: 20%;
   background: #d1d1d1;
-  width: 450px;
-  height: 450px;
-  margin-left: -250px;
-  margin-bottom: -250px;
-  transform-origin: 50% 48%;
+  width: 400px;
+  height: 400px;
   border-radius: 43%;
-  animation: ${wavaAnimation} 3000ms infinite linear;
   animation: ${wavaAnimation} 5000ms infinite linear;
-`;
-
-const MainTitleBox = styled(motion.div)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const MainTitleSpanTop = styled.div`
   display: flex;
-  position: relative;
   justify-content: center;
+  align-items: center;
   width: 100%;
   z-index: 1;
   text-transform: uppercase;
@@ -196,13 +184,13 @@ const MainTitleSpanTop = styled.div`
 `;
 
 const MainTiTleSpan = styled(motion.span)`
-  position: relative;
+  display: flex;
 `;
 
 const MainTitleSpanBottom = styled.div`
   display: flex;
-  position: relative;
   justify-content: center;
+  align-items: center;
   width: 100%;
   z-index: 1;
   text-transform: uppercase;
@@ -217,10 +205,13 @@ const MainTitleSpanBottom = styled.div`
 `;
 
 const MainIntroTitleBox = styled(motion.div)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-left: 10rem;
+  flex: 1;
 `;
 
 const MainIntroTitle = styled.h2`
@@ -234,8 +225,8 @@ const MainIntroTitle = styled.h2`
 const MainIntroSubTitle = styled.h3`
   color: rgba(255, 255, 255, 0.7);
   font-size: 40px;
-  text-align: center;
   font-weight: bolder;
+  text-align: center;
   margin-bottom: 20px;
 `;
 
@@ -243,6 +234,45 @@ const MainIntroDetailTitle = styled.h4`
   margin-top: 20px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 18px;
+  display: flex;
+`;
+
+const TopscrollButton = styled(motion.button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  position: fixed;
+  right: 1.5rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+`;
+
+const AboutMeScrollButton = styled(motion.button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 40%;
+  top: 80%;
+  width: 15vw;
+  height: 80px;
+  z-index: 2;
+  border-radius: 25px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+  }
 `;
 
 // body 부분
@@ -787,7 +817,6 @@ const BodySkilsMenuContainerButtonBox = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  border: 1px solid black;
 `;
 
 const BodySkilsMenuContainerButtonInlineBox = styled.div`
@@ -798,11 +827,22 @@ const BodySkilsMenuContainerButtonInlineBox = styled.div`
 `;
 
 const BodySkilsMenuContainerButton = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 99px;
   position: absolute;
   width: 50px;
   height: 50px;
   z-index: 1;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+  }
 `;
 
 // Body Contact Big
@@ -945,24 +985,38 @@ const HeaderNavVariants = {
 
 const HeaderNavUlVariants = {
   top: {
-    color: "rgba(255, 255, 255, 1)",
+    display: "none",
     transition: { duration: 0.5 },
+    opacity: 0,
   },
   scroll: {
-    color: "rgba(255, 255, 255, 1)",
+    display: "flex",
     transition: { duration: 0.5 },
+    opacity: 1,
   },
 };
 
 const WaveTitleVariants = {
-  offscreen: {
-    x: "10vw",
+  onscreen: {
+    y: "15vh",
     opacity: 0,
     transition: { duration: 0.5 },
   },
-  onscreen: {
-    x: "-39vw",
-    y: "3vh",
+  offscreen: {
+    y: "0vh",
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const IntroButton = {
+  startbutton: {
+    opacity: 0,
+    transition: { duration: 0.5 },
+  },
+  endbutton: {
     opacity: 1,
     transition: {
       duration: 0.5,
@@ -971,15 +1025,13 @@ const WaveTitleVariants = {
 };
 
 const IntroTitleVariants = {
-  endscreen: {
-    x: "30vw",
-    y: "-10vh",
+  startscreen: {
+    y: "15vh",
     opacity: 0,
     transition: { duration: 0.5 },
   },
-  startscreen: {
-    x: "5vw",
-    y: "-10vh",
+  endscreen: {
+    y: "0vh",
     opacity: 1,
     transition: {
       duration: 0.5,
@@ -1001,6 +1053,23 @@ const BodyContainerAboutMeVariants = {
     transition: {
       duration: 0.5,
     },
+  },
+};
+
+const ScrollTopButtonVariants = {
+  scrollbottom: {
+    display: "flex",
+    transition: {
+      duration: 0.5,
+    },
+    opacity: 1,
+  },
+  scrolltop: {
+    display: "none",
+    transition: {
+      duration: 0.5,
+    },
+    opacity: 0,
   },
 };
 
@@ -1181,6 +1250,14 @@ function Home() {
     return Math.abs(offset) * velocity;
   };
 
+  const handleScrollTop = () => {
+    if (!window.scrollY) return;
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -1194,11 +1271,15 @@ function Home() {
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 400) {
-        navAnimation.start("offscreen");
-        navAnimation.start("endscreen");
-      } else {
         navAnimation.start("onscreen");
         navAnimation.start("startscreen");
+        navAnimation.start("startbutton");
+        navAnimation.start("scrollbottom");
+      } else {
+        navAnimation.start("offscreen");
+        navAnimation.start("endscreen");
+        navAnimation.start("endbutton");
+        navAnimation.start("scrolltop");
       }
     });
   }, [scrollY, navAnimation]);
@@ -1223,6 +1304,30 @@ function Home() {
     };
   }, []);
 
+  const HomeRef = useRef<HTMLDivElement>(null);
+  const AboutRef = useRef<HTMLDivElement>(null);
+  const ProjectsRef = useRef<HTMLDivElement>(null);
+  const SkilsRef = useRef<HTMLDivElement>(null);
+  const ContactRef = useRef<HTMLDivElement>(null);
+  const onHomeClick = () => {
+    HomeRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const onAboutMeClick = () => {
+    AboutRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const onProjectClick = () => {
+    ProjectsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const onSkilsClick = () => {
+    SkilsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const onContactClick = () => {
+    ContactRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Container>
       <ContainerInline>
@@ -1233,26 +1338,72 @@ function Home() {
             animate={navAnimation}
             initial={"top"}
           >
-            <HeaderUl variants={HeaderNavUlVariants}>
-              <HeaderList>Home</HeaderList>
-              <HeaderList>About Me</HeaderList>
-              <HeaderList>Skils</HeaderList>
-              <HeaderList>Project</HeaderList>
-              <HeaderList>contact</HeaderList>
+            <HeaderUl>
+              <HeaderList>
+                <HeaderListButton
+                  variants={HeaderNavUlVariants}
+                  animate={navAnimation}
+                  initial={"top"}
+                  onClick={onHomeClick}
+                >
+                  Home
+                </HeaderListButton>
+              </HeaderList>
+              <HeaderList>
+                <HeaderListButton
+                  variants={HeaderNavUlVariants}
+                  animate={navAnimation}
+                  initial={"top"}
+                  onClick={onAboutMeClick}
+                >
+                  About Me
+                </HeaderListButton>
+              </HeaderList>
+              <HeaderList>
+                <HeaderListButton
+                  variants={HeaderNavUlVariants}
+                  animate={navAnimation}
+                  initial={"top"}
+                  onClick={onProjectClick}
+                >
+                  Project
+                </HeaderListButton>
+              </HeaderList>
+              <HeaderList>
+                <HeaderListButton
+                  variants={HeaderNavUlVariants}
+                  animate={navAnimation}
+                  initial={"top"}
+                  onClick={onSkilsClick}
+                >
+                  Skils
+                </HeaderListButton>
+              </HeaderList>
+              <HeaderList>
+                <HeaderListButton
+                  variants={HeaderNavUlVariants}
+                  animate={navAnimation}
+                  initial={"top"}
+                  onClick={onContactClick}
+                >
+                  Contact
+                </HeaderListButton>
+              </HeaderList>
             </HeaderUl>
           </HeaderNav>
-          <MainContainer>
-            <MainWaveBox>
-              <MainWaveTop></MainWaveTop>
-              <MainWaveMiddle></MainWaveMiddle>
-              <MainWaveBottom></MainWaveBottom>
+          <MainContainer ref={HomeRef}>
+            <MainContainerInline>
               <MainTitleBox
                 variants={WaveTitleVariants}
                 animate={navAnimation}
-                initial="offscreen"
-                whileInView="onscreen"
+                initial="onscreen"
+                whileInView="offscreen"
                 viewport={{ once: true, amount: 0 }}
               >
+                <MainWaveTop></MainWaveTop>
+                <MainWaveMiddle></MainWaveMiddle>
+                <MainWaveBottom></MainWaveBottom>
+
                 <MainTitleSpanTop>
                   <MainTiTleSpan>YECHAN'S</MainTiTleSpan>
                 </MainTitleSpanTop>
@@ -1260,18 +1411,19 @@ function Home() {
                   <MainTiTleSpan>PORTFOLIO</MainTiTleSpan>
                 </MainTitleSpanBottom>
               </MainTitleBox>
-            </MainWaveBox>
+            </MainContainerInline>
             <MainIntroTitleBox
               variants={IntroTitleVariants}
               animate={navAnimation}
-              initial="endscreen"
-              whileInView="startscreen"
+              initial="startscreen"
+              whileInView="endscreen"
               viewport={{ once: true, amount: 0 }}
             >
               <MainIntroTitle> - 은예찬 - </MainIntroTitle>
-              <MainIntroSubTitle>웹 프론트엔드 개발자</MainIntroSubTitle>
+              <MainIntroSubTitle>프론트엔드 웹 개발자</MainIntroSubTitle>
               <br />
               <hr style={{ opacity: 0.4 }} />
+              <MainIntroDetailTitle>안녕하세요</MainIntroDetailTitle>
               <MainIntroDetailTitle>
                 좋은 개발자가 되기위해 열심히 공부를 합니다.
               </MainIntroDetailTitle>
@@ -1280,6 +1432,32 @@ function Home() {
                 장점입니다.
               </MainIntroDetailTitle>
             </MainIntroTitleBox>
+
+            <TopscrollButton
+              variants={ScrollTopButtonVariants}
+              initial="scrolltop"
+              animate={navAnimation}
+              onClick={handleScrollTop}
+            >
+              <FontAwesomeIcon
+                icon={faArrowUp}
+                style={{ fontSize: "25px", padding: "20px", color: "black" }}
+              />
+            </TopscrollButton>
+
+            <AboutMeScrollButton
+              variants={IntroButton}
+              animate={navAnimation}
+              initial="startbutton"
+              whileInView="endbutton"
+              onClick={onAboutMeClick}
+            >
+              나에 대해서
+              <FontAwesomeIcon
+                icon={faArrowDown}
+                style={{ fontSize: "25px", padding: "20px" }}
+              />
+            </AboutMeScrollButton>
           </MainContainer>
         </ContainerBackImg>
       </ContainerInline>
@@ -1287,7 +1465,7 @@ function Home() {
       {/* **********************body AboutMe 부분********************* */}
 
       <BodyContainerBox>
-        <BodyContainer>
+        <BodyContainer ref={AboutRef}>
           <BodyContainerArrow
             variants={BodyContainerAboutmeArrowVariants}
             animate={navAnimation}
@@ -1350,7 +1528,7 @@ function Home() {
 
         {/* **********************body Skils 부분********************* */}
 
-        <BodyprojectsContainer>
+        <BodyprojectsContainer ref={ProjectsRef}>
           {/* project부분 */}
 
           <BodyProjectsTitleBox>
@@ -2364,7 +2542,7 @@ function Home() {
           </BodyTotalProjectsBox>
         </BodyprojectsContainer>
 
-        <BodyContactSkilsContainer>
+        <BodyContactSkilsContainer ref={SkilsRef}>
           <BodySkilsContainerInlineBox
             variants={BodySkilsContainerVariants}
             animate={isOpen ? "skilsclosemenu" : "skilsopenmenu"}
@@ -2460,11 +2638,24 @@ function Home() {
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
-              ></BodySkilsMenuContainerButton>
+              >
+                {isOpen ? (
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    style={{ fontSize: "25px", padding: "20px" }}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    style={{ fontSize: "25px", padding: "20px" }}
+                  />
+                )}
+              </BodySkilsMenuContainerButton>
             </BodySkilsMenuContainerButtonInlineBox>
           </BodySkilsMenuContainerButtonBox>
 
           <BodyContactContainerInlineBox
+            ref={ContactRef}
             variants={BodyContactContainerVariants}
             animate={isOpen ? "projectclosemenu" : "projectopenmenu"}
             initial="projectclosemenu"
@@ -2525,7 +2716,7 @@ function Home() {
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
                         생년월일
                       </span>
-                      <span>981013</span>
+                      <span>19981013</span>
                     </div>
                   </div>
 
@@ -2605,7 +2796,7 @@ function Home() {
                       </span>
                       <span>서울특별시 동대문구</span>
                     </div>
-                  </div>{" "}
+                  </div>
                 </BodyContactBigInlineBottomDiv>
               </BodyContactBigInlineContainerBox>
             </BodyContactBigContainer>
