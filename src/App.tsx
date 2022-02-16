@@ -249,6 +249,7 @@ const TopscrollButton = styled(motion.button)`
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.3);
   border: none;
+  cursor: pointer;
 `;
 
 const AboutMeScrollButton = styled(motion.button)`
@@ -362,6 +363,7 @@ const BodyContainerAboutMeImgBox = styled(motion.div)`
   align-items: center;
   width: 100%;
   height: 100%;
+  flex: 1;
 `;
 
 const BodyContainerAboutMeImg = styled(motion.div)`
@@ -372,7 +374,6 @@ const BodyContainerAboutMeImg = styled(motion.div)`
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${profile});
-  cursor: pointer;
 `;
 
 const BodyContainerAboutMeUlBox = styled(motion.div)`
@@ -382,19 +383,20 @@ const BodyContainerAboutMeUlBox = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 2;
 `;
 
 const BodyContainerAboutMeUlTitle = styled.h2`
   font-size: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
+  font-weight: bold;
 `;
 
 const BodyContainerAboutMeUl = styled.ul`
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 20px;
-  font-weight: 600;
-  list-style-type: circle;
+  font-weight: 400;
 `;
 
 const BodyContainerAboutMeList = styled.li`
@@ -512,7 +514,8 @@ const BodyProjectsDetailExplainTitle = styled.span`
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flex;
-  a {
+  line-height: 1.8rem;
+  font a {
     &:hover {
       color: #3f3fec;
     }
@@ -1423,14 +1426,6 @@ function Home() {
               <MainIntroSubTitle>프론트엔드 웹 개발자</MainIntroSubTitle>
               <br />
               <hr style={{ opacity: 0.4 }} />
-              <MainIntroDetailTitle>안녕하세요</MainIntroDetailTitle>
-              <MainIntroDetailTitle>
-                좋은 개발자가 되기위해 열심히 공부를 합니다.
-              </MainIntroDetailTitle>
-              <MainIntroDetailTitle>
-                끈기를 가지고 안되는것에 대해 의문을 가지고 파고드는 성격이
-                장점입니다.
-              </MainIntroDetailTitle>
             </MainIntroTitleBox>
 
             <TopscrollButton
@@ -1499,26 +1494,21 @@ function Home() {
 
               <BodyContainerAboutMeUlBox>
                 <BodyContainerAboutMeUlTitle>
-                  😀프론트엔드 개발자가 되고싶습니다!
+                  나에 대해서
                 </BodyContainerAboutMeUlTitle>
                 <BodyContainerAboutMeUl>
                   <BodyContainerAboutMeList>
-                    군대에서 우연히 책으로 접하게 된 코딩 해보고싶다는 생각이
-                    들었습니다. <br />
-                    제대 후 맨땅에 해딩으로 학원에 가서 공부를 배웠습니다.
+                    서울에 사는 25살 남자 은 예찬입니다.
                   </BodyContainerAboutMeList>
                   <BodyContainerAboutMeList>
-                    학원을 다니고 나서도 많이 부족하다고 느껴 1년동안 인강으로
-                    공부를 하며 <br /> 프론트개발자를 준비했습니다
+                    군 복무 중 우연히 코딩에 관한 서적을 접하게 되어서 전역 후
+                    공부를 하게 되었습니다.
                   </BodyContainerAboutMeList>
                   <BodyContainerAboutMeList>
-                    프론트를 열심히 배우고 많은 것들이 익숙해지고 이해가 되면
-                    나중에는
-                    <br />
-                    백엔드도 도전 해보고 싶습니다.
+                    조금씩 발전해가는 자신을 보면서 프로그램에 흥미를 느낍니다.
                   </BodyContainerAboutMeList>
                   <BodyContainerAboutMeList>
-                    끊임없이 무언가를 배우고 공부하는 개발자가 되고싶습니다.
+                    끊임없이 배우는 프로그래머가 되고싶습니다.
                   </BodyContainerAboutMeList>
                 </BodyContainerAboutMeUl>
               </BodyContainerAboutMeUlBox>
@@ -1606,12 +1596,13 @@ function Home() {
                       }}
                     >
                       <span style={{ fontWeight: "bold" }}>
-                        오늘 할 일을 적어서 기록해두는 홈페이지
+                        오늘 할 목록들을 기록하는 홈페이지
                       </span>
                       <br />
                       <br />
-                      오늘 할 일을 다했으면 체크표시 버튼을 눌러 완료 가능
-                      삭제버튼을 눌러서 삭제가 가능하도록 만들었습니다.
+                      오늘 할 일들을 적어두고 일이 끝날 때마다 체크 표시를 통해
+                      완료가 가능합니다 수정을 할 수도 있고 삭제 기능도
+                      구현했습니다.
                       <br />
                       <span
                         style={{
@@ -1619,8 +1610,10 @@ function Home() {
                           paddingBottom: "2.5rem",
                         }}
                       >
-                        또한 오늘의 날짜표시 시간표시 그 지역의 날씨를 나오게
-                        했습니다.
+                        <p>
+                          또한 오늘의 날짜와 시간 해당 지역에 대한 날씨도
+                          나오도록 했습니다.
+                        </p>
                       </span>
                     </BodyProjectsDetailExplainTitle>
                     <div
@@ -1668,9 +1661,11 @@ function Home() {
 
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
-                            <a href="https://github.com/eunyechan/vanillaJS_app">
-                              github.com/eunyechan/vanillaJS_app target=
-                              {"blank"}
+                            <a
+                              href="https://github.com/eunyechan/vanillaJS_app"
+                              target={"blank"}
+                            >
+                              github.com/eunyechan/vanillaJS_app
                             </a>
                             &nbsp;
                             <span style={{ fontWeight: "bold" }}>(보기)</span>
@@ -1797,21 +1792,30 @@ function Home() {
                       }}
                     >
                       <span style={{ fontWeight: "bold" }}>
-                        유튜브를 클론 한홈페이지
+                        유튜브를 클론 한 홈페이지
                       </span>
                       <br />
                       <br />
-                      로그인, 회원가입, 비디오 녹화, 업로드, 댓글 등등 구현한
-                      페이지 입니다
+                      비디오 녹화 업로드 수정 삭제 기능을 구현했습니다.
+                      <br />
+                      깃허브로 로그인이 가능하며 회원가입을 통한 로그인도
+                      가능합니다.
+                      <br />
+                      동영상에 댓글도 남길 수 있으며 댓글을 삭제하는것도
+                      가능합니다.
+                      <br />
+                      프로필 이미지 설정도 가능하고 검색을 통하여 동영상을 찾을
+                      수도 있습니다.
+                      <br />
+                      처음으로 백엔드까지 해본 프로젝트라 정말 의미 있고 많은
+                      것을 배운 프로젝트였습니다.
                       <br />
                       <span
                         style={{
                           borderBottom: "1px solid rgba(226, 222, 222, 0.6)",
                           paddingBottom: "2.5rem",
                         }}
-                      >
-                        비디오 삭제 수정, 댓글 삭제 수정 가능합니다.
-                      </span>
+                      ></span>
                     </BodyProjectsDetailExplainTitle>
                     <div
                       style={{
@@ -1836,10 +1840,10 @@ function Home() {
                         </span>
                         <span style={{ display: "flex", flex: "3" }}>
                           Github Login, &nbsp; User Authentication, &nbsp; User
-                          Profile, <br /> Log In &nbsp; Log Out <br />
-                          Video Upload &nbsp; Video Recording &nbsp; Search
-                          Video
-                          <br /> AJAX Comments &nbsp; View Count...
+                          Profile, <br /> Log In, &nbsp; Log Out, <br />
+                          Video Upload, &nbsp; Video Recording, &nbsp; Search
+                          Video,
+                          <br /> AJAX Comments, &nbsp; View Count
                         </span>
                       </BodyProjectsDetailExplainTitle>
                       <BodyProjectsDetailExplainTitle
@@ -2023,9 +2027,11 @@ function Home() {
                       </span>
                       <br />
                       <br />
-                      드래그앤 드롭을 사용하여 삭제, 순서바꾸기 등등 구현한
-                      홈페이지 입니다.
+                      javascript에서 만든 ToDoList를 React Typescript를 사용하여
+                      또 한 번 만들었습니다.
                       <br />
+                      평번한 todolist보단 애니메이션을 이용하여 드로그 앤
+                      드롭으로 위치를 바꾸거나 삭제를 할 수 있도록 만들었습니다.
                       <span
                         style={{
                           borderBottom: "1px solid rgba(226, 222, 222, 0.6)",
@@ -2080,7 +2086,7 @@ function Home() {
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
                             <a
-                              href="https://github.com/eunyechan/react-selector-app"
+                              href="https://github.com/eunyechan/masterclass-react-selector-app/"
                               target={"blank"}
                             >
                               github.com/eunyechan/react-selector-app
@@ -2119,8 +2125,10 @@ function Home() {
                             >
                               eunyechan.github.io/masterclass-react-selector-app
                             </a>
-                            &nbsp;
-                            <span style={{ fontWeight: "bold" }}>(보기)</span>
+                            <span style={{ fontWeight: "bold" }}>
+                              <br />
+                              (보기)
+                            </span>
                           </div>
                         </span>
                       </BodyProjectsDetailExplainTitle>
@@ -2214,12 +2222,14 @@ function Home() {
                       }}
                     >
                       <span style={{ fontWeight: "bold" }}>
-                        coin 리스트를 보여주는 홈페이지
+                        Coin 리스트를 보여주는 홈페이지
                       </span>
                       <br />
                       <br />
-                      코인 가격 차트 순위 등등 CoinApi를 받아와서 보여주고 또한
-                      토글 버튼을 만들어서 배경색을 바꿔주는 홈페이지 입니다
+                      코인에 대한 정보를 보여주는 홈페이지를 만들었습니다.
+                      코인에 관한 api를 가져와서 이름 가격을 보여줍니다.
+                      차트로도 볼 수 있도록 만들었습니다. 토글 버튼을 이용하여
+                      다크 모드를 설정할 수 있습니다.
                       <br />
                       <span
                         style={{
@@ -2252,7 +2262,7 @@ function Home() {
                         <span style={{ display: "flex", flex: "3" }}>
                           Route States, &nbsp; Apex Charts, &nbsp;
                           react-router-dom, &nbsp; StyledComponents, &nbsp;
-                          React Helmet, &nbsp; react-query, &nbsp; recoil...
+                          React Helmet, &nbsp; react-query, &nbsp; recoil{" "}
                         </span>
                       </BodyProjectsDetailExplainTitle>
                       <BodyProjectsDetailExplainTitle
@@ -2411,11 +2421,10 @@ function Home() {
                       </span>
                       <br />
                       <br />
-                      인기있는 영화, Tv프로그램 등등 MovieApi 를 가져와서 리스트
-                      목록을
-                      <br /> 보여줍니다 또한 영화, Tv를 검색하여 찾을 수 있고
-                      이미지 클릭을 하면
-                      <br /> 그 내용에 대한 상세정보를 보여줍니다.
+                      영화 또는 tv 목록을 보여주는 홈페이지 입니다. 인기 있는
+                      영화나 tv를 보여주고 이미지를 클릭하면 그 영화에 대한
+                      상세한 정보도 보이도록 만들었습니다 또한 검색 기능을
+                      이용하여 영화 또는 tv 정보를 볼 수 있습니다.
                       <br />
                       <span
                         style={{
