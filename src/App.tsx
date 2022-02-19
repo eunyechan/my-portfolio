@@ -230,13 +230,6 @@ const MainIntroSubTitle = styled.h3`
   margin-bottom: 20px;
 `;
 
-const MainIntroDetailTitle = styled.h4`
-  margin-top: 20px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 18px;
-  display: flex;
-`;
-
 const TopscrollButton = styled(motion.button)`
   display: flex;
   justify-content: center;
@@ -292,7 +285,7 @@ const BodyContainer = styled.div`
 const BodyContainerArrow = styled(motion.div)`
   position: absolute;
   align-items: center;
-  top: 7%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 100px;
@@ -316,7 +309,7 @@ const BodyContainerAboutMeTitleBox = styled.div`
   font-size: 60px;
   font-weight: bolder;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin-top: 2rem;
+  margin-top: 4rem;
   margin-bottom: 2rem;
   letter-spacing: 5px;
   z-index: 1;
@@ -499,7 +492,7 @@ const BodyTotalProjectsBoxInline = styled.div`
 const BodyProjectsImageDetailExplainContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 3rem 0;
+  /* max-height: 90vh; */
 `;
 
 const BodyProjectsDetailExplainContainer = styled.div`
@@ -530,10 +523,12 @@ const BodyProjectsImageContainer = styled.div`
   overflow: hidden;
   background-color: #eee;
   border-radius: 10px;
+  max-height: 60vh;
 `;
 
 const BodyProjectsImage = styled(motion.img)`
   max-width: 100vw;
+  /* max-height: 90vh; */
   width: 100%;
   height: 100%;
   position: absolute;
@@ -896,21 +891,25 @@ const BodyContactBigInlineContainerBox = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4rem 0;
 `;
 
 const BodyContactBigInlineTopDiv = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
+  padding: 15px 0;
 `;
 
 const BodyContactBigInlineBottomDiv = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
@@ -2551,8 +2550,9 @@ function Home() {
           </BodyTotalProjectsBox>
         </BodyprojectsContainer>
 
-        <BodyContactSkilsContainer ref={SkilsRef}>
+        <BodyContactSkilsContainer>
           <BodySkilsContainerInlineBox
+            ref={SkilsRef}
             variants={BodySkilsContainerVariants}
             animate={isOpen ? "skilsclosemenu" : "skilsopenmenu"}
             initial="skilsopenmenu"
