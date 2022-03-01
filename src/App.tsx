@@ -43,6 +43,7 @@ const Container = styled.div`
   padding: 0;
   margin: 0;
   width: 100%;
+  overflow: hidden;
 `;
 
 const ContainerInline = styled.div`
@@ -50,6 +51,7 @@ const ContainerInline = styled.div`
   height: 100%;
   @media screen and (max-width: 600px) {
     flex-direction: column;
+    overflow: hidden;
   }
 `;
 
@@ -67,6 +69,7 @@ const ContainerImgOverlay = styled.div`
   padding: 0;
   margin: 0;
   position: absolute;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
@@ -85,6 +88,7 @@ const HeaderNav = styled(motion.nav)`
   background-color: transparent;
   @media screen and (max-width: 600px) {
     display: flex;
+    overflow: hidden;
     justify-content: start;
     align-items: flex-start;
     padding: 1rem;
@@ -348,11 +352,12 @@ const AboutMeScrollButton = styled(motion.button)`
   }
   @media screen and (max-width: 600px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
     font-size: 15px;
-    width: 37vw;
+    width: 50vw;
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 2rem;
@@ -626,6 +631,7 @@ const BodyProjectsDetailExplainTitle = styled.span`
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flex;
   line-height: 1.8rem;
+  word-break: break-all;
   a {
     color: #3f3fec;
   }
@@ -634,6 +640,7 @@ const BodyProjectsDetailExplainTitle = styled.span`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 100%;
   }
 `;
 
@@ -1095,6 +1102,9 @@ const BodyContactInlineTitle = styled.span`
   line-height: normal;
   background-color: white;
   border-radius: 99px;
+  @media screen and (max-width: 600px) {
+    letter-spacing: 0.2em;
+  }
 `;
 
 const BodyContactBigInlineContainerBox = styled.div`
@@ -1141,7 +1151,13 @@ const BodyContactBigInlineBottomDiv = styled.div`
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
+  padding: 15px 0;
+  div {
+    display: flex;
+    justify-content: center;
+  }
   @media screen and (max-width: 600px) {
+    padding: 0;
     display: flex;
     flex-direction: column;
     div {
@@ -1952,7 +1968,12 @@ function Home() {
                           GitHub Code
                         </span>
 
-                        <div style={{ display: "flex", flex: "3" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            flex: "3",
+                          }}
+                        >
                           <div>
                             <a
                               href="https://github.com/eunyechan/vanillaJS_app"
@@ -2772,6 +2793,7 @@ function Home() {
                         <div style={{ display: "flex", flex: "3" }}>
                           <div>
                             <a
+                              // style={{ wordBreak: "break-all" }}
                               href="https://github.com/eunyechan/masterclass-react-notflix"
                               target={"blank"}
                             >
@@ -2990,7 +3012,7 @@ function Home() {
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
                         생년월일
                       </span>
-                      <span>19981013</span>
+                      <span style={{ wordBreak: "break-all" }}>19981013</span>
                     </div>
                   </div>
 
@@ -3021,12 +3043,7 @@ function Home() {
                   </div>
                 </BodyContactBigInlineTopDiv>
                 <BodyContactBigInlineBottomDiv>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <div>
                     <FontAwesomeIcon
                       icon={faEnvelope}
                       style={{ fontSize: "45px", padding: "20px" }}
@@ -3041,17 +3058,14 @@ function Home() {
                       }}
                     >
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        이메일
+                        주소
                       </span>
-                      <span>ys101312@kakao.com</span>
+                      <span style={{ wordBreak: "break-all" }}>
+                        ys101312@kakao.com
+                      </span>
                     </div>
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <div>
                     <FontAwesomeIcon
                       icon={faMapLocation}
                       style={{ fontSize: "45px", padding: "20px" }}
