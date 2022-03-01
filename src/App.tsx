@@ -30,7 +30,9 @@ import {
   faArrowLeft,
   faArrowRight,
   faArrowUp,
+  faBars,
   faCalendarWeek,
+  faClose,
   faEnvelope,
   faMapLocation,
   faPhone,
@@ -46,6 +48,9 @@ const Container = styled.div`
 const ContainerInline = styled.div`
   width: 100%;
   height: 100%;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const ContainerBackImg = styled.div`
@@ -78,12 +83,34 @@ const HeaderNav = styled(motion.nav)`
   border-bottom-right-radius: 5px;
   z-index: 99;
   background-color: transparent;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 1rem;
+  }
 `;
 
-const HeaderUl = styled.ul`
+const HeaderMenubar = styled(motion.div)`
+  display: none;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    background-color: transparent;
+  }
+`;
+
+const HeaderUl = styled.ul<IInerScreen>`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    display: ${(props) => (props.isMenu ? "flex" : "none")};
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    width: 100%;
+  }
 `;
 
 const HeaderList = styled(motion.li)`
@@ -108,6 +135,14 @@ const MainContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 5px solid white;
+  }
 `;
 
 const wavaAnimation = keyframes`
@@ -122,6 +157,11 @@ const MainContainerInline = styled.div`
   height: 100%;
   padding-right: 6rem;
   flex: 1;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    width: 100%;
+    padding-right: 0;
+  }
 `;
 
 const MainTitleBox = styled(motion.div)`
@@ -133,6 +173,16 @@ const MainTitleBox = styled(motion.div)`
   height: 100%;
   position: relative;
   padding-right: 6rem;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-right: 0;
+    padding-top: 2rem;
+  }
 `;
 
 const MainWaveTop = styled.div`
@@ -143,6 +193,10 @@ const MainWaveTop = styled.div`
   height: 400px;
   border-radius: 43%;
   animation: ${wavaAnimation} 3000ms infinite linear;
+  @media screen and (max-width: 600px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const MainWaveMiddle = styled.div`
@@ -154,6 +208,10 @@ const MainWaveMiddle = styled.div`
   opacity: 0.1;
   border-radius: 43%;
   background: #c0a080;
+  @media screen and (max-width: 600px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const MainWaveBottom = styled.div`
@@ -164,6 +222,10 @@ const MainWaveBottom = styled.div`
   height: 400px;
   border-radius: 43%;
   animation: ${wavaAnimation} 5000ms infinite linear;
+  @media screen and (max-width: 600px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const MainTitleSpanTop = styled.div`
@@ -181,6 +243,9 @@ const MainTitleSpanTop = styled.div`
   font-size: 24px;
   text-shadow: 0 1px 0 rgba(black, 0.1);
   text-indent: 0.3em;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const MainTiTleSpan = styled(motion.span)`
@@ -202,6 +267,9 @@ const MainTitleSpanBottom = styled.div`
   font-size: 24px;
   text-shadow: 0 1px 0 rgba(black, 0.1);
   text-indent: 0.3em;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const MainIntroTitleBox = styled(motion.div)`
@@ -212,6 +280,12 @@ const MainIntroTitleBox = styled(motion.div)`
   width: 100%;
   padding-left: 10rem;
   flex: 1;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+    display: block;
+    padding-top: 2rem;
+    padding-left: 0;
+  }
 `;
 
 const MainIntroTitle = styled.h2`
@@ -220,6 +294,9 @@ const MainIntroTitle = styled.h2`
   font-weight: bolder;
   text-align: center;
   margin: 10px;
+  @media screen and (max-width: 600px) {
+    font-size: 30px;
+  }
 `;
 
 const MainIntroSubTitle = styled.h3`
@@ -228,6 +305,9 @@ const MainIntroSubTitle = styled.h3`
   font-weight: bolder;
   text-align: center;
   margin-bottom: 20px;
+  @media screen and (max-width: 600px) {
+    font-size: 30px;
+  }
 `;
 
 const TopscrollButton = styled(motion.button)`
@@ -267,6 +347,17 @@ const AboutMeScrollButton = styled(motion.button)`
     background-color: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
   }
+  @media screen and (max-width: 600px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 15px;
+    width: 37vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 2rem;
+  }
 `;
 
 // body 부분
@@ -290,6 +381,9 @@ const BodyContainerArrow = styled(motion.div)`
   transform: translate(-50%, -50%);
   font-size: 100px;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 50px;
+  }
 `;
 
 const BodyContainerAboutMeBox = styled(motion.div)`
@@ -298,6 +392,9 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   width: 100%;
   height: 100%;
   padding: 2rem 6rem;
+  @media screen and (max-width: 600px) {
+    padding: 1rem 4rem;
+  }
 `;
 
 const BodyContainerAboutMeTitleBox = styled.div`
@@ -348,6 +445,10 @@ const BodyContainerAboutMe = styled(motion.div)`
   border: 2px solid black;
   padding: 4rem 2rem;
   margin-bottom: 5rem;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const BodyContainerAboutMeImgBox = styled(motion.div)`
@@ -367,6 +468,11 @@ const BodyContainerAboutMeImg = styled(motion.div)`
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${profile});
+  @media screen and (max-width: 600px) {
+    width: 35vw;
+    height: 30vh;
+    margin-bottom: 4rem;
+  }
 `;
 
 const BodyContainerAboutMeUlBox = styled(motion.div)`
@@ -405,6 +511,9 @@ const BodyprojectsContainer = styled.div`
   height: 100%;
   padding: 4rem 4rem;
   background-color: rgba(62, 73, 122, 0.6);
+  @media screen and (max-width: 600px) {
+    padding: 1rem 2rem;
+  }
 `;
 
 const BodyProjectsTitleBox = styled.div`
@@ -446,6 +555,9 @@ const BodyTotalProjectsBox = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem 2rem;
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+  }
 `;
 
 const BodyTotalProjectsBoxInlineContainer = styled.div`
@@ -457,6 +569,10 @@ const BodyTotalProjectsBoxInlineContainer = styled.div`
   margin-bottom: 4rem;
   background-color: white;
   border-radius: 10px;
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
+    display: block;
+  }
 `;
 
 const BodyProjectsImageDetailTitleBox = styled.div`
@@ -487,12 +603,15 @@ const BodyTotalProjectsBoxInline = styled.div`
   display: flex;
   background-color: white;
   grid-gap: 2rem;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const BodyProjectsImageDetailExplainContainer = styled.div`
   width: 100%;
   height: 100%;
-  /* max-height: 90vh; */
 `;
 
 const BodyProjectsDetailExplainContainer = styled.div`
@@ -508,10 +627,14 @@ const BodyProjectsDetailExplainTitle = styled.span`
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flex;
   line-height: 1.8rem;
-  font a {
-    &:hover {
-      color: #3f3fec;
-    }
+  a {
+    color: #3f3fec;
+  }
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 `;
 
@@ -524,6 +647,12 @@ const BodyProjectsImageContainer = styled.div`
   background-color: #eee;
   border-radius: 10px;
   max-height: 60vh;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    height: 40vh;
+    max-height: 40vh;
+    flex-direction: column;
+  }
 `;
 
 const BodyProjectsImage = styled(motion.img)`
@@ -548,6 +677,9 @@ const BodyProjectsImageTotalNumber = styled.span`
   font-size: 16px;
   display: flex;
   color: white;
+  @media screen and (max-width: 600px) {
+    margin-top: 2rem;
+  }
 `;
 
 const BodyProjectImageNextSlideButton = styled(motion.button)`
@@ -623,6 +755,9 @@ const BodySkilsContainerInlineIconBox = styled(motion.div)`
   width: 100%;
   height: 100%;
   padding: 50px;
+  @media screen and (max-width: 600px) {
+    padding-top: 10px;
+  }
 `;
 
 const BodySkilsContainerInlineTitle = styled.span`
@@ -646,6 +781,10 @@ const BodySkilsContainerInlineTitle = styled.span`
   line-height: normal;
   background-color: white;
   border-radius: 99px;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const BodySkilsContainerRightLeftIconBox = styled.div`
@@ -653,6 +792,10 @@ const BodySkilsContainerRightLeftIconBox = styled.div`
   height: 100%;
   display: flex;
   grid-gap: 20px;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const BodySkilsContainerInlineLeftIconBox = styled.div`
@@ -663,6 +806,26 @@ const BodySkilsContainerInlineLeftIconBox = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
+  @media screen and (max-width: 600px) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const BodySkilsContainerInlineSubTitle = styled.span`
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(107, 102, 102, 0.3);
+  font-size: 26px;
+  font-weight: bold;
+  height: 15vh;
+  color: #d9534f;
+  @media screen and (max-width: 600px) {
+    height: 8vh;
+  }
 `;
 
 const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
@@ -672,6 +835,11 @@ const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
   margin: 30px 0;
   border-radius: 10px;
   width: 100%;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const BodySkilsContainerInlineLeftIconBoxBottomDiv = styled.div`
@@ -689,6 +857,11 @@ const BodySkilsContainerInlineRightIconBox = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
+  @media screen and (max-width: 600px) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const BodySkilsContainerInlineRightIconBoxTopDiv = styled.div`
@@ -697,6 +870,12 @@ const BodySkilsContainerInlineRightIconBoxTopDiv = styled.div`
   flex: 2;
   justify-content: space-around;
   align-items: center;
+  margin: 30px 0;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 `;
 
 const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
@@ -704,12 +883,15 @@ const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsContainerInlineTopCssIcon = styled(motion.img)`
@@ -717,12 +899,15 @@ const BodySkilsContainerInlineTopCssIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsContainerInlineTopJsIcon = styled(motion.img)`
@@ -730,12 +915,15 @@ const BodySkilsContainerInlineTopJsIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsContainerSmallInlineBox = styled(motion.div)`
@@ -747,6 +935,9 @@ const BodySkilsContainerSmallInlineBox = styled(motion.div)`
   align-items: center;
   background-color: #313552;
   letter-spacing: 0.3rem;
+  @media screen and (max-width: 600px) {
+    letter-spacing: 0rem;
+  }
 `;
 
 const BodySkilsContainerSmallInlineBoxTitle = styled.span`
@@ -756,6 +947,14 @@ const BodySkilsContainerSmallInlineBoxTitle = styled.span`
   padding: 10px;
   font-size: 22px;
   margin-bottom: 5rem;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 10rem;
+  }
 `;
 
 const BodySkilsContainerInlineBottomReactIcon = styled(motion.img)`
@@ -763,12 +962,15 @@ const BodySkilsContainerInlineBottomReactIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsContainerInlineBottomTypeScriptIcon = styled(motion.img)`
@@ -776,12 +978,15 @@ const BodySkilsContainerInlineBottomTypeScriptIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsContainerInlineGitIcon = styled(motion.img)`
@@ -789,12 +994,15 @@ const BodySkilsContainerInlineGitIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsContainerInlineGithubIcon = styled(motion.img)`
@@ -802,12 +1010,15 @@ const BodySkilsContainerInlineGithubIcon = styled(motion.img)`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 130px;
-  height: 130px;
   border: 3px solid black;
   border-radius: 10px;
   padding: 4rem;
   background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 `;
 
 const BodySkilsMenuContainerButtonBox = styled.div`
@@ -859,6 +1070,9 @@ const BodyContactBigContainer = styled(motion.div)`
   height: 100%;
   padding: 50px;
   background-color: rgba(202, 202, 202, 0.6);
+  @media screen and (max-width: 600px) {
+    padding-top: 10px;
+  }
 `;
 
 const BodyContactInlineTitle = styled.span`
@@ -894,25 +1108,49 @@ const BodyContactBigInlineContainerBox = styled.div`
   align-items: center;
   justify-content: space-around;
   padding: 4rem 0;
+  @media screen and (max-width: 600px) {
+    padding: 2rem 0;
+  }
 `;
 
 const BodyContactBigInlineTopDiv = styled.div`
   display: flex;
   width: 100%;
-  /* height: 100%; */
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
   padding: 15px 0;
+  div {
+    display: flex;
+    justify-content: center;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 `;
 
 const BodyContactBigInlineBottomDiv = styled.div`
   display: flex;
   width: 100%;
-  /* height: 100%; */
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    div {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 `;
 
 const BodyContactSmallContainer = styled(motion.div)`
@@ -924,6 +1162,9 @@ const BodyContactSmallContainer = styled(motion.div)`
   align-items: center;
   background-color: #313552;
   letter-spacing: 0.3rem;
+  @media screen and (max-width: 600px) {
+    letter-spacing: 0rem;
+  }
 `;
 
 const BodyContactSmallContainerInlineTitle = styled(motion.span)`
@@ -933,6 +1174,14 @@ const BodyContactSmallContainerInlineTitle = styled(motion.span)`
   padding: 10px;
   font-size: 22px;
   margin-bottom: 5rem;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 10rem;
+  }
 `;
 
 const FooterContainer = styled.div`
@@ -943,7 +1192,7 @@ const FooterContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem, 3rem;
+  padding: 5rem 3rem;
   color: white;
   a {
     width: 80px;
@@ -958,6 +1207,14 @@ const FooterContainer = styled.div`
       background: rgba(255, 255, 255, 0.9);
     }
   }
+  @media screen and (max-width: 600px) {
+    height: 10vh;
+    padding: 4rem 0;
+    a {
+      width: 50px;
+      height: 50px;
+    }
+  }
 `;
 
 const FooterContainerImg = styled.img`
@@ -968,6 +1225,10 @@ const FooterContainerImg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  @media screen and (max-width: 600px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const FooterTitle = styled.span`
@@ -985,10 +1246,19 @@ const HeaderNavVariants = {
   },
 };
 
+const HeaderMenuVariants = {
+  menuvisible: {
+    display: "flex",
+  },
+  menuinvisible: {
+    display: "none",
+  },
+};
+
 const HeaderNavUlVariants = {
   top: {
     display: "none",
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, delay: 0.2 },
     opacity: 0,
   },
   scroll: {
@@ -1098,7 +1368,7 @@ const BodyContainerAboutmeArrowVariants = {
     },
   },
   aboutmearrowinvisible: {
-    x: -800,
+    x: -window.innerWidth / 2,
     opacity: 0,
     transition: {
       duration: 0.5,
@@ -1207,8 +1477,13 @@ const ImageSliderVariants = {
   },
 };
 
+interface IInerScreen {
+  isMenu: boolean;
+}
+
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMenu, setIsMenu] = useState(false);
   const [[vanilajspage, vanillajsdirection], setVanillaJsPage] = useState([
     0, 0,
   ]);
@@ -1266,6 +1541,16 @@ function Home() {
         navAnimation.start("scroll");
       } else {
         navAnimation.start("top");
+      }
+    });
+  }, [scrollY, navAnimation]);
+
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (scrollY.get() > 80 && window.innerWidth <= 600) {
+        navAnimation.start("menuvisible");
+      } else {
+        navAnimation.start("menuinvisible");
       }
     });
   }, [scrollY, navAnimation]);
@@ -1340,7 +1625,18 @@ function Home() {
             animate={navAnimation}
             initial={"top"}
           >
-            <HeaderUl>
+            <HeaderMenubar
+              variants={HeaderMenuVariants}
+              animate={navAnimation}
+              initial={"menuinvisible"}
+              onClick={() => setIsMenu(!isMenu)}
+            >
+              <FontAwesomeIcon
+                style={{ fontSize: "25px", color: "white" }}
+                icon={isMenu ? faClose : faBars}
+              />
+            </HeaderMenubar>
+            <HeaderUl isMenu={isMenu}>
               <HeaderList>
                 <HeaderListButton
                   variants={HeaderNavUlVariants}
@@ -2226,7 +2522,7 @@ function Home() {
                       <br />
                       <br />
                       코인에 대한 정보를 보여주는 홈페이지를 만들었습니다.
-                      코인에 관한 api를 가져와서 이름 가격을 보여줍니다.
+                      코인에 관한 api를 가져와서 이름이랑 가격을 보여줍니다.
                       차트로도 볼 수 있도록 만들었습니다. 토글 버튼을 이용하여
                       다크 모드를 설정할 수 있습니다.
                       <br />
@@ -2566,21 +2862,9 @@ function Home() {
               </BodySkilsContainerInlineTitle>
               <BodySkilsContainerRightLeftIconBox>
                 <BodySkilsContainerInlineLeftIconBox>
-                  <span
-                    style={{
-                      display: "flex",
-                      textAlign: "center",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
-                      fontSize: "26px",
-                      fontWeight: "bold",
-                      height: "15vh",
-                      color: "#D9534F",
-                    }}
-                  >
+                  <BodySkilsContainerInlineSubTitle>
                     Front-end
-                  </span>
+                  </BodySkilsContainerInlineSubTitle>
                   <BodySkilsContainerInlineLeftIconBoxTopDiv>
                     <BodySkilsContainerInlineTopHtmlIcon
                       whileHover={{ y: "-20px" }}
@@ -2603,21 +2887,9 @@ function Home() {
                 </BodySkilsContainerInlineLeftIconBox>
 
                 <BodySkilsContainerInlineRightIconBox>
-                  <span
-                    style={{
-                      display: "flex",
-                      textAlign: "center",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderBottom: "1px solid rgba(107, 102, 102, 0.3)",
-                      fontSize: "26px",
-                      fontWeight: "bold",
-                      height: "15vh",
-                      color: "#D9534F",
-                    }}
-                  >
+                  <BodySkilsContainerInlineSubTitle>
                     Version Control
-                  </span>
+                  </BodySkilsContainerInlineSubTitle>
 
                   <BodySkilsContainerInlineRightIconBoxTopDiv>
                     <BodySkilsContainerInlineGitIcon
@@ -2678,12 +2950,7 @@ function Home() {
               <BodyContactInlineTitle>Contact</BodyContactInlineTitle>
               <BodyContactBigInlineContainerBox>
                 <BodyContactBigInlineTopDiv>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <div>
                     <FontAwesomeIcon
                       icon={faUser}
                       style={{ fontSize: "45px", padding: "20px" }}
