@@ -112,13 +112,16 @@ const HeaderUl = styled.ul<IInerScreen>`
     display: ${(props) => (props.isMenu ? "flex" : "none")};
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 14px;
     width: 100%;
   }
 `;
 
 const HeaderList = styled(motion.li)`
   margin: 20px 50px;
+  @media screen and (max-width: 600px) {
+    margin: 5px 30px;
+  }
 `;
 
 const HeaderListButton = styled(motion.button)`
@@ -131,6 +134,9 @@ const HeaderListButton = styled(motion.button)`
   &:hover {
     transform: scale(1.2);
     transition-duration: 0.5s;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
   }
 `;
 
@@ -326,6 +332,12 @@ const TopscrollButton = styled(motion.button)`
   background-color: rgba(255, 255, 255, 0.3);
   border: none;
   cursor: pointer;
+  @media screen and (max-width: 600px) {
+    width: 35px;
+    height: 35px;
+    right: 0.5rem;
+    bottom: 1rem;
+  }
 `;
 
 const AboutMeScrollButton = styled(motion.button)`
@@ -473,8 +485,8 @@ const BodyContainerAboutMeImg = styled(motion.div)`
   background-repeat: no-repeat;
   background-image: url(${profile});
   @media screen and (max-width: 600px) {
-    width: 35vw;
-    height: 30vh;
+    width: 100%;
+    height: 20vh;
     margin-bottom: 4rem;
   }
 `;
@@ -743,6 +755,7 @@ const BodyContactSkilsContainer = styled(motion.div)`
   width: 100%;
   height: 100vh;
   display: flex;
+  overflow: hidden;
 `;
 
 // Body Skil
@@ -830,7 +843,7 @@ const BodySkilsContainerInlineSubTitle = styled.span`
   height: 15vh;
   color: #d9534f;
   @media screen and (max-width: 600px) {
-    height: 8vh;
+    height: 100%;
   }
 `;
 
@@ -896,7 +909,7 @@ const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -912,7 +925,7 @@ const BodySkilsContainerInlineTopCssIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -928,7 +941,7 @@ const BodySkilsContainerInlineTopJsIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -975,7 +988,7 @@ const BodySkilsContainerInlineBottomReactIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -991,7 +1004,7 @@ const BodySkilsContainerInlineBottomTypeScriptIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -1007,7 +1020,7 @@ const BodySkilsContainerInlineGitIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -1023,7 +1036,7 @@ const BodySkilsContainerInlineGithubIcon = styled(motion.img)`
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.3rem;
   }
 `;
 
@@ -1054,9 +1067,17 @@ const BodySkilsMenuContainerButton = styled(motion.button)`
   color: white;
   border: none;
   cursor: pointer;
+  font-size: 25px;
   &:hover {
     transform: scale(1.2);
     transition-duration: 0.3s;
+  }
+  @media screen and (max-width: 600px) {
+    width: 35px;
+    height: 35px;
+    &:first-child {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -1078,6 +1099,8 @@ const BodyContactBigContainer = styled(motion.div)`
   background-color: rgba(202, 202, 202, 0.6);
   @media screen and (max-width: 600px) {
     padding-top: 10px;
+    overflow: hidden;
+    scroll-behavior: none;
   }
 `;
 
@@ -1109,7 +1132,6 @@ const BodyContactInlineTitle = styled.span`
 
 const BodyContactBigInlineContainerBox = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -1118,7 +1140,13 @@ const BodyContactBigInlineContainerBox = styled.div`
   justify-content: space-around;
   padding: 4rem 0;
   @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 2rem 0;
+    margin-top: auto;
+    margin-bottom: auto;
   }
 `;
 
@@ -1129,9 +1157,16 @@ const BodyContactBigInlineTopDiv = styled.div`
   align-items: center;
   font-weight: bold;
   padding: 15px 0;
+  font-size: 45px;
   div {
     display: flex;
     justify-content: center;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 18px;
+    }
   }
   @media screen and (max-width: 600px) {
     padding: 0;
@@ -1139,8 +1174,15 @@ const BodyContactBigInlineTopDiv = styled.div`
     flex-direction: column;
     div {
       display: flex;
+      align-items: center;
       width: 100%;
       justify-content: space-between;
+      font-size: 20px;
+      div {
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 `;
@@ -1152,9 +1194,16 @@ const BodyContactBigInlineBottomDiv = styled.div`
   align-items: center;
   font-weight: bold;
   padding: 15px 0;
+  font-size: 45px;
   div {
     display: flex;
     justify-content: center;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 18px;
+    }
   }
   @media screen and (max-width: 600px) {
     padding: 0;
@@ -1162,8 +1211,15 @@ const BodyContactBigInlineBottomDiv = styled.div`
     flex-direction: column;
     div {
       display: flex;
+      align-items: center;
       width: 100%;
       justify-content: space-between;
+      font-size: 20px;
+      div {
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 `;
@@ -1223,11 +1279,11 @@ const FooterContainer = styled.div`
     }
   }
   @media screen and (max-width: 600px) {
-    height: 10vh;
-    padding: 4rem 0;
+    height: 8vh;
+    padding: 2rem 0;
     a {
-      width: 50px;
-      height: 50px;
+      width: 30px;
+      height: 30px;
     }
   }
 `;
@@ -1241,8 +1297,8 @@ const FooterContainerImg = styled.img`
   height: 60px;
   border-radius: 50%;
   @media screen and (max-width: 600px) {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -1250,6 +1306,9 @@ const FooterTitle = styled.span`
   display: flex;
   width: 100%;
   height: 100%;
+  @media screen and (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 
 const HeaderNavVariants = {
@@ -1273,12 +1332,12 @@ const HeaderMenuVariants = {
 const HeaderNavUlVariants = {
   top: {
     display: "none",
-    transition: { duration: 0.5, delay: 0.2 },
+    transition: { duration: 0.5, delay: 0.2, type: "tween" },
     opacity: 0,
   },
   scroll: {
     display: "flex",
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, type: "tween" },
     opacity: 1,
   },
 };
@@ -1287,13 +1346,14 @@ const WaveTitleVariants = {
   onscreen: {
     y: "15vh",
     opacity: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, type: "tween" },
   },
   offscreen: {
     y: "0vh",
     opacity: 1,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
 };
@@ -1301,12 +1361,13 @@ const WaveTitleVariants = {
 const IntroButton = {
   startbutton: {
     opacity: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, type: "tween" },
   },
   endbutton: {
     opacity: 1,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
 };
@@ -1315,13 +1376,14 @@ const IntroTitleVariants = {
   startscreen: {
     y: "15vh",
     opacity: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, type: "tween" },
   },
   endscreen: {
     y: "0vh",
     opacity: 1,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
 };
@@ -1332,6 +1394,7 @@ const BodyContainerAboutMeVariants = {
     opacity: 1,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
   aboutmeboxanimationinvisible: {
@@ -1339,6 +1402,7 @@ const BodyContainerAboutMeVariants = {
     opacity: 0,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
 };
@@ -1348,6 +1412,7 @@ const ScrollTopButtonVariants = {
     display: "flex",
     transition: {
       duration: 0.5,
+      type: "tween",
     },
     opacity: 1,
   },
@@ -1355,6 +1420,7 @@ const ScrollTopButtonVariants = {
     display: "none",
     transition: {
       duration: 0.5,
+      type: "tween",
     },
     opacity: 0,
   },
@@ -1363,13 +1429,13 @@ const ScrollTopButtonVariants = {
 const BodyContainerAboutMeImgVariants = {
   aboutmeimganimationvisible: {
     scale: 1,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, type: "tween" },
     delay: 1,
     opacity: 1,
   },
   aboutmeimganimationinvisible: {
     scale: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, type: "tween" },
     opacity: 0,
   },
 };
@@ -1380,6 +1446,7 @@ const BodyContainerAboutmeArrowVariants = {
     opacity: 1,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
   aboutmearrowinvisible: {
@@ -1387,6 +1454,7 @@ const BodyContainerAboutmeArrowVariants = {
     opacity: 0,
     transition: {
       duration: 0.5,
+      type: "tween",
     },
   },
 };
@@ -1613,21 +1681,26 @@ function Home() {
   const ContactRef = useRef<HTMLDivElement>(null);
   const onHomeClick = () => {
     HomeRef.current?.scrollIntoView({ behavior: "smooth" });
+    setIsMenu(false);
   };
   const onAboutMeClick = () => {
     AboutRef.current?.scrollIntoView({ behavior: "smooth" });
+    setIsMenu(false);
   };
 
   const onProjectClick = () => {
     ProjectsRef.current?.scrollIntoView({ behavior: "smooth" });
+    setIsMenu(false);
   };
 
   const onSkilsClick = () => {
     SkilsRef.current?.scrollIntoView({ behavior: "smooth" });
+    setIsMenu(false);
   };
 
   const onContactClick = () => {
     ContactRef.current?.scrollIntoView({ behavior: "smooth" });
+    setIsMenu(false);
   };
 
   return (
@@ -2943,12 +3016,12 @@ function Home() {
                 {isOpen ? (
                   <FontAwesomeIcon
                     icon={faArrowRight}
-                    style={{ fontSize: "25px", padding: "20px" }}
+                    style={{ padding: "20px" }}
                   />
                 ) : (
                   <FontAwesomeIcon
                     icon={faArrowLeft}
-                    style={{ fontSize: "25px", padding: "20px" }}
+                    style={{ padding: "20px" }}
                   />
                 )}
               </BodySkilsMenuContainerButton>
@@ -2973,17 +3046,9 @@ function Home() {
                   <div>
                     <FontAwesomeIcon
                       icon={faUser}
-                      style={{ fontSize: "45px", padding: "20px" }}
+                      style={{ padding: "20px" }}
                     />
-                    <div
-                      style={{
-                        fontSize: "18px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "20px",
-                      }}
-                    >
+                    <div>
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
                         이름
                       </span>
@@ -2998,17 +3063,9 @@ function Home() {
                   >
                     <FontAwesomeIcon
                       icon={faCalendarWeek}
-                      style={{ fontSize: "45px", padding: "20px" }}
+                      style={{ padding: "20px" }}
                     />
-                    <div
-                      style={{
-                        fontSize: "18px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "20px",
-                      }}
-                    >
+                    <div>
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
                         생년월일
                       </span>
@@ -3024,17 +3081,9 @@ function Home() {
                   >
                     <FontAwesomeIcon
                       icon={faPhone}
-                      style={{ fontSize: "45px", padding: "20px" }}
+                      style={{ padding: "20px" }}
                     />
-                    <div
-                      style={{
-                        fontSize: "18px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "20px",
-                      }}
-                    >
+                    <div>
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
                         전화번호
                       </span>
@@ -3046,19 +3095,11 @@ function Home() {
                   <div>
                     <FontAwesomeIcon
                       icon={faEnvelope}
-                      style={{ fontSize: "45px", padding: "20px" }}
+                      style={{ padding: "20px" }}
                     />
-                    <div
-                      style={{
-                        fontSize: "18px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "20px",
-                      }}
-                    >
+                    <div>
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        주소
+                        이메일
                       </span>
                       <span style={{ wordBreak: "break-all" }}>
                         ys101312@kakao.com
@@ -3068,17 +3109,9 @@ function Home() {
                   <div>
                     <FontAwesomeIcon
                       icon={faMapLocation}
-                      style={{ fontSize: "45px", padding: "20px" }}
+                      style={{ padding: "20px" }}
                     />
-                    <div
-                      style={{
-                        fontSize: "18px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "20px",
-                      }}
-                    >
+                    <div>
                       <span style={{ marginBottom: "5px", color: "#D9534F" }}>
                         주소
                       </span>
