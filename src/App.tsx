@@ -141,7 +141,6 @@ const MainContainer = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    border: 5px solid white;
   }
 `;
 
@@ -1720,7 +1719,6 @@ function Home() {
               <MainIntroTitle> - 은예찬 - </MainIntroTitle>
               <MainIntroSubTitle>프론트엔드 웹 개발자</MainIntroSubTitle>
               <br />
-              <hr style={{ opacity: 0.4 }} />
             </MainIntroTitleBox>
 
             <TopscrollButton
