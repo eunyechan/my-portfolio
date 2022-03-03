@@ -20,6 +20,7 @@ import profile from "./images/imagesLogo/profileimg.jpg";
 import csslogo from "./images/imagesLogo/css_logo.png";
 import jslogo from "./images/imagesLogo/js_logo.png";
 import htmllogo from "./images/imagesLogo/html_logo.png";
+import sasslogo from "./images/imagesLogo/sass_logo.png";
 import reactlogo from "./images/imagesLogo/react_logo.png";
 import typescriptlogo from "./images/imagesLogo/ts_logo.png";
 import gitlogo from "./images/imagesLogo/git_logo.png";
@@ -38,6 +39,7 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { transform } from "typescript";
 
 const Container = styled.div`
   padding: 0;
@@ -100,6 +102,19 @@ const HeaderMenubar = styled(motion.div)`
   @media screen and (max-width: 600px) {
     display: flex;
     background-color: transparent;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+const HeaderMenubarTitle = styled.div`
+  display: none;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
   }
 `;
 
@@ -110,6 +125,7 @@ const HeaderUl = styled.ul<IInerScreen>`
   @media screen and (max-width: 600px) {
     flex-direction: column;
     display: ${(props) => (props.isMenu ? "flex" : "none")};
+    opacity: ${(props) => (props.isMenu ? 1 : 0)};
     justify-content: center;
     align-items: center;
     font-size: 14px;
@@ -863,7 +879,7 @@ const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
 
 const BodySkilsContainerInlineLeftIconBoxBottomDiv = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 `;
@@ -973,6 +989,22 @@ const BodySkilsContainerSmallInlineBoxTitle = styled.span`
     padding: 5px;
     font-size: 15px;
     margin-bottom: 10rem;
+  }
+`;
+
+const BodySkilsContainerInlineBottomSassIcon = styled(motion.img)`
+  background-image: url(${sasslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 4rem;
+  background-color: #f5f5f5;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem;
   }
 `;
 
@@ -1275,7 +1307,6 @@ const FooterContainer = styled.div`
     &:hover {
       z-index: 1;
       transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.9);
     }
   }
   @media screen and (max-width: 600px) {
@@ -1314,18 +1345,22 @@ const FooterTitle = styled.span`
 const HeaderNavVariants = {
   top: {
     backgroundColor: "rgba(0, 0, 0, 0)",
+    transition: { duration: 0.5 },
   },
   scroll: {
     backgroundColor: "rgba(0, 0, 0, 1)",
+    transition: { duration: 0.5 },
   },
 };
 
 const HeaderMenuVariants = {
   menuvisible: {
     display: "flex",
+    opacity: 1,
   },
   menuinvisible: {
     display: "none",
+    opacity: 0,
   },
 };
 
@@ -1718,11 +1753,19 @@ function Home() {
               animate={navAnimation}
               initial={"menuinvisible"}
               onClick={() => setIsMenu(!isMenu)}
+              style={
+                isMenu
+                  ? { width: "", animationDuration: "5s" }
+                  : { width: "100%", animationDuration: "45000ms" }
+              }
             >
               <FontAwesomeIcon
                 style={{ fontSize: "25px", color: "white" }}
                 icon={isMenu ? faClose : faBars}
               />
+              <HeaderMenubarTitle>
+                <span>{isMenu ? "" : "Y.C Portfolio"}</span>
+              </HeaderMenubarTitle>
             </HeaderMenubar>
             <HeaderUl isMenu={isMenu}>
               <HeaderList>
@@ -2970,6 +3013,9 @@ function Home() {
                     />
                   </BodySkilsContainerInlineLeftIconBoxTopDiv>
                   <BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                    <BodySkilsContainerInlineBottomSassIcon
+                      whileHover={{ y: "-20px" }}
+                    />
                     <BodySkilsContainerInlineBottomReactIcon
                       whileHover={{ y: "-20px" }}
                     />
