@@ -46,6 +46,7 @@ const Container = styled.div`
   margin: 0;
   width: 100%;
   overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
 `;
 
 const ContainerInline = styled.div`
@@ -58,42 +59,30 @@ const ContainerInline = styled.div`
 `;
 
 const ContainerBackImg = styled.div`
-  position: relative;
-  background-image: url(${backimg});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
-`;
-
-const ContainerImgOverlay = styled.div`
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 100%;
 `;
 
 const HeaderNav = styled(motion.nav)`
   position: fixed;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   font-size: 14px;
+  border: 1px solid white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  backdrop-filter: blur(5px);
   z-index: 99;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.4);
   @media screen and (max-width: 600px) {
     display: flex;
     overflow: hidden;
     justify-content: start;
     align-items: flex-start;
     padding: 1rem;
+    ckdrop-filter: blur(5px);
   }
 `;
 
@@ -120,7 +109,7 @@ const HeaderMenubarTitle = styled.div`
 
 const HeaderUl = styled.ul<IInerScreen>`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   @media screen and (max-width: 600px) {
     flex-direction: column;
@@ -134,26 +123,161 @@ const HeaderUl = styled.ul<IInerScreen>`
 `;
 
 const HeaderList = styled(motion.li)`
-  margin: 20px 50px;
+  margin: 20px 50px 40px 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   @media screen and (max-width: 600px) {
     margin: 5px 30px;
   }
 `;
 
-const HeaderListButton = styled(motion.button)`
+const HeaderListNumber = styled.span`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1em;
+  margin-bottom: 0.5em;
+`;
+
+const HomeButtonBox = styled.div`
+  height: 100%;
+  margin: 20px 50px;
+`;
+
+const HomeButton = styled.button`
   background-color: transparent;
   font-size: 20px;
-  padding: 10px 15px;
-  border: none;
+  font-weight: bold;
+  padding: 20px 15px;
   cursor: pointer;
   color: white;
-  &:hover {
-    transform: scale(1.2);
-    transition-duration: 0.5s;
+  border: 4px solid white;
+  border-radius: 9999px;
+`;
+
+const HeaderListButton = styled(motion.button)`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  padding: 1em 1.6em;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid white;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+  background: 150ms cubic-bezier(0, 0, 0.58, 1);
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
+      0 0.625em 0 0 rgba(255, 255, 255, 0.8);
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    box-shadow: 150ms cubic-bezier(0, 0, 0.58, 1);
   }
+  &:hover {
+    background: transparent;
+    transform: translate(0, 0.25em);
+    &::before {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1),
+        0 0.5em 0 0 rgba(255, 255, 255, 0.8);
+      transform: translate3d(0, 0.5em, -1em);
+    }
+  }
+  &:active {
+    background: transparent;
+    transform: translate(0em, 0.75em);
+    &::before {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
+        0 0 rgba(255, 255, 255, 0.8);
+      transform: translate3d(0, 0, -1em);
+    }
+  }
+
+  /* &:hover div {
+    color: #b2ebf4;
+    font-weight: bold;
+    background: transparent;
+    box-shadow: none;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: white;
+    box-shadow: -1px -1px 5px 0px #b2ebf4, 7px 7px 20px 0px #0003,
+      4px 4px 5px 0px #0002;
+    transition: 400ms ease all;
+  }
+  &::after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+  &:hover::after,
+  &:hover::before {
+    width: 100%;
+    transition: 800ms ease all;
+  } */
+
   @media screen and (max-width: 600px) {
     font-size: 15px;
   }
+`;
+
+const HeaderListButtonSpan = styled.span`
+  /* &:hover {
+    color: #b2ebf4;
+    font-weight: bold;
+    background: transparent;
+    box-shadow: none;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: white;
+    box-shadow: -1px -1px 5px 0px #b2ebf4, 7px 7px 20px 0px #0003,
+      4px 4px 5px 0px #0002;
+    transition: 400ms ease all;
+  }
+  &::after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+  &:hover::after,
+  &:hover::before {
+    width: 100%;
+    transition: 800ms ease all;
+  } */
 `;
 
 const MainContainer = styled.div`
@@ -1742,16 +1866,8 @@ function Home() {
     <Container>
       <ContainerInline>
         <ContainerBackImg>
-          <ContainerImgOverlay />
-          <HeaderNav
-            variants={HeaderNavVariants}
-            animate={navAnimation}
-            initial={"top"}
-          >
+          <HeaderNav>
             <HeaderMenubar
-              variants={HeaderMenuVariants}
-              animate={navAnimation}
-              initial={"menuinvisible"}
               onClick={() => setIsMenu(!isMenu)}
               style={
                 isMenu
@@ -1767,55 +1883,32 @@ function Home() {
                 <span>{isMenu ? "" : "Y.C Portfolio"}</span>
               </HeaderMenubarTitle>
             </HeaderMenubar>
+            <HomeButtonBox>
+              <HomeButton onClick={onHomeClick}>Y.C</HomeButton>
+            </HomeButtonBox>
             <HeaderUl isMenu={isMenu}>
               <HeaderList>
-                <HeaderListButton
-                  variants={HeaderNavUlVariants}
-                  animate={navAnimation}
-                  initial={"top"}
-                  onClick={onHomeClick}
-                >
-                  Home
+                <HeaderListNumber>01</HeaderListNumber>
+                <HeaderListButton onClick={onAboutMeClick}>
+                  <span>Home</span>
                 </HeaderListButton>
               </HeaderList>
               <HeaderList>
-                <HeaderListButton
-                  variants={HeaderNavUlVariants}
-                  animate={navAnimation}
-                  initial={"top"}
-                  onClick={onAboutMeClick}
-                >
-                  About Me
+                <HeaderListNumber>02</HeaderListNumber>
+                <HeaderListButton onClick={onProjectClick}>
+                  <span>Projects</span>
                 </HeaderListButton>
               </HeaderList>
               <HeaderList>
-                <HeaderListButton
-                  variants={HeaderNavUlVariants}
-                  animate={navAnimation}
-                  initial={"top"}
-                  onClick={onProjectClick}
-                >
-                  Project
+                <HeaderListNumber>03</HeaderListNumber>
+                <HeaderListButton onClick={onSkilsClick}>
+                  <span>Skils</span>
                 </HeaderListButton>
               </HeaderList>
               <HeaderList>
-                <HeaderListButton
-                  variants={HeaderNavUlVariants}
-                  animate={navAnimation}
-                  initial={"top"}
-                  onClick={onSkilsClick}
-                >
-                  Skils
-                </HeaderListButton>
-              </HeaderList>
-              <HeaderList>
-                <HeaderListButton
-                  variants={HeaderNavUlVariants}
-                  animate={navAnimation}
-                  initial={"top"}
-                  onClick={onContactClick}
-                >
-                  Contact
+                <HeaderListNumber>04</HeaderListNumber>
+                <HeaderListButton onClick={onContactClick}>
+                  <span>Contact</span>
                 </HeaderListButton>
               </HeaderList>
             </HeaderUl>
