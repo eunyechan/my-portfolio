@@ -909,7 +909,7 @@ const BodySkilsContainerInlineBox = styled(motion.div)`
   height: 100%;
   display: flex;
   overflow: hidden;
-  background-color: rgba(241, 208, 10, 0.6);
+  background-color: transparent;
 `;
 
 const BodySkilsContainerInlineIconBox = styled(motion.div)`
@@ -1096,7 +1096,7 @@ const BodySkilsContainerSmallInlineBox = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #313552;
+  background-color: transparent;
   letter-spacing: 0.3rem;
   @media screen and (max-width: 600px) {
     letter-spacing: 0rem;
@@ -1247,7 +1247,7 @@ const BodyContactContainerInlineBox = styled(motion.div)`
   height: 100%;
   display: flex;
   overflow: hidden;
-  background-color: rgba(62, 73, 122, 0.6);
+  background-color: transparent;
 `;
 
 const BodyContactBigContainer = styled(motion.div)`
@@ -1256,7 +1256,7 @@ const BodyContactBigContainer = styled(motion.div)`
   width: 100%;
   height: 100%;
   padding: 50px;
-  background-color: rgba(202, 202, 202, 0.6);
+  background-color: transparent;
   @media screen and (max-width: 600px) {
     padding-top: 10px;
     overflow: hidden;
@@ -1391,7 +1391,7 @@ const BodyContactSmallContainer = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #313552;
+  background-color: transparent;
   letter-spacing: 0.3rem;
   @media screen and (max-width: 600px) {
     letter-spacing: 0rem;
@@ -2049,19 +2049,208 @@ function Home() {
                   </BodyContainerAboutMeImgCard>
                 </BodyContainerAboutMeImgWrapper>
               </BodyContainerAboutMeImgBox>
-
-              {/* <BodyContainerAboutMeImgBox
-                variants={BodyContainerAboutMeImgVariants}
-                animate={navAnimation}
-                initial="aboutmeimganimationinvisible"
-                whileInView="aboutmeimganimationvisible"
-                viewport={{ once: true, amount: 0 }}
-              >
-                <BodyContainerAboutMeImg whileHover={{ scale: 1.2 }} />
-              </BodyContainerAboutMeImgBox> */}
             </BodyContainerAboutMe>
           </BodyContainerAboutMeBox>
         </BodyContainer>
+
+        {/****************************  skill 부분 ***************************/}
+
+        <BodyContactSkilsContainer>
+          <BodySkilsContainerInlineBox
+            ref={SkilsRef}
+            variants={BodySkilsContainerVariants}
+            animate={isOpen ? "skilsclosemenu" : "skilsopenmenu"}
+            initial="skilsopenmenu"
+          >
+            <BodySkilsContainerInlineIconBox
+              variants={BodySkilsMenuInlineBoxVariants}
+              animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
+            >
+              <BodySkilsContainerInlineTitle>
+                Skils
+              </BodySkilsContainerInlineTitle>
+              <BodySkilsContainerRightLeftIconBox>
+                <BodySkilsContainerInlineLeftIconBox>
+                  <BodySkilsContainerInlineSubTitle>
+                    Front-end
+                  </BodySkilsContainerInlineSubTitle>
+                  <BodySkilsContainerInlineLeftIconBoxTopDiv>
+                    <BodySkilsContainerInlineTopHtmlIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineTopCssIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineTopJsIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                  </BodySkilsContainerInlineLeftIconBoxTopDiv>
+                  <BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                    <BodySkilsContainerInlineBottomSassIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineBottomReactIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineBottomTypeScriptIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                  </BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                </BodySkilsContainerInlineLeftIconBox>
+
+                <BodySkilsContainerInlineRightIconBox>
+                  <BodySkilsContainerInlineSubTitle>
+                    Version Control
+                  </BodySkilsContainerInlineSubTitle>
+
+                  <BodySkilsContainerInlineRightIconBoxTopDiv>
+                    <BodySkilsContainerInlineGitIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                    <BodySkilsContainerInlineGithubIcon
+                      whileHover={{ y: "-20px" }}
+                    />
+                  </BodySkilsContainerInlineRightIconBoxTopDiv>
+                </BodySkilsContainerInlineRightIconBox>
+              </BodySkilsContainerRightLeftIconBox>
+            </BodySkilsContainerInlineIconBox>
+
+            <BodySkilsContainerSmallInlineBox
+              variants={BodySkilsMenuInlineBoxVariants}
+              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
+            >
+              <BodySkilsContainerSmallInlineBoxTitle>
+                Skil List
+              </BodySkilsContainerSmallInlineBoxTitle>
+            </BodySkilsContainerSmallInlineBox>
+          </BodySkilsContainerInlineBox>
+
+          <BodySkilsMenuContainerButtonBox>
+            <BodySkilsMenuContainerButtonInlineBox>
+              <BodySkilsMenuContainerButton
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              >
+                {isOpen ? (
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    style={{ padding: "20px" }}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    style={{ padding: "20px" }}
+                  />
+                )}
+              </BodySkilsMenuContainerButton>
+            </BodySkilsMenuContainerButtonInlineBox>
+          </BodySkilsMenuContainerButtonBox>
+
+          <BodyContactContainerInlineBox
+            ref={ContactRef}
+            variants={BodyContactContainerVariants}
+            animate={isOpen ? "projectclosemenu" : "projectopenmenu"}
+            initial="projectclosemenu"
+          >
+            <BodyContactBigContainer
+              variants={BodyContactInlineContainerVariants}
+              animate={isOpen ? "contactmenuopenbox" : "contactmenuclosebox"}
+            >
+              {/* contace 커졌을 때 부분 */}
+
+              <BodyContactInlineTitle>Contact</BodyContactInlineTitle>
+              <BodyContactBigInlineContainerBox>
+                <BodyContactBigInlineTopDiv>
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      style={{ padding: "20px" }}
+                    />
+                    <div>
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        이름
+                      </span>
+                      <span>은예찬</span>
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCalendarWeek}
+                      style={{ padding: "20px" }}
+                    />
+                    <div>
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        생년월일
+                      </span>
+                      <span style={{ wordBreak: "break-all" }}>19981013</span>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPhone}
+                      style={{ padding: "20px" }}
+                    />
+                    <div>
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        전화번호
+                      </span>
+                      <span>010-2508-5919</span>
+                    </div>
+                  </div>
+                </BodyContactBigInlineTopDiv>
+                <BodyContactBigInlineBottomDiv>
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      style={{ padding: "20px" }}
+                    />
+                    <div>
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        이메일
+                      </span>
+                      <span style={{ wordBreak: "break-all" }}>
+                        ys101312@kakao.com
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faMapLocation}
+                      style={{ padding: "20px" }}
+                    />
+                    <div>
+                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
+                        주소
+                      </span>
+                      <span>서울특별시 동대문구</span>
+                    </div>
+                  </div>
+                </BodyContactBigInlineBottomDiv>
+              </BodyContactBigInlineContainerBox>
+            </BodyContactBigContainer>
+
+            <BodyContactSmallContainer
+              variants={BodyContactInlineContainerVariants}
+              animate={isOpen ? "contactmenuclosebox" : "contactmenuopenbox"}
+            >
+              <BodyContactSmallContainerInlineTitle>
+                Contact
+              </BodyContactSmallContainerInlineTitle>
+            </BodyContactSmallContainer>
+          </BodyContactContainerInlineBox>
+        </BodyContactSkilsContainer>
 
         {/* **********************body Skils 부분********************* */}
 
@@ -3103,203 +3292,6 @@ function Home() {
             </BodyTotalProjectsBoxInlineContainer>
           </BodyTotalProjectsBox>
         </BodyprojectsContainer>
-
-        <BodyContactSkilsContainer>
-          <BodySkilsContainerInlineBox
-            ref={SkilsRef}
-            variants={BodySkilsContainerVariants}
-            animate={isOpen ? "skilsclosemenu" : "skilsopenmenu"}
-            initial="skilsopenmenu"
-          >
-            <BodySkilsContainerInlineIconBox
-              variants={BodySkilsMenuInlineBoxVariants}
-              animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
-            >
-              <BodySkilsContainerInlineTitle>
-                Skils
-              </BodySkilsContainerInlineTitle>
-              <BodySkilsContainerRightLeftIconBox>
-                <BodySkilsContainerInlineLeftIconBox>
-                  <BodySkilsContainerInlineSubTitle>
-                    Front-end
-                  </BodySkilsContainerInlineSubTitle>
-                  <BodySkilsContainerInlineLeftIconBoxTopDiv>
-                    <BodySkilsContainerInlineTopHtmlIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkilsContainerInlineTopCssIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkilsContainerInlineTopJsIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                  </BodySkilsContainerInlineLeftIconBoxTopDiv>
-                  <BodySkilsContainerInlineLeftIconBoxBottomDiv>
-                    <BodySkilsContainerInlineBottomSassIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkilsContainerInlineBottomReactIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkilsContainerInlineBottomTypeScriptIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                  </BodySkilsContainerInlineLeftIconBoxBottomDiv>
-                </BodySkilsContainerInlineLeftIconBox>
-
-                <BodySkilsContainerInlineRightIconBox>
-                  <BodySkilsContainerInlineSubTitle>
-                    Version Control
-                  </BodySkilsContainerInlineSubTitle>
-
-                  <BodySkilsContainerInlineRightIconBoxTopDiv>
-                    <BodySkilsContainerInlineGitIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkilsContainerInlineGithubIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                  </BodySkilsContainerInlineRightIconBoxTopDiv>
-                </BodySkilsContainerInlineRightIconBox>
-              </BodySkilsContainerRightLeftIconBox>
-            </BodySkilsContainerInlineIconBox>
-
-            <BodySkilsContainerSmallInlineBox
-              variants={BodySkilsMenuInlineBoxVariants}
-              animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
-            >
-              <BodySkilsContainerSmallInlineBoxTitle>
-                Skil List
-              </BodySkilsContainerSmallInlineBoxTitle>
-            </BodySkilsContainerSmallInlineBox>
-          </BodySkilsContainerInlineBox>
-
-          <BodySkilsMenuContainerButtonBox>
-            <BodySkilsMenuContainerButtonInlineBox>
-              <BodySkilsMenuContainerButton
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-              >
-                {isOpen ? (
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    style={{ padding: "20px" }}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faArrowLeft}
-                    style={{ padding: "20px" }}
-                  />
-                )}
-              </BodySkilsMenuContainerButton>
-            </BodySkilsMenuContainerButtonInlineBox>
-          </BodySkilsMenuContainerButtonBox>
-
-          <BodyContactContainerInlineBox
-            ref={ContactRef}
-            variants={BodyContactContainerVariants}
-            animate={isOpen ? "projectclosemenu" : "projectopenmenu"}
-            initial="projectclosemenu"
-          >
-            <BodyContactBigContainer
-              variants={BodyContactInlineContainerVariants}
-              animate={isOpen ? "contactmenuopenbox" : "contactmenuclosebox"}
-            >
-              {/* contace 커졌을 때 부분 */}
-
-              <BodyContactInlineTitle>Contact</BodyContactInlineTitle>
-              <BodyContactBigInlineContainerBox>
-                <BodyContactBigInlineTopDiv>
-                  <div>
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      style={{ padding: "20px" }}
-                    />
-                    <div>
-                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        이름
-                      </span>
-                      <span>은예찬</span>
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faCalendarWeek}
-                      style={{ padding: "20px" }}
-                    />
-                    <div>
-                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        생년월일
-                      </span>
-                      <span style={{ wordBreak: "break-all" }}>19981013</span>
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faPhone}
-                      style={{ padding: "20px" }}
-                    />
-                    <div>
-                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        전화번호
-                      </span>
-                      <span>010-2508-5919</span>
-                    </div>
-                  </div>
-                </BodyContactBigInlineTopDiv>
-                <BodyContactBigInlineBottomDiv>
-                  <div>
-                    <FontAwesomeIcon
-                      icon={faEnvelope}
-                      style={{ padding: "20px" }}
-                    />
-                    <div>
-                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        이메일
-                      </span>
-                      <span style={{ wordBreak: "break-all" }}>
-                        ys101312@kakao.com
-                      </span>
-                    </div>
-                  </div>
-                  <div>
-                    <FontAwesomeIcon
-                      icon={faMapLocation}
-                      style={{ padding: "20px" }}
-                    />
-                    <div>
-                      <span style={{ marginBottom: "5px", color: "#D9534F" }}>
-                        주소
-                      </span>
-                      <span>서울특별시 동대문구</span>
-                    </div>
-                  </div>
-                </BodyContactBigInlineBottomDiv>
-              </BodyContactBigInlineContainerBox>
-            </BodyContactBigContainer>
-
-            <BodyContactSmallContainer
-              variants={BodyContactInlineContainerVariants}
-              animate={isOpen ? "contactmenuclosebox" : "contactmenuopenbox"}
-            >
-              <BodyContactSmallContainerInlineTitle>
-                Contact
-              </BodyContactSmallContainerInlineTitle>
-            </BodyContactSmallContainer>
-          </BodyContactContainerInlineBox>
-        </BodyContactSkilsContainer>
       </BodyContainerBox>
       <FooterContainer>
         <a href="https://github.com/eunyechan" target={"blank"}>
