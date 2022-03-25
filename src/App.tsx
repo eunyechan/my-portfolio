@@ -6,17 +6,16 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import {
-  vanillajsImages,
-  youtubeImages,
-  selectorImages,
-  coinImages,
-  netfilxImages,
-} from "./data/imageData";
+// import {
+// vanillajsImages,
+// youtubeImages,
+// selectorImages,
+// coinImages,
+// netfilxImages,
+// } from "./data/imageData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { wrap } from "popmotion";
-import backimg from "./images/imagesLogo/backgroundimg.jpg";
-import profile from "./images/imagesLogo/profileimg.jpg";
+import profile from "./images/imagesLogo/profileimg.png";
 import csslogo from "./images/imagesLogo/css_logo.png";
 import jslogo from "./images/imagesLogo/js_logo.png";
 import htmllogo from "./images/imagesLogo/html_logo.png";
@@ -39,7 +38,6 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { transform } from "typescript";
 
 const Container = styled.div`
   padding: 0;
@@ -58,9 +56,10 @@ const ContainerInline = styled.div`
   }
 `;
 
-const ContainerBackImg = styled.div`
+const ContainerInlineBox = styled.div`
   width: 100%;
   height: 100vh;
+  padding-top: 140px;
 `;
 
 const HeaderNav = styled(motion.nav)`
@@ -123,7 +122,7 @@ const HeaderUl = styled.ul<IInerScreen>`
 `;
 
 const HeaderList = styled(motion.li)`
-  margin: 20px 50px 40px 50px;
+  margin: 20px 50px 40px 20px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -134,7 +133,7 @@ const HeaderList = styled(motion.li)`
 `;
 
 const HeaderListNumber = styled.span`
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1em;
   margin-bottom: 0.5em;
 `;
@@ -168,7 +167,7 @@ const HeaderListButton = styled(motion.button)`
   font-weight: 600;
   color: white;
   text-transform: uppercase;
-  padding: 1em 1.6em;
+  padding: 0.7em 1.2em;
   background: rgba(0, 0, 0, 0.8);
   border: 2px solid white;
   border-radius: 0.75em;
@@ -211,80 +210,16 @@ const HeaderListButton = styled(motion.button)`
     }
   }
 
-  /* &:hover div {
-    color: #b2ebf4;
-    font-weight: bold;
-    background: transparent;
-    box-shadow: none;
-  }
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    background: white;
-    box-shadow: -1px -1px 5px 0px #b2ebf4, 7px 7px 20px 0px #0003,
-      4px 4px 5px 0px #0002;
-    transition: 400ms ease all;
-  }
-  &::after {
-    right: inherit;
-    top: inherit;
-    left: 0;
-    bottom: 0;
-  }
-  &:hover::after,
-  &:hover::before {
-    width: 100%;
-    transition: 800ms ease all;
-  } */
-
   @media screen and (max-width: 600px) {
     font-size: 15px;
   }
 `;
 
-const HeaderListButtonSpan = styled.span`
-  /* &:hover {
-    color: #b2ebf4;
-    font-weight: bold;
-    background: transparent;
-    box-shadow: none;
-  }
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    background: white;
-    box-shadow: -1px -1px 5px 0px #b2ebf4, 7px 7px 20px 0px #0003,
-      4px 4px 5px 0px #0002;
-    transition: 400ms ease all;
-  }
-  &::after {
-    right: inherit;
-    top: inherit;
-    left: 0;
-    bottom: 0;
-  }
-  &:hover::after,
-  &:hover::before {
-    width: 100%;
-    transition: 800ms ease all;
-  } */
-`;
-
 const MainContainer = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
+  padding: 100px 70px 0px 70px;
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -294,18 +229,9 @@ const MainContainer = styled.div`
   }
 `;
 
-const wavaAnimation = keyframes`
-  from { transform: rotate(0deg); }
-  from { transform: rotate(360deg); }
-`;
-
 const MainContainerInline = styled.div`
-  display: flex;
-  align-items: center;
   width: 100%;
   height: 100%;
-  padding-right: 6rem;
-  flex: 1;
   @media screen and (max-width: 600px) {
     display: flex;
     width: 100%;
@@ -316,12 +242,11 @@ const MainContainerInline = styled.div`
 const MainTitleBox = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: left;
   width: 100%;
   height: 100%;
-  position: relative;
-  padding-right: 6rem;
+  padding: 0 70px;
+
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -334,88 +259,79 @@ const MainTitleBox = styled(motion.div)`
   }
 `;
 
-const MainWaveTop = styled.div`
-  opacity: 0.4;
-  position: absolute;
-  background: #7882a4;
-  width: 400px;
-  height: 400px;
-  border-radius: 43%;
-  animation: ${wavaAnimation} 3000ms infinite linear;
-  @media screen and (max-width: 600px) {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const MainWaveMiddle = styled.div`
-  opacity: 0.4;
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  animation: ${wavaAnimation} 7000ms infinite linear;
-  opacity: 0.1;
-  border-radius: 43%;
-  background: #c0a080;
-  @media screen and (max-width: 600px) {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const MainWaveBottom = styled.div`
-  opacity: 0.4;
-  position: absolute;
-  background: #d1d1d1;
-  width: 400px;
-  height: 400px;
-  border-radius: 43%;
-  animation: ${wavaAnimation} 5000ms infinite linear;
-  @media screen and (max-width: 600px) {
-    width: 200px;
-    height: 200px;
-  }
+const MainTitleSpanTopBox = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const MainTitleSpanTop = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  z-index: 1;
-  text-transform: uppercase;
-  color: black;
-  font-size: 24px;
-  font-weight: bolder;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.4em;
-  font-size: 24px;
-  text-shadow: 0 1px 0 rgba(black, 0.1);
-  text-indent: 0.3em;
+  font-size: 5em;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: #ffd800;
+  letter-spacing: 0px;
+  transition: 0.5s;
+  -webkit-transition: 1s;
+  -ms-transition: 1s;
+  position: relative;
+  margin: 10px 0 150px 180px;
+  padding: 10px;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background: #ffd800;
+    transition: 200ms;
+    -webkit-transition: 1s;
+    -ms-transition: 1s;
+    opacity: 0.3;
+    left: 50%;
+  }
+  &::before {
+    bottom: 0;
+  }
+  &::after {
+    top: 0;
+  }
+  &:hover {
+    letter-spacing: 15px;
+  }
+  &:hover::before,
+  &:hover::after {
+    width: 95%;
+    opacity: 1;
+    left: 0;
+  }
   @media screen and (max-width: 600px) {
     font-size: 20px;
   }
 `;
 
 const MainTiTleSpan = styled(motion.span)`
-  display: flex;
+  margin: 10px;
+  &:hover {
+    span {
+      opacity: 0;
+    }
+  }
 `;
 
 const MainTitleSpanBottom = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #fff;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 1em;
+  bottom: 60px;
+  position: absolute;
+  transition: 0.5s;
+  -webkit-transition: 1s;
+  -ms-transition: 1s;
+  opacity: 0.1;
   width: 100%;
-  z-index: 1;
-  text-transform: uppercase;
-  color: black;
-  font-size: 24px;
-  font-weight: bolder;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.4em;
-  font-size: 24px;
-  text-shadow: 0 1px 0 rgba(black, 0.1);
-  text-indent: 0.3em;
   @media screen and (max-width: 600px) {
     font-size: 20px;
   }
@@ -424,11 +340,6 @@ const MainTitleSpanBottom = styled.div`
 const MainIntroTitleBox = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding-left: 10rem;
-  flex: 1;
   @media screen and (max-width: 600px) {
     font-size: 20px;
     display: block;
@@ -438,22 +349,10 @@ const MainIntroTitleBox = styled(motion.div)`
 `;
 
 const MainIntroTitle = styled.h2`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 50px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 1.3em;
+  margin-top: 5px;
   font-weight: bolder;
-  text-align: center;
-  margin: 10px;
-  @media screen and (max-width: 600px) {
-    font-size: 30px;
-  }
-`;
-
-const MainIntroSubTitle = styled.h3`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 40px;
-  font-weight: bolder;
-  text-align: center;
-  margin-bottom: 20px;
   @media screen and (max-width: 600px) {
     font-size: 30px;
   }
@@ -469,7 +368,7 @@ const TopscrollButton = styled(motion.button)`
   position: fixed;
   right: 1.5rem;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.8);
   border: none;
   cursor: pointer;
   @media screen and (max-width: 600px) {
@@ -525,8 +424,9 @@ const BodyContainerBox = styled.div`
 
 const BodyContainer = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: rgba(33, 50, 94, 0.8);
+  height: 100vh;
+  background-color: transparent;
+  margin-bottom: 100px;
 `;
 
 const BodyContainerArrow = styled(motion.div)`
@@ -547,7 +447,7 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 2rem 6rem;
+  padding: 9rem 6rem 0 6rem;
   @media screen and (max-width: 600px) {
     padding: 1rem 4rem;
   }
@@ -568,39 +468,40 @@ const BodyContainerAboutMeTitleBox = styled.div`
   z-index: 1;
 `;
 
+const animate = keyframes`
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+`;
+
 const BodyContainerAboutMeTitle = styled.h2`
   position: relative;
-  z-index: 0;
   display: flex;
-  width: 100%;
-  &::before {
-    position: absolute;
-    display: flex;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    z-index: -1;
-    left: -10px;
-    content: "";
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #e3f7fa;
-  }
+  align-items: center;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0);
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, #fff, #000, #fff);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: ${animate} 7s linear infinite;
+  -webkit-background-clip: text;
 `;
 
 const BodyContainerAboutMe = styled(motion.div)`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  background-color: white;
-  border: 2px solid black;
-  padding: 4rem 2rem;
-  margin-bottom: 5rem;
+  color: white;
+  padding-top: 40px;
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -608,22 +509,47 @@ const BodyContainerAboutMe = styled(motion.div)`
 `;
 
 const BodyContainerAboutMeImgBox = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  flex: 1;
+  width: 280px;
+  height: 350px;
+  perspective: 800px;
+  position: relative;
 `;
 
-const BodyContainerAboutMeImg = styled(motion.div)`
-  width: 20vw;
-  height: 40vh;
-  border-radius: 50%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(${profile});
+const BodyContainerAboutMeImgWrapper = styled.div`
+  width: 280px;
+  height: 350px;
+  perspective: 800px;
+  position: relative;
+`;
+
+const BodyContainerAboutMeImgCard = styled(motion.div)`
+  width: 320px;
+  height: 350px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-140px);
+  transition: transform 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  cursor: pointer;
+  margin-top: -50px;
+  .card_front,
+  .card_right {
+    position: absolute;
+    width: 320px;
+    height: 400px;
+    padding: 34px 21px;
+    transition: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
+
+  &:hover {
+    transform: translateZ(-160px) rotateY(-90deg);
+    .card_front {
+      opacity: 0;
+    }
+
+    .card_right {
+      opacity: 1;
+    }
+  }
   @media screen and (max-width: 600px) {
     width: 100%;
     height: 20vh;
@@ -631,14 +557,87 @@ const BodyContainerAboutMeImg = styled(motion.div)`
   }
 `;
 
+const BodyContainerAboutMeImgFront = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(
+    180deg,
+    rgba(53, 53, 53, 1) 0%,
+    rgba(92, 91, 94, 0) 100%
+  );
+  transform: rotateY(0deg) translateZ(160px);
+  border-radius: 34px 3px 0 0;
+`;
+
+const BodyContainerAboutMeImg = styled.div`
+  display: flex;
+  width: 320px;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-image: url(${profile});
+  background-position: center center;
+  transform-origin: top right;
+  transition-delay: 100ms;
+  pointer-events: none;
+`;
+
+const BodyContainerAboutMeImgFrontTitle = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 15px;
+`;
+
+const BodyContainerAboutMeImgRight = styled.div`
+  background-image: linear-gradient(
+    180deg,
+    rgba(53, 53, 53, 1) 0%,
+    rgba(92, 91, 94, 0) 100%
+  );
+  opacity: 0.08;
+  transform: rotateY(90deg) translateZ(160px);
+  border-radius: 34px 3px 0 0;
+`;
+
+const BodyContainerAboutMeImgRightUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-top: -10px;
+  margin-left: 21px;
+  padding: 0;
+  font-size: 24px;
+  font-weight: bold;
+  font-weight: 300;
+  list-style: none;
+`;
+
+const BodyContainerAboutMeImgRightUlTitle = styled.h2`
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 9999px;
+  padding: 5px;
+  margin-bottom: 18px;
+`;
+
+const BodyContainerAboutMeImgRightLi = styled.li`
+  padding: 12px 2px;
+  position: relative;
+  font-size: 17px;
+`;
+
 const BodyContainerAboutMeUlBox = styled(motion.div)`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 2;
+  align-items: left;
 `;
 
 const BodyContainerAboutMeUlTitle = styled.h2`
@@ -655,7 +654,12 @@ const BodyContainerAboutMeUl = styled.ul`
 `;
 
 const BodyContainerAboutMeList = styled.li`
-  padding: 10px;
+  padding: 30px 30px 0 0;
+  letter-spacing: 1px;
+  line-height: 30px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-right: 50px;
 `;
 
 // Body Project 부분
@@ -1739,11 +1743,11 @@ function Home() {
 
   const swipeConfidenceValue = 10000;
 
-  const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
-  const youtubeImageIndex = wrap(0, youtubeImages.length, youtubepage);
-  const selectorImageIndex = wrap(0, selectorImages.length, selectorpage);
-  const coinImageIndex = wrap(0, coinImages.length, coinpage);
-  const netfilxImageIndex = wrap(0, netfilxImages.length, netfilxpage);
+  // const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
+  // const youtubeImageIndex = wrap(0, youtubeImages.length, youtubepage);
+  // const selectorImageIndex = wrap(0, selectorImages.length, selectorpage);
+  // const coinImageIndex = wrap(0, coinImages.length, coinpage);
+  // const netfilxImageIndex = wrap(0, netfilxImages.length, netfilxpage);
 
   const paginate = (newDirection: number) => {
     setVanillaJsPage([vanilajspage + newDirection, newDirection]);
@@ -1864,55 +1868,55 @@ function Home() {
 
   return (
     <Container>
+      <HeaderNav>
+        <HeaderMenubar
+          onClick={() => setIsMenu(!isMenu)}
+          style={
+            isMenu
+              ? { width: "", animationDuration: "5s" }
+              : { width: "100%", animationDuration: "45000ms" }
+          }
+        >
+          <FontAwesomeIcon
+            style={{ fontSize: "25px", color: "white" }}
+            icon={isMenu ? faClose : faBars}
+          />
+          <HeaderMenubarTitle>
+            <span>{isMenu ? "" : "Y.C Portfolio"}</span>
+          </HeaderMenubarTitle>
+        </HeaderMenubar>
+        <HomeButtonBox>
+          <HomeButton onClick={onHomeClick}>Y.C</HomeButton>
+        </HomeButtonBox>
+        <HeaderUl isMenu={isMenu}>
+          <HeaderList>
+            <HeaderListNumber>01</HeaderListNumber>
+            <HeaderListButton onClick={onAboutMeClick}>
+              <span>AboutMe</span>
+            </HeaderListButton>
+          </HeaderList>
+          <HeaderList>
+            <HeaderListNumber>02</HeaderListNumber>
+            <HeaderListButton onClick={onProjectClick}>
+              <span>Projects</span>
+            </HeaderListButton>
+          </HeaderList>
+          <HeaderList>
+            <HeaderListNumber>03</HeaderListNumber>
+            <HeaderListButton onClick={onSkilsClick}>
+              <span>Skils</span>
+            </HeaderListButton>
+          </HeaderList>
+          <HeaderList>
+            <HeaderListNumber>04</HeaderListNumber>
+            <HeaderListButton onClick={onContactClick}>
+              <span>Contact</span>
+            </HeaderListButton>
+          </HeaderList>
+        </HeaderUl>
+      </HeaderNav>
       <ContainerInline>
-        <ContainerBackImg>
-          <HeaderNav>
-            <HeaderMenubar
-              onClick={() => setIsMenu(!isMenu)}
-              style={
-                isMenu
-                  ? { width: "", animationDuration: "5s" }
-                  : { width: "100%", animationDuration: "45000ms" }
-              }
-            >
-              <FontAwesomeIcon
-                style={{ fontSize: "25px", color: "white" }}
-                icon={isMenu ? faClose : faBars}
-              />
-              <HeaderMenubarTitle>
-                <span>{isMenu ? "" : "Y.C Portfolio"}</span>
-              </HeaderMenubarTitle>
-            </HeaderMenubar>
-            <HomeButtonBox>
-              <HomeButton onClick={onHomeClick}>Y.C</HomeButton>
-            </HomeButtonBox>
-            <HeaderUl isMenu={isMenu}>
-              <HeaderList>
-                <HeaderListNumber>01</HeaderListNumber>
-                <HeaderListButton onClick={onAboutMeClick}>
-                  <span>Home</span>
-                </HeaderListButton>
-              </HeaderList>
-              <HeaderList>
-                <HeaderListNumber>02</HeaderListNumber>
-                <HeaderListButton onClick={onProjectClick}>
-                  <span>Projects</span>
-                </HeaderListButton>
-              </HeaderList>
-              <HeaderList>
-                <HeaderListNumber>03</HeaderListNumber>
-                <HeaderListButton onClick={onSkilsClick}>
-                  <span>Skils</span>
-                </HeaderListButton>
-              </HeaderList>
-              <HeaderList>
-                <HeaderListNumber>04</HeaderListNumber>
-                <HeaderListButton onClick={onContactClick}>
-                  <span>Contact</span>
-                </HeaderListButton>
-              </HeaderList>
-            </HeaderUl>
-          </HeaderNav>
+        <ContainerInlineBox>
           <MainContainer ref={HomeRef}>
             <MainContainerInline>
               <MainTitleBox
@@ -1922,30 +1926,31 @@ function Home() {
                 whileInView="offscreen"
                 viewport={{ once: true, amount: 0 }}
               >
-                <MainWaveTop></MainWaveTop>
-                <MainWaveMiddle></MainWaveMiddle>
-                <MainWaveBottom></MainWaveBottom>
+                <MainTitleSpanTopBox>
+                  <MainTitleSpanTop>
+                    <MainTiTleSpan>
+                      YECHAN'S PORTFOLIO
+                      <MainTitleSpanBottom>
+                        <span>WELCOME TO</span>
+                      </MainTitleSpanBottom>
+                    </MainTiTleSpan>
+                  </MainTitleSpanTop>
+                </MainTitleSpanTopBox>
 
-                <MainTitleSpanTop>
-                  <MainTiTleSpan>YECHAN'S</MainTiTleSpan>
-                </MainTitleSpanTop>
-                <MainTitleSpanBottom>
-                  <MainTiTleSpan>PORTFOLIO</MainTiTleSpan>
-                </MainTitleSpanBottom>
+                <MainIntroTitleBox>
+                  <MainIntroTitle>안녕하세요 은예찬입니다.</MainIntroTitle>
+                  <MainIntroTitle>
+                    제 포트폴리오를 봐주셔서 감사합니다.
+                  </MainIntroTitle>
+                  <MainIntroTitle>
+                    지금까지 개발자를 준비하면서 만든 프로젝트들 입니다.
+                  </MainIntroTitle>
+                  <MainIntroTitle>
+                    부족한 부분이 있으시면 피드백 남겨주세요 감사합니다.
+                  </MainIntroTitle>
+                </MainIntroTitleBox>
               </MainTitleBox>
             </MainContainerInline>
-            <MainIntroTitleBox
-              variants={IntroTitleVariants}
-              animate={navAnimation}
-              initial="startscreen"
-              whileInView="endscreen"
-              viewport={{ once: true, amount: 0 }}
-            >
-              <MainIntroTitle> - 은예찬 - </MainIntroTitle>
-              <MainIntroSubTitle>프론트엔드 웹 개발자</MainIntroSubTitle>
-              <br />
-            </MainIntroTitleBox>
-
             <TopscrollButton
               variants={ScrollTopButtonVariants}
               initial="scrolltop"
@@ -1954,25 +1959,11 @@ function Home() {
             >
               <FontAwesomeIcon
                 icon={faArrowUp}
-                style={{ fontSize: "25px", padding: "20px", color: "black" }}
+                style={{ fontSize: "25px", padding: "20px", color: "white" }}
               />
             </TopscrollButton>
-
-            <AboutMeScrollButton
-              variants={IntroButton}
-              animate={navAnimation}
-              initial="startbutton"
-              whileInView="endbutton"
-              onClick={onAboutMeClick}
-            >
-              나에 대해서
-              <FontAwesomeIcon
-                icon={faArrowDown}
-                style={{ fontSize: "25px", padding: "20px" }}
-              />
-            </AboutMeScrollButton>
           </MainContainer>
-        </ContainerBackImg>
+        </ContainerInlineBox>
       </ContainerInline>
 
       {/* **********************body AboutMe 부분********************* */}
@@ -2000,7 +1991,66 @@ function Home() {
             </BodyContainerAboutMeTitleBox>
 
             <BodyContainerAboutMe>
-              <BodyContainerAboutMeImgBox
+              <BodyContainerAboutMeUlBox>
+                <BodyContainerAboutMeUlTitle>
+                  자기발전을 위해 끊임없이 공부하고 노력하는 은예찬입니다.
+                </BodyContainerAboutMeUlTitle>
+                <BodyContainerAboutMeUl>
+                  <BodyContainerAboutMeList>
+                    군 복무 중 우연히 접하게 된 코딩 서적에 흥미를 느끼게 되어
+                    전역 후 미래 능력 개발 교육원에 들어가 안드로이드에 대해서
+                    배웠습니다. 그러던 와중 기초만 배운 웹에 흥미를 느껴 수료 후
+                    웹에 대해서 좀 더 공부하고자 하여 인터넷 강의를 보면서
+                    JavaScript, React, TypeScript 등 다양한 것들을 공부했습니다.
+                    공부를 하면서 무언가에 막혔을 때 그것에 대해 해결을 하려고
+                    끝없이 고민하고 노력합니다. 물론 아직 많이 모자라고
+                    부족하지만 빠르게 변화하는 기술에 뒤처지지 않으려고 노력하고
+                    발전하는 제 모습을 보여드리겠습니다. 감사합니다
+                  </BodyContainerAboutMeList>
+                </BodyContainerAboutMeUl>
+              </BodyContainerAboutMeUlBox>
+              <BodyContainerAboutMeImgBox>
+                <BodyContainerAboutMeImgWrapper>
+                  <BodyContainerAboutMeImgCard>
+                    <BodyContainerAboutMeImgFront className="card_front">
+                      <BodyContainerAboutMeImg />
+                      <BodyContainerAboutMeImgFrontTitle>
+                        <span>information</span>
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          style={{ marginLeft: "15px", fontSize: "20px" }}
+                        />
+                      </BodyContainerAboutMeImgFrontTitle>
+                    </BodyContainerAboutMeImgFront>
+
+                    {/* right */}
+                    <BodyContainerAboutMeImgRight className="card_right">
+                      <BodyContainerAboutMeImgRightUl>
+                        <BodyContainerAboutMeImgRightUlTitle>
+                          Information
+                        </BodyContainerAboutMeImgRightUlTitle>
+                        <BodyContainerAboutMeImgRightLi>
+                          이름: 은예찬
+                        </BodyContainerAboutMeImgRightLi>
+                        <BodyContainerAboutMeImgRightLi>
+                          생년월일: 981013
+                        </BodyContainerAboutMeImgRightLi>
+                        <BodyContainerAboutMeImgRightLi>
+                          주소: 서울특별시 동대문구
+                        </BodyContainerAboutMeImgRightLi>
+                        <BodyContainerAboutMeImgRightLi>
+                          이메일: ys101312@kakao.com
+                        </BodyContainerAboutMeImgRightLi>
+                        <BodyContainerAboutMeImgRightLi>
+                          연락처: 010-2508-5919
+                        </BodyContainerAboutMeImgRightLi>
+                      </BodyContainerAboutMeImgRightUl>
+                    </BodyContainerAboutMeImgRight>
+                  </BodyContainerAboutMeImgCard>
+                </BodyContainerAboutMeImgWrapper>
+              </BodyContainerAboutMeImgBox>
+
+              {/* <BodyContainerAboutMeImgBox
                 variants={BodyContainerAboutMeImgVariants}
                 animate={navAnimation}
                 initial="aboutmeimganimationinvisible"
@@ -2008,28 +2058,7 @@ function Home() {
                 viewport={{ once: true, amount: 0 }}
               >
                 <BodyContainerAboutMeImg whileHover={{ scale: 1.2 }} />
-              </BodyContainerAboutMeImgBox>
-
-              <BodyContainerAboutMeUlBox>
-                <BodyContainerAboutMeUlTitle>
-                  나에 대해서
-                </BodyContainerAboutMeUlTitle>
-                <BodyContainerAboutMeUl>
-                  <BodyContainerAboutMeList>
-                    서울에 사는 25살 남자 은 예찬입니다.
-                  </BodyContainerAboutMeList>
-                  <BodyContainerAboutMeList>
-                    군 복무 중 우연히 코딩에 관한 서적을 접하게 되어서 전역 후
-                    공부를 하게 되었습니다.
-                  </BodyContainerAboutMeList>
-                  <BodyContainerAboutMeList>
-                    조금씩 발전해가는 자신을 보면서 프로그램에 흥미를 느낍니다.
-                  </BodyContainerAboutMeList>
-                  <BodyContainerAboutMeList>
-                    끊임없이 배우는 프로그래머가 되고싶습니다.
-                  </BodyContainerAboutMeList>
-                </BodyContainerAboutMeUl>
-              </BodyContainerAboutMeUlBox>
+              </BodyContainerAboutMeImgBox> */}
             </BodyContainerAboutMe>
           </BodyContainerAboutMeBox>
         </BodyContainer>
@@ -2063,7 +2092,7 @@ function Home() {
                     >
                       <BodyProjectsImage
                         key={vanilajspage}
-                        src={vanillajsImages[vanillajsImageIndex]}
+                        // src={vanillajsImages[vanillajsImageIndex]}
                         custom={vanillajsdirection}
                         variants={ImageSliderVariants}
                         initial="next"
@@ -2087,7 +2116,7 @@ function Home() {
                       />
                       <BodyProjectsImageTotalNumberBox>
                         <BodyProjectsImageTotalNumber>
-                          {vanillajsImageIndex + 1} / {vanillajsImages.length}
+                          {/* {vanillajsImageIndex + 1} / {vanillajsImages.length} */}
                         </BodyProjectsImageTotalNumber>
                       </BodyProjectsImageTotalNumberBox>
                     </AnimatePresence>
@@ -2265,7 +2294,7 @@ function Home() {
                     <AnimatePresence initial={false} custom={youtubedirection}>
                       <BodyProjectsImage
                         key={youtubepage}
-                        src={youtubeImages[youtubeImageIndex]}
+                        // src={youtubeImages[youtubeImageIndex]}
                         custom={youtubedirection}
                         variants={ImageSliderVariants}
                         initial="next"
@@ -2288,7 +2317,7 @@ function Home() {
                       />
                       <BodyProjectsImageTotalNumberBox>
                         <BodyProjectsImageTotalNumber>
-                          {youtubeImageIndex + 1} / {youtubeImages.length}
+                          {/* {youtubeImageIndex + 1} / {youtubeImages.length} */}
                         </BodyProjectsImageTotalNumber>
                       </BodyProjectsImageTotalNumberBox>
                     </AnimatePresence>
@@ -2496,7 +2525,7 @@ function Home() {
                     <AnimatePresence initial={false} custom={selectordirection}>
                       <BodyProjectsImage
                         key={selectorpage}
-                        src={selectorImages[selectorImageIndex]}
+                        // src={selectorImages[selectorImageIndex]}
                         custom={selectordirection}
                         variants={ImageSliderVariants}
                         initial="next"
@@ -2519,7 +2548,7 @@ function Home() {
                       />
                       <BodyProjectsImageTotalNumberBox>
                         <BodyProjectsImageTotalNumber>
-                          {selectorImageIndex + 1} / {selectorImages.length}
+                          {/* {selectorImageIndex + 1} / {selectorImages.length} */}
                         </BodyProjectsImageTotalNumber>
                       </BodyProjectsImageTotalNumberBox>
                     </AnimatePresence>
@@ -2695,7 +2724,7 @@ function Home() {
                     <AnimatePresence initial={false} custom={coindirection}>
                       <BodyProjectsImage
                         key={coinpage}
-                        src={coinImages[coinImageIndex]}
+                        // src={coinImages[coinImageIndex]}
                         custom={coindirection}
                         variants={ImageSliderVariants}
                         initial="next"
@@ -2718,7 +2747,7 @@ function Home() {
                       />
                       <BodyProjectsImageTotalNumberBox>
                         <BodyProjectsImageTotalNumber>
-                          {coinImageIndex + 1} / {coinImages.length}
+                          {/* {coinImageIndex + 1} / {coinImages.length} */}
                         </BodyProjectsImageTotalNumber>
                       </BodyProjectsImageTotalNumberBox>
                     </AnimatePresence>
@@ -2890,7 +2919,7 @@ function Home() {
                     <AnimatePresence initial={false} custom={netfilxdirection}>
                       <BodyProjectsImage
                         key={netfilxpage}
-                        src={netfilxImages[netfilxImageIndex]}
+                        // src={netfilxImages[netfilxImageIndex]}
                         custom={netfilxdirection}
                         variants={ImageSliderVariants}
                         initial="next"
@@ -2913,7 +2942,7 @@ function Home() {
                       />
                       <BodyProjectsImageTotalNumberBox>
                         <BodyProjectsImageTotalNumber>
-                          {netfilxImageIndex + 1} / {netfilxImages.length}
+                          {/* {netfilxImageIndex + 1} / {netfilxImages.length} */}
                         </BodyProjectsImageTotalNumber>
                       </BodyProjectsImageTotalNumberBox>
                     </AnimatePresence>
