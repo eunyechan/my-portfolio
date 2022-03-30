@@ -819,7 +819,6 @@ const BodyProjectsImageContainer = styled.div`
 
 const BodyProjectsImage = styled(motion.img)`
   max-width: 100vw;
-  /* max-height: 90vh; */
   width: 100%;
   height: 100%;
   position: absolute;
@@ -923,27 +922,35 @@ const BodySkilsContainerInlineIconBox = styled(motion.div)`
   }
 `;
 
-const BodySkilsContainerInlineTitle = styled.span`
+const BodySkilsContainerTitleBox = styled.div`
+  width: 100%;
+  height: 6rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 60px;
+  font-weight: bolder;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin-bottom: 4rem;
-  margin-top: 2rem;
-  letter-spacing: 0.4em;
-  -webkit-box-reflect: below -15px -webkit-linear-gradient(
-      top,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0) 10%,
-      rgba(0, 0, 0, 0.4)
-    );
-  line-height: normal;
-  background-color: white;
-  border-radius: 99px;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  letter-spacing: 5px;
+  z-index: 1;
+`;
+
+const BodySkilsContainerInlineTitle = styled.span`
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0);
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, #fff, #000, #fff);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: ${animate} 7s linear infinite;
+  -webkit-background-clip: text;
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -967,7 +974,7 @@ const BodySkilsContainerInlineLeftIconBox = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 10px;
   @media screen and (max-width: 600px) {
     flex: 1;
@@ -989,6 +996,43 @@ const BodySkilsContainerInlineSubTitle = styled.span`
   @media screen and (max-width: 600px) {
     height: 100%;
   }
+`;
+
+const BodySkilsCircleContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid white;
+`;
+
+const BodySkilsHtmlCircle = styled.div`
+  display: flex;
+  width: 200px;
+  height: 200px;
+  border: 1px solid white;
+  border-radius: 50%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    .html_big_circle {
+      display: flex;
+    }
+  }
+`;
+
+const BodySkilsHtmlInline = styled.div`
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 80vh;
+  background: #fff;
+  border-radius: 0;
+  transform: translate(-50%, -50%);
 `;
 
 const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
@@ -2066,15 +2110,24 @@ function Home() {
               variants={BodySkilsMenuInlineBoxVariants}
               animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
             >
-              <BodySkilsContainerInlineTitle>
-                Skils
-              </BodySkilsContainerInlineTitle>
+              <BodySkilsContainerTitleBox>
+                <BodySkilsContainerInlineTitle>
+                  Skills
+                </BodySkilsContainerInlineTitle>
+              </BodySkilsContainerTitleBox>
               <BodySkilsContainerRightLeftIconBox>
                 <BodySkilsContainerInlineLeftIconBox>
                   <BodySkilsContainerInlineSubTitle>
                     Front-end
                   </BodySkilsContainerInlineSubTitle>
-                  <BodySkilsContainerInlineLeftIconBoxTopDiv>
+
+                  <BodySkilsCircleContainer>
+                    <BodySkilsHtmlCircle>
+                      <span>Html</span>
+                      <BodySkilsHtmlInline className="html_big_circle"></BodySkilsHtmlInline>
+                    </BodySkilsHtmlCircle>
+                  </BodySkilsCircleContainer>
+                  {/* <BodySkilsContainerInlineLeftIconBoxTopDiv>
                     <BodySkilsContainerInlineTopHtmlIcon
                       whileHover={{ y: "-20px" }}
                     />
@@ -2095,10 +2148,10 @@ function Home() {
                     <BodySkilsContainerInlineBottomTypeScriptIcon
                       whileHover={{ y: "-20px" }}
                     />
-                  </BodySkilsContainerInlineLeftIconBoxBottomDiv>
+                  </BodySkilsContainerInlineLeftIconBoxBottomDiv> */}
                 </BodySkilsContainerInlineLeftIconBox>
 
-                <BodySkilsContainerInlineRightIconBox>
+                {/* <BodySkilsContainerInlineRightIconBox>
                   <BodySkilsContainerInlineSubTitle>
                     Version Control
                   </BodySkilsContainerInlineSubTitle>
@@ -2111,21 +2164,21 @@ function Home() {
                       whileHover={{ y: "-20px" }}
                     />
                   </BodySkilsContainerInlineRightIconBoxTopDiv>
-                </BodySkilsContainerInlineRightIconBox>
+                </BodySkilsContainerInlineRightIconBox> */}
               </BodySkilsContainerRightLeftIconBox>
             </BodySkilsContainerInlineIconBox>
 
-            <BodySkilsContainerSmallInlineBox
+            {/* <BodySkilsContainerSmallInlineBox
               variants={BodySkilsMenuInlineBoxVariants}
               animate={isOpen ? "skilmenuopenbox" : "skilmenuclosebox"}
             >
               <BodySkilsContainerSmallInlineBoxTitle>
                 Skil List
               </BodySkilsContainerSmallInlineBoxTitle>
-            </BodySkilsContainerSmallInlineBox>
+            </BodySkilsContainerSmallInlineBox> */}
           </BodySkilsContainerInlineBox>
 
-          <BodySkilsMenuContainerButtonBox>
+          {/* <BodySkilsMenuContainerButtonBox>
             <BodySkilsMenuContainerButtonInlineBox>
               <BodySkilsMenuContainerButton
                 onClick={() => {
@@ -2145,9 +2198,9 @@ function Home() {
                 )}
               </BodySkilsMenuContainerButton>
             </BodySkilsMenuContainerButtonInlineBox>
-          </BodySkilsMenuContainerButtonBox>
+          </BodySkilsMenuContainerButtonBox> */}
 
-          <BodyContactContainerInlineBox
+          {/* <BodyContactContainerInlineBox
             ref={ContactRef}
             variants={BodyContactContainerVariants}
             animate={isOpen ? "projectclosemenu" : "projectopenmenu"}
@@ -2157,7 +2210,6 @@ function Home() {
               variants={BodyContactInlineContainerVariants}
               animate={isOpen ? "contactmenuopenbox" : "contactmenuclosebox"}
             >
-              {/* contace 커졌을 때 부분 */}
 
               <BodyContactInlineTitle>Contact</BodyContactInlineTitle>
               <BodyContactBigInlineContainerBox>
@@ -2249,7 +2301,7 @@ function Home() {
                 Contact
               </BodyContactSmallContainerInlineTitle>
             </BodyContactSmallContainer>
-          </BodyContactContainerInlineBox>
+          </BodyContactContainerInlineBox> */}
         </BodyContactSkilsContainer>
 
         {/* **********************body Skils 부분********************* */}
