@@ -14,29 +14,14 @@ import { useEffect, useRef, useState } from "react";
 // netfilxImages,
 // } from "./data/imageData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { wrap } from "popmotion";
 import profile from "./images/imagesLogo/profileimg.png";
-import csslogo from "./images/imagesLogo/css_logo.png";
-import jslogo from "./images/imagesLogo/js_logo.png";
-import htmllogo from "./images/imagesLogo/html_logo.png";
-import sasslogo from "./images/imagesLogo/sass_logo.png";
-import reactlogo from "./images/imagesLogo/react_logo.png";
-import typescriptlogo from "./images/imagesLogo/ts_logo.png";
-import gitlogo from "./images/imagesLogo/git_logo.png";
-import githublogo from "./images/imagesLogo/github_logo.png";
+
 import githubimage from "./images/imagesLogo/githubImage.png";
 import {
-  faArrowDown,
-  faArrowLeft,
   faArrowRight,
   faArrowUp,
   faBars,
-  faCalendarWeek,
   faClose,
-  faEnvelope,
-  faMapLocation,
-  faPhone,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
@@ -379,41 +364,41 @@ const TopscrollButton = styled(motion.button)`
   }
 `;
 
-const AboutMeScrollButton = styled(motion.button)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 20px;
-  color: rgba(255, 255, 255, 0.7);
-  border: none;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.7);
-  left: 40%;
-  top: 80%;
-  width: 15vw;
-  height: 80px;
-  z-index: 2;
-  border-radius: 25px;
-  &:hover {
-    background-color: rgba(0, 0, 0, 1);
-    color: rgba(255, 255, 255, 1);
-  }
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    font-size: 15px;
-    width: 50vw;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 2rem;
-  }
-`;
+// const AboutMeScrollButton = styled(motion.button)`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: absolute;
+//   font-size: 20px;
+//   font-weight: bold;
+//   padding: 20px;
+//   color: rgba(255, 255, 255, 0.7);
+//   border: none;
+//   cursor: pointer;
+//   background-color: rgba(0, 0, 0, 0.7);
+//   left: 40%;
+//   top: 80%;
+//   width: 15vw;
+//   height: 80px;
+//   z-index: 2;
+//   border-radius: 25px;
+//   &:hover {
+//     background-color: rgba(0, 0, 0, 1);
+//     color: rgba(255, 255, 255, 1);
+//   }
+//   @media screen and (max-width: 600px) {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     position: absolute;
+//     font-size: 15px;
+//     width: 50vw;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     margin-top: 2rem;
+//   }
+// `;
 
 // body 부분
 const BodyContainerBox = styled.div`
@@ -670,7 +655,7 @@ const BodyprojectsContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 4rem 4rem;
-  background-color: rgba(62, 73, 122, 0.6);
+  background-color: transparent;
   @media screen and (max-width: 600px) {
     padding: 1rem 2rem;
   }
@@ -899,6 +884,7 @@ const BodyContactSkilsContainer = styled(motion.div)`
   height: 100vh;
   display: flex;
   overflow: hidden;
+  border: 1px solid white;
 `;
 
 // Body Skil
@@ -931,7 +917,6 @@ const BodySkilsContainerTitleBox = styled.div`
   font-size: 60px;
   font-weight: bolder;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin-top: 4rem;
   margin-bottom: 2rem;
   letter-spacing: 5px;
   z-index: 1;
@@ -974,490 +959,193 @@ const BodySkilsContainerInlineLeftIconBox = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  /* background-color: white; */
   border-radius: 10px;
   @media screen and (max-width: 600px) {
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
-`;
-
-const BodySkilsContainerInlineSubTitle = styled.span`
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid rgba(107, 102, 102, 0.3);
-  font-size: 26px;
-  font-weight: bold;
-  height: 15vh;
-  color: #d9534f;
-  @media screen and (max-width: 600px) {
-    height: 100%;
   }
 `;
 
 const BodySkilsCircleContainer = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   position: relative;
+  overflow: hidden;
+  z-index: 0;
   border: 1px solid white;
 `;
 
-const BodySkilsHtmlCircle = styled.div`
+const backglow1 = keyframes`
+   0%
+  {
+    transform: translate(10%, 10%) scale(1);
+    opacity:0.5;
+  }
+  
+   25%
+  {
+    transform: translate(-10%, 10%) scale(0.8);
+    opacity:0.5;
+  }
+  
+   50%
+  {
+    transform: translate(-10%, -10%) scale(1.2);
+    opacity:0.8;
+  }
+  
+   75%
+  {
+    transform: translate(10%, -10%) scale(1.1);
+    opacity:0.2;
+  }
+  
+   100%
+  {
+    transform: translate(10%, 10%) scale(1);
+    opacity:0.5;
+  }
+`;
+const backglow2 = keyframes`
+
+ 0%
+  {
+    transform: translate(-10%, -10%) scale(1);
+    opacity:0.5;
+  }
+  
+   25%
+  {
+    transform: translate(10%, -10%) scale(0.8);
+    opacity:0.5;
+  }
+  
+   50%
+  {
+    transform: translate(10%, 10%) scale(1.2);
+    opacity:0.8;
+  }
+  
+   75%
+  {
+    transform: translate(-10%, 10%) scale(1.1);
+    opacity:0.2;
+  }
+  
+   100%
+  {
+    transform: translate(-10%, -10%) scale(1);
+    opacity:0.5;
+  }
+`;
+
+const BodySkilsHtmlCircle = styled(motion.div)`
   display: flex;
-  width: 200px;
-  height: 200px;
-  border: 1px solid white;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
   color: white;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   cursor: pointer;
   &:hover {
     .html_big_circle {
       display: flex;
+      opacity: 1;
+    }
+    .html_circle_glow {
+      display: none;
+      opacity: 0;
     }
   }
 `;
 
-const BodySkilsHtmlInline = styled.div`
-  display: none;
-  position: absolute;
-  z-index: 999;
-  left: 50%;
-  top: 50%;
-  width: 100%;
-  height: 80vh;
-  background: #fff;
-  border-radius: 0;
-  transform: translate(-50%, -50%);
-`;
-
-const BodySkilsContainerInlineLeftIconBoxTopDiv = styled.div`
+const BodySkilsCssCircle = styled(motion.div)`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 30px 0;
-  border-radius: 10px;
-  width: 100%;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-const BodySkilsContainerInlineLeftIconBoxBottomDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-const BodySkilsContainerInlineRightIconBox = styled.div`
-  width: 100%;
-  height: 65vh;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 10px;
-  @media screen and (max-width: 600px) {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const BodySkilsContainerInlineRightIconBoxTopDiv = styled.div`
-  display: flex;
-  width: 100%;
-  flex: 2;
-  justify-content: space-around;
-  align-items: center;
-  margin: 30px 0;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-`;
-
-const BodySkilsContainerInlineTopHtmlIcon = styled(motion.img)`
-  background-image: url(${htmllogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerInlineTopCssIcon = styled(motion.img)`
-  background-image: url(${csslogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerInlineTopJsIcon = styled(motion.img)`
-  background-image: url(${jslogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerSmallInlineBox = styled(motion.div)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  letter-spacing: 0.3rem;
-  @media screen and (max-width: 600px) {
-    letter-spacing: 0rem;
-  }
-`;
-
-const BodySkilsContainerSmallInlineBoxTitle = styled.span`
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 22px;
-  margin-bottom: 5rem;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 5px;
-    font-size: 15px;
-    margin-bottom: 10rem;
-  }
-`;
-
-const BodySkilsContainerInlineBottomSassIcon = styled(motion.img)`
-  background-image: url(${sasslogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerInlineBottomReactIcon = styled(motion.img)`
-  background-image: url(${reactlogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerInlineBottomTypeScriptIcon = styled(motion.img)`
-  background: url(${typescriptlogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerInlineGitIcon = styled(motion.img)`
-  background: url(${gitlogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsContainerInlineGithubIcon = styled(motion.img)`
-  background: url(${githublogo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 4rem;
-  background-color: #f5f5f5;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    padding: 1.3rem;
-  }
-`;
-
-const BodySkilsMenuContainerButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
-const BodySkilsMenuContainerButtonInlineBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
-const BodySkilsMenuContainerButton = styled(motion.button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 99px;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  z-index: 1;
-  background-color: black;
+  width: 150px;
+  height: 150px;
   color: white;
-  border: none;
+  position: relative;
   cursor: pointer;
-  font-size: 25px;
+
   &:hover {
-    transform: scale(1.2);
-    transition-duration: 0.3s;
-  }
-  @media screen and (max-width: 600px) {
-    width: 35px;
-    height: 35px;
-    &:first-child {
-      font-size: 15px;
+    .css_big_circle {
+      display: flex;
+      opacity: 1;
+    }
+    .html_circle_glow {
+      display: none;
+      opacity: 0;
     }
   }
 `;
 
+const BodySkilsCircleGlow = styled(motion.div)`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(34, 33, 33, 0.9);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  transition-duration: 0.5s;
+  transition-delay: 1s;
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    top: -5%;
+    left: -5%;
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    filter: blur(60px);
+  }
+  &::before {
+    background-color: #e91071;
+    z-index: -2;
+    animation: ${backglow1} 15s ease infinite;
+  }
+  &::after {
+    background-color: #00ffff;
+    z-index: -1;
+    animation: ${backglow2} 15s ease infinite;
+  }
+`;
+
+const BodySkilsHtmlInline = styled(motion.div)`
+  display: none;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  opacity: 0;
+  transition-duration: 0.5s;
+  border: 1px solid white;
+`;
+
+const BodySkilsCssInline = styled(motion.div)`
+  display: none;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  opacity: 0;
+  transition-duration: 0.5s;
+  border: 1px solid white;
+`;
 // Body Contact Big
-const BodyContactContainerInlineBox = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  overflow: hidden;
-  background-color: transparent;
-`;
-
-const BodyContactBigContainer = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 50px;
-  background-color: transparent;
-  @media screen and (max-width: 600px) {
-    padding-top: 10px;
-    overflow: hidden;
-    scroll-behavior: none;
-  }
-`;
-
-const BodyContactInlineTitle = styled.span`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin-bottom: 4rem;
-  margin-top: 2rem;
-  letter-spacing: 0.4em;
-  -webkit-box-reflect: below -15px -webkit-linear-gradient(
-      top,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0) 10%,
-      rgba(0, 0, 0, 0.4)
-    );
-  line-height: normal;
-  background-color: white;
-  border-radius: 99px;
-  @media screen and (max-width: 600px) {
-    letter-spacing: 0.2em;
-  }
-`;
-
-const BodyContactBigInlineContainerBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: space-around;
-  padding: 4rem 0;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-`;
-
-const BodyContactBigInlineTopDiv = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-  font-weight: bold;
-  padding: 15px 0;
-  font-size: 45px;
-  div {
-    display: flex;
-    justify-content: center;
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 18px;
-    }
-  }
-  @media screen and (max-width: 600px) {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    div {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: space-between;
-      font-size: 20px;
-      div {
-        font-size: 15px;
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  }
-`;
-
-const BodyContactBigInlineBottomDiv = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-  font-weight: bold;
-  padding: 15px 0;
-  font-size: 45px;
-  div {
-    display: flex;
-    justify-content: center;
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 18px;
-    }
-  }
-  @media screen and (max-width: 600px) {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    div {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: space-between;
-      font-size: 20px;
-      div {
-        font-size: 15px;
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  }
-`;
-
-const BodyContactSmallContainer = styled(motion.div)`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  letter-spacing: 0.3rem;
-  @media screen and (max-width: 600px) {
-    letter-spacing: 0rem;
-  }
-`;
-
-const BodyContactSmallContainerInlineTitle = styled(motion.span)`
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 22px;
-  margin-bottom: 5rem;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 5px;
-    font-size: 15px;
-    margin-bottom: 10rem;
-  }
-`;
 
 const FooterContainer = styled.div`
   width: 100%;
@@ -1514,41 +1202,6 @@ const FooterTitle = styled.span`
   }
 `;
 
-const HeaderNavVariants = {
-  top: {
-    backgroundColor: "rgba(0, 0, 0, 0)",
-    transition: { duration: 0.5 },
-  },
-  scroll: {
-    backgroundColor: "rgba(0, 0, 0, 1)",
-    transition: { duration: 0.5 },
-  },
-};
-
-const HeaderMenuVariants = {
-  menuvisible: {
-    display: "flex",
-    opacity: 1,
-  },
-  menuinvisible: {
-    display: "none",
-    opacity: 0,
-  },
-};
-
-const HeaderNavUlVariants = {
-  top: {
-    display: "none",
-    transition: { duration: 0.5, delay: 0.2, type: "tween" },
-    opacity: 0,
-  },
-  scroll: {
-    display: "flex",
-    transition: { duration: 0.5, type: "tween" },
-    opacity: 1,
-  },
-};
-
 const WaveTitleVariants = {
   onscreen: {
     y: "15vh",
@@ -1556,36 +1209,6 @@ const WaveTitleVariants = {
     transition: { duration: 0.5, type: "tween" },
   },
   offscreen: {
-    y: "0vh",
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-  },
-};
-
-const IntroButton = {
-  startbutton: {
-    opacity: 0,
-    transition: { duration: 0.5, type: "tween" },
-  },
-  endbutton: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-  },
-};
-
-const IntroTitleVariants = {
-  startscreen: {
-    y: "15vh",
-    opacity: 0,
-    transition: { duration: 0.5, type: "tween" },
-  },
-  endscreen: {
     y: "0vh",
     opacity: 1,
     transition: {
@@ -1633,20 +1256,6 @@ const ScrollTopButtonVariants = {
   },
 };
 
-const BodyContainerAboutMeImgVariants = {
-  aboutmeimganimationvisible: {
-    scale: 1,
-    transition: { duration: 0.5, type: "tween" },
-    delay: 1,
-    opacity: 1,
-  },
-  aboutmeimganimationinvisible: {
-    scale: 0,
-    transition: { duration: 0.5, type: "tween" },
-    opacity: 0,
-  },
-};
-
 const BodyContainerAboutmeArrowVariants = {
   aboutmearrowvisible: {
     x: 0,
@@ -1667,45 +1276,6 @@ const BodyContainerAboutmeArrowVariants = {
 };
 
 // project Variants
-const BodyContactContainerVariants = {
-  projectopenmenu: {
-    flex: 1,
-    opcity: 1,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-  },
-  projectclosemenu: {
-    flex: 6,
-    opcity: 0,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-  },
-};
-
-const BodyContactInlineContainerVariants = {
-  contactmenuopenbox: {
-    opacity: 1,
-    display: "flex",
-    transition: {
-      duration: 0.5,
-      type: "tween",
-      delay: 0.3,
-    },
-  },
-  contactmenuclosebox: {
-    opacity: 0,
-    display: "none",
-    transition: {
-      duration: 0.5,
-      type: "tween",
-      delay: 0.3,
-    },
-  },
-};
 
 // skils variants
 const BodySkilsContainerVariants = {
@@ -2100,16 +1670,8 @@ function Home() {
         {/****************************  skill 부분 ***************************/}
 
         <BodyContactSkilsContainer>
-          <BodySkilsContainerInlineBox
-            ref={SkilsRef}
-            variants={BodySkilsContainerVariants}
-            animate={isOpen ? "skilsclosemenu" : "skilsopenmenu"}
-            initial="skilsopenmenu"
-          >
-            <BodySkilsContainerInlineIconBox
-              variants={BodySkilsMenuInlineBoxVariants}
-              animate={isOpen ? "skilmenuclosebox" : "skilmenuopenbox"}
-            >
+          <BodySkilsContainerInlineBox ref={SkilsRef}>
+            <BodySkilsContainerInlineIconBox>
               <BodySkilsContainerTitleBox>
                 <BodySkilsContainerInlineTitle>
                   Skills
@@ -2117,15 +1679,82 @@ function Home() {
               </BodySkilsContainerTitleBox>
               <BodySkilsContainerRightLeftIconBox>
                 <BodySkilsContainerInlineLeftIconBox>
-                  <BodySkilsContainerInlineSubTitle>
-                    Front-end
-                  </BodySkilsContainerInlineSubTitle>
-
                   <BodySkilsCircleContainer>
-                    <BodySkilsHtmlCircle>
-                      <span>Html</span>
-                      <BodySkilsHtmlInline className="html_big_circle"></BodySkilsHtmlInline>
+                    <BodySkilsHtmlCircle
+                      className="html_circle"
+                      whileHover={{
+                        display: "flex",
+                        width: "100%",
+                        height: "100%",
+                        type: "tween",
+                        position: "absolute",
+                      }}
+                      transition={{
+                        duration: 0.5,
+                      }}
+                    >
+                      <BodySkilsCircleGlow
+                        className="html_circle_glow"
+                        whileHover={{
+                          type: "tween",
+                        }}
+                        transition={{
+                          duration: 0.5,
+                        }}
+                      >
+                        <span>Html</span>
+                      </BodySkilsCircleGlow>
+                      <BodySkilsHtmlInline
+                        className="html_big_circle"
+                        whileHover={{
+                          display: "flex",
+                          type: "tween",
+                        }}
+                        transition={{
+                          duration: 0.5,
+                        }}
+                      >
+                        <span>바보</span>
+                      </BodySkilsHtmlInline>
                     </BodySkilsHtmlCircle>
+
+                    <BodySkilsCssCircle
+                      whileHover={{
+                        display: "flex",
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        type: "tween",
+                        backgroundColor: "white",
+                      }}
+                      transition={{
+                        duration: 0.5,
+                      }}
+                    >
+                      <BodySkilsCircleGlow
+                        className="html_circle_glow"
+                        whileHover={{
+                          type: "tween",
+                        }}
+                        transition={{
+                          duration: 0.5,
+                        }}
+                      >
+                        <span>Css</span>
+                      </BodySkilsCircleGlow>
+                      <BodySkilsCssInline
+                        className="css_big_circle"
+                        whileHover={{
+                          display: "flex",
+                          type: "tween",
+                        }}
+                        transition={{
+                          duration: 0.5,
+                        }}
+                      >
+                        <span>qqq</span>
+                      </BodySkilsCssInline>
+                    </BodySkilsCssCircle>
                   </BodySkilsCircleContainer>
                   {/* <BodySkilsContainerInlineLeftIconBoxTopDiv>
                     <BodySkilsContainerInlineTopHtmlIcon
@@ -2304,16 +1933,10 @@ function Home() {
           </BodyContactContainerInlineBox> */}
         </BodyContactSkilsContainer>
 
-        {/* **********************body Skils 부분********************* */}
-
         <BodyprojectsContainer ref={ProjectsRef}>
-          {/* project부분 */}
-
           <BodyProjectsTitleBox>
             <BodyProjectsTitle>Project</BodyProjectsTitle>
           </BodyProjectsTitleBox>
-
-          {/* project 전체 div */}
 
           <BodyTotalProjectsBox>
             {/* vanillaJs Project */}
