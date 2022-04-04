@@ -976,7 +976,6 @@ const BodySkilsCircleContainer = styled.div`
   position: relative;
   overflow: hidden;
   z-index: 0;
-  border: 1px solid white;
 `;
 
 const backglow1 = keyframes`
@@ -1050,7 +1049,7 @@ const BodySkilsHtmlCircle = styled(motion.div)`
   color: white;
   position: relative;
   cursor: pointer;
-  &:hover {
+  /* &:hover {
     .html_big_circle {
       display: flex;
       opacity: 1;
@@ -1059,7 +1058,7 @@ const BodySkilsHtmlCircle = styled(motion.div)`
       display: none;
       opacity: 0;
     }
-  }
+  } */
 `;
 
 const BodySkilsCssCircle = styled(motion.div)`
@@ -1067,18 +1066,31 @@ const BodySkilsCssCircle = styled(motion.div)`
   width: 150px;
   height: 150px;
   color: white;
-  position: relative;
+  /* position: relative; */
   cursor: pointer;
-
   &:hover {
+    .css_circle_glow {
+    }
+  }
+
+  /* &:hover {
     .css_big_circle {
-      display: flex;
       opacity: 1;
     }
     .html_circle_glow {
-      display: none;
       opacity: 0;
     }
+  } */
+`;
+
+const boxFade = keyframes`
+  from {
+    display:none;
+    opacity: 0;
+  }
+  to {
+    display:flex;
+    opacity: 1;
   }
 `;
 
@@ -1093,18 +1105,20 @@ const BodySkilsCircleGlow = styled(motion.div)`
   color: white;
   font-weight: bold;
   position: relative;
-  transition-duration: 0.5s;
-  transition-delay: 1s;
+  animation: ${boxFade} 3s;
+  border-radius: 15px;
   &::before,
   &::after {
     position: absolute;
+    display: flex;
+    align-items: center;
     content: "";
-    top: -5%;
-    left: -5%;
-    height: 80%;
-    width: 80%;
+    /* top: -5%; */
+    /* left: -5%; */
+    height: 50%;
+    width: 50%;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     opacity: 0.5;
     filter: blur(60px);
   }
@@ -1121,29 +1135,31 @@ const BodySkilsCircleGlow = styled(motion.div)`
 `;
 
 const BodySkilsHtmlInline = styled(motion.div)`
-  display: none;
+  display: flex;
   color: white;
   font-size: 2rem;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
   background: transparent;
-  opacity: 0;
-  transition-duration: 0.5s;
+  /* opacity: 0; */
   border: 1px solid white;
 `;
 
 const BodySkilsCssInline = styled(motion.div)`
-  display: none;
+  display: flex;
+  opacity: 1;
   color: white;
   font-size: 2rem;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   background: transparent;
-  opacity: 0;
-  transition-duration: 0.5s;
   border: 1px solid white;
+  animation: ${boxFade} 3s;
 `;
 // Body Contact Big
 
@@ -1297,24 +1313,50 @@ const BodySkilsContainerVariants = {
   },
 };
 
-const BodySkilsMenuInlineBoxVariants = {
-  skilmenuopenbox: {
-    opacity: 1,
+const BodySkilsCircleGlowVariants = {
+  circleglowopen: {
+    width: "100%",
+    height: "100%",
     display: "flex",
+    opacity: 1,
     transition: {
-      duration: 0.2,
+      duration: 1,
       type: "tween",
-      delay: 0.3,
     },
   },
 
-  skilmenuclosebox: {
-    opacity: 0,
+  circleglowclose: {
+    width: "0%",
+    height: "0%",
     display: "none",
+    opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 1,
       type: "tween",
-      delay: 0.3,
+    },
+  },
+};
+
+const BodySkilsCircleInlineVariants = {
+  circleinlineopen: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    opacity: 1,
+    transition: {
+      duration: 1,
+      type: "tween",
+    },
+  },
+
+  circleinlineclose: {
+    width: "0%",
+    height: "0%",
+    display: "none",
+    opacity: 0,
+    transition: {
+      duration: 1,
+      type: "tween",
     },
   },
 };
@@ -1680,19 +1722,7 @@ function Home() {
               <BodySkilsContainerRightLeftIconBox>
                 <BodySkilsContainerInlineLeftIconBox>
                   <BodySkilsCircleContainer>
-                    <BodySkilsHtmlCircle
-                      className="html_circle"
-                      whileHover={{
-                        display: "flex",
-                        width: "100%",
-                        height: "100%",
-                        type: "tween",
-                        position: "absolute",
-                      }}
-                      transition={{
-                        duration: 0.5,
-                      }}
-                    >
+                    {/* <BodySkilsHtmlCircle className="html_circle">
                       <BodySkilsCircleGlow
                         className="html_circle_glow"
                         whileHover={{
@@ -1706,54 +1736,32 @@ function Home() {
                       </BodySkilsCircleGlow>
                       <BodySkilsHtmlInline
                         className="html_big_circle"
-                        whileHover={{
-                          display: "flex",
-                          type: "tween",
-                        }}
-                        transition={{
-                          duration: 0.5,
-                        }}
+                        // whileHover={{
+                        //   display: "flex",
+                        //   type: "tween",
+                        // }}
+                        // transition={{
+                        //   duration: 0.5,
+                        // }}
                       >
                         <span>바보</span>
                       </BodySkilsHtmlInline>
-                    </BodySkilsHtmlCircle>
-
+                    </BodySkilsHtmlCircle> */}
                     <BodySkilsCssCircle
-                      whileHover={{
-                        display: "flex",
-                        position: "absolute",
-                        width: "100%",
-                        height: "100%",
-                        type: "tween",
-                        backgroundColor: "white",
+                      onClick={() => {
+                        setIsOpen(!isOpen);
                       }}
-                      transition={{
-                        duration: 0.5,
-                      }}
+                      whileHover={{ scale: 1.1 }}
                     >
-                      <BodySkilsCircleGlow
-                        className="html_circle_glow"
-                        whileHover={{
-                          type: "tween",
-                        }}
-                        transition={{
-                          duration: 0.5,
-                        }}
-                      >
-                        <span>Css</span>
-                      </BodySkilsCircleGlow>
-                      <BodySkilsCssInline
-                        className="css_big_circle"
-                        whileHover={{
-                          display: "flex",
-                          type: "tween",
-                        }}
-                        transition={{
-                          duration: 0.5,
-                        }}
-                      >
-                        <span>qqq</span>
-                      </BodySkilsCssInline>
+                      {!isOpen ? (
+                        <BodySkilsCircleGlow className="css_circle_glow">
+                          <span>Css</span>
+                        </BodySkilsCircleGlow>
+                      ) : (
+                        <BodySkilsCssInline className="css_big_circle">
+                          <span>qqq</span>
+                        </BodySkilsCssInline>
+                      )}
                     </BodySkilsCssCircle>
                   </BodySkilsCircleContainer>
                   {/* <BodySkilsContainerInlineLeftIconBoxTopDiv>
