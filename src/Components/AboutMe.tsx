@@ -23,7 +23,7 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 9rem 6rem 0 6rem;
+  padding: 8rem 6rem 0 6rem;
   @media screen and (max-width: 600px) {
     padding: 1rem 4rem;
   }
@@ -44,15 +44,6 @@ const BodyContainerAboutMeTitleBox = styled.div`
   z-index: 1;
 `;
 
-const animate = keyframes`
-  0% {
-    background-position: -500%;
-  }
-  100% {
-    background-position: 500%;
-  }
-`;
-
 const BodyContainerAboutMeTitle = styled.h2`
   position: relative;
   display: flex;
@@ -65,7 +56,6 @@ const BodyContainerAboutMeTitle = styled.h2`
   background: linear-gradient(90deg, #fff, #000, #fff);
   background-repeat: no-repeat;
   background-size: 80%;
-  animation: ${animate} 7s linear infinite;
   -webkit-background-clip: text;
 `;
 

@@ -866,16 +866,6 @@ function Home() {
 
   useEffect(() => {
     scrollY.onChange(() => {
-      if (scrollY.get() > 80 && window.innerWidth <= 600) {
-        navAnimation.start("menuvisible");
-      } else {
-        navAnimation.start("menuinvisible");
-      }
-    });
-  }, [scrollY, navAnimation]);
-
-  useEffect(() => {
-    scrollY.onChange(() => {
       if (scrollY.get() > 400) {
         navAnimation.start("onscreen");
         navAnimation.start("startscreen");
