@@ -2,12 +2,15 @@ import styled, { keyframes } from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useState } from "react";
 import htmllogo from "../images/imagesLogo/html_logo.png";
+import csslogo from "../images/imagesLogo/css_logo.png";
+import jslogo from "../images/imagesLogo/js_logo.png";
+import tslogo from "../images/imagesLogo/ts_logo.png";
+import reactlogo from "../images/imagesLogo/react_logo.png";
 
 const BodySkillsContainerInlineBox = styled(motion.div)`
   width: 100%;
   height: 100%;
-  margin-top: 8rem;
-  display: flex;
+  margin-top: 7rem;
   background-color: transparent;
 `;
 
@@ -59,25 +62,8 @@ const BodySkillsContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  grid-gap: 20px;
   position: relative;
   @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const BodySkillsContainerInlineLeftIconBox = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  border-radius: 10px;
-
-  @media screen and (max-width: 600px) {
-    flex: 1;
     display: flex;
     flex-direction: column;
   }
@@ -157,67 +143,94 @@ const BodySkillsCircleOpenBtn = styled.div`
   }
 `;
 
-const backglow1 = keyframes`
-   0%
-  {
-    transform: translate(10%, 10%) scale(1);
-    opacity:0.5;
-  }
-  
-   25%
-  {
-    transform: translate(-10%, 10%) scale(0.8);
-    opacity:0.5;
-  }
-  
-   50%
-  {
-    transform: translate(-10%, -10%) scale(1.2);
-    opacity:0.8;
-  }
-  
-   75%
-  {
-    transform: translate(10%, -10%) scale(1.1);
-    opacity:0.2;
-  }
-  
-   100%
-  {
-    transform: translate(10%, 10%) scale(1);
-    opacity:0.5;
-  }
+const BodySkillsCircleCloseBtnContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 1vh;
+  position: relative;
+  z-index: 4;
 `;
-const backglow2 = keyframes`
 
- 0%
-  {
-    transform: translate(-10%, -10%) scale(1);
-    opacity:0.5;
+const BodySkillsCircleCloseBtn = styled.div`
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  div {
+    position: relative;
   }
-  
-   25%
-  {
-    transform: translate(10%, -10%) scale(0.8);
-    opacity:0.5;
+  .close-button-block {
+    width: 40px;
+    height: 20px;
+    position: relative;
+    overflow: hidden;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: calc(55% - 4px);
+      display: block;
+      width: 4px;
+      height: 25px;
+      transform-origin: bottom center;
+      background: white;
+      transition: all ease-out 280ms;
+    }
+    &:last-of-type {
+      transform: rotate(180deg);
+    }
   }
-  
-   50%
-  {
-    transform: translate(10%, 10%) scale(1.2);
-    opacity:0.8;
+  .in {
+    .close-button-block {
+      &:before {
+        transition-delay: 280ms;
+        transform: translateX(20px) translateY(-20px) rotate(45deg);
+      }
+      &:after {
+        transition-delay: 280ms;
+        transform: translateX(-22px) translateY(-22px) rotate(-45deg);
+      }
+    }
   }
-  
-   75%
-  {
-    transform: translate(-10%, 10%) scale(1.1);
-    opacity:0.2;
+  .out {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .close-button-block {
+      &:before {
+        transform: translateX(-5px) translateY(5px) rotate(45deg);
+      }
+      &:after {
+        transform: translateX(5px) translateY(5px) rotate(-45deg);
+      }
+    }
   }
-  
-   100%
-  {
-    transform: translate(-10%, -10%) scale(1);
-    opacity:0.5;
+  &:hover {
+    .in {
+      .close-button-block {
+        &:before {
+          transform: translateX(-5px) translateY(5px) rotate(45deg);
+        }
+        &:after {
+          transform: translateX(5px) translateY(5px) rotate(-45deg);
+        }
+      }
+    }
+    .out {
+      .close-button-block {
+        &:before {
+          transform: translateX(-20px) translateY(20px) rotate(45deg);
+        }
+        &:after {
+          transform: translateX(20px) translateY(20px) rotate(-45deg);
+        }
+      }
+    }
   }
 `;
 
@@ -336,15 +349,27 @@ const BodySkillsCircleGlow = styled(motion.div)`
   } */
 `;
 
+const BodySkillsNameContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 20px;
+`;
+
 const SkillName = styled.div`
-  width: 150px;
-  height: 150px;
-  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  font-size: 1.8em;
+  font-weight: bold;
+  padding-top: 1rem;
 `;
 
 const BodySkillsInlineWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   opacity: 1;
   font-size: 2rem;
   position: absolute;
@@ -355,26 +380,158 @@ const BodySkillsInlineWrapper = styled.div`
   height: 100%;
   background-color: rgba(34, 33, 33, 1);
   z-index: 1;
+  padding: 20px 30px;
 `;
 
-const BodySkillsInlineTitleContainer = styled.div`
+const BodySkillsInlineContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const BodySkillsInlineTitle = styled.span`
-  color: white;
-  font-size: 3rem;
+const BodySkillsInlinePercentContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
-  padding: 20px;
 `;
 
-const BodySkillsInlineContainer = styled.div`
+const BodySkillsInlinePercent = styled.span`
+  font-size: 0.7em;
+`;
+
+const BodySkillsInlineTitle = styled.span`
+  color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+`;
+
+const fillHtml = keyframes`
+  0% { width:0%; }
+  100% { width:90%; }
+`;
+
+const fillCss = keyframes`
+  0% { width:0%; }
+  100% { width:85%; }
+`;
+
+const fillJs = keyframes`
+  0% { width:0%; }
+  100% { width:45%; }
+`;
+
+const fillTs = keyframes`
+  0% { width:0%; }
+  100% { width:40%; }
+`;
+
+const fillReact = keyframes`
+  0% { width:0%; }
+  100% { width:50%; }
+`;
+
+const BodySkillsInlineProgressBarContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const BodySkillsInlineProgressBar = styled.div`
+  height: 1vh;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  background-color: #3d5980;
+  border-radius: 10px;
+`;
+
+const BodySkillsInlineHtmlProgress = styled.div`
+  position: relative;
+  height: 100%;
+  background-color: #cfd6dd;
+  transition: width 0.5s ease-out;
+  border-radius: 10px 0px 0px 10px;
+  animation: ${fillHtml} 1s ease-out 0s;
+  animation-fill-mode: forwards;
+  width: 0%;
+`;
+
+const BodySkillsInlineCssProgress = styled.div`
+  position: relative;
+  height: 100%;
+  background-color: #cfd6dd;
+  transition: width 0.5s ease-out;
+  border-radius: 10px 0px 0px 10px;
+  animation: ${fillCss} 1s ease-out 0s;
+  animation-fill-mode: forwards;
+  width: 0%;
+`;
+
+const BodySkillsInlineJsProgress = styled.div`
+  position: relative;
+  height: 100%;
+  background-color: #cfd6dd;
+  transition: width 0.5s ease-out;
+  border-radius: 10px 0px 0px 10px;
+  animation: ${fillJs} 1s ease-out 0s;
+  animation-fill-mode: forwards;
+  width: 0%;
+`;
+
+const BodySkillsInlineTsProgress = styled.div`
+  position: relative;
+  height: 100%;
+  background-color: #cfd6dd;
+  transition: width 0.5s ease-out;
+  border-radius: 10px 0px 0px 10px;
+  animation: ${fillTs} 1s ease-out 0s;
+  animation-fill-mode: forwards;
+  width: 0%;
+`;
+
+const BodySkillsInlineReactProgress = styled.div`
+  position: relative;
+  height: 100%;
+  background-color: #cfd6dd;
+  transition: width 0.5s ease-out;
+  border-radius: 10px 0px 0px 10px;
+  animation: ${fillReact} 1s ease-out 0s;
+  animation-fill-mode: forwards;
+  width: 0%;
+`;
+
+const BodySkillsInlineProgressGlow = styled.div`
+  width: 60px;
+  max-width: 100%;
+  height: 100%;
+  float: right;
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: relative;
+    border-radius: 0px 2px 2px 0px;
+  }
+  &::before {
+    background: transparent;
+    height: 100%;
+    box-shadow: 0px 0px 10px #cfd6dd, 0px 0px 10px #04bfff;
+    z-index: -5;
+  }
+  &::after {
+    background: linear-gradient(to right, transition 0%, transparent 100%);
+    height: calc(100% + 10px + 10px);
+    width: calc(100% + 10px);
+    top: (-10px);
+    left: (-10px);
+    z-index: -3;
+  }
 `;
 
 const BodySkillsInlineImgContainer = styled.div`
@@ -393,7 +550,42 @@ const BodySkillsInlineHtmlImg = styled.div`
   background-repeat: no-repeat;
   width: 15vw;
   height: 22vh;
-  /* padding: 11rem; */
+`;
+
+const BodySkillsInlineCssImg = styled.div`
+  background: url(${csslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 15vw;
+  height: 22vh;
+`;
+
+const BodySkillsInlineJsImg = styled.div`
+  background: url(${jslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 15vw;
+  height: 22vh;
+`;
+
+const BodySkillsInlineTsImg = styled.div`
+  background: url(${tslogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 15vw;
+  height: 22vh;
+`;
+
+const BodySkillsInlineReactImg = styled.div`
+  background: url(${reactlogo});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 15vw;
+  height: 24vh;
 `;
 
 const BodySkillsInlineChartContainer = styled.div`
@@ -432,71 +624,133 @@ function Skills() {
                     <div className="content">
                       <SkillName>
                         <span>Html</span>
+                        <BodySkillsNameContainer>
+                          <BodySkillsInlineHtmlImg />
+                        </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
                         <span>Css</span>
+                        <BodySkillsNameContainer>
+                          <BodySkillsInlineCssImg />
+                        </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
                         <span>JavaScript</span>
+                        <BodySkillsNameContainer>
+                          <BodySkillsInlineJsImg />
+                        </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
                         <span>TypeScript</span>
+                        <BodySkillsNameContainer>
+                          <BodySkillsInlineTsImg />
+                        </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
                         <span>React</span>
+                        <BodySkillsNameContainer>
+                          <BodySkillsInlineReactImg />
+                        </BodySkillsNameContainer>
                       </SkillName>
                     </div>
                   </BodySkillsCircleGlow>
                 </BodySkillsCircleWrapper>
               ) : (
                 <BodySkillsInlineWrapper>
-                  <BodySkillsInlineTitleContainer>
-                    <BodySkillsInlineTitle>Html</BodySkillsInlineTitle>
-                  </BodySkillsInlineTitleContainer>
-                  <BodySkillsInlineTitleContainer>
-                    <BodySkillsInlineTitle>Css</BodySkillsInlineTitle>
-                  </BodySkillsInlineTitleContainer>
+                  <BodySkillsCircleCloseBtnContainer>
+                    <BodySkillsCircleCloseBtn
+                      className="close-button"
+                      onClick={() => {
+                        setIsOpen(!IsOpen);
+                      }}
+                    >
+                      <div className="in">
+                        <div className="close-button-block"></div>
+                        <div className="close-button-block"></div>
+                      </div>
+                      <div className="out">
+                        <div className="close-button-block"></div>
+                        <div className="close-button-block"></div>
+                      </div>
+                    </BodySkillsCircleCloseBtn>
+                  </BodySkillsCircleCloseBtnContainer>
+                  <BodySkillsInlineContainer>
+                    <BodySkillsInlinePercentContainer>
+                      <BodySkillsInlineTitle>Html</BodySkillsInlineTitle>
+                      <BodySkillsInlinePercent>95%</BodySkillsInlinePercent>
+                    </BodySkillsInlinePercentContainer>
+                    <BodySkillsInlineProgressBarContainer>
+                      <BodySkillsInlineProgressBar>
+                        <BodySkillsInlineHtmlProgress>
+                          <BodySkillsInlineProgressGlow />
+                        </BodySkillsInlineHtmlProgress>
+                      </BodySkillsInlineProgressBar>
+                    </BodySkillsInlineProgressBarContainer>
+                  </BodySkillsInlineContainer>
+
+                  {/* Css */}
+                  <BodySkillsInlineContainer>
+                    <BodySkillsInlinePercentContainer>
+                      <BodySkillsInlineTitle>Css</BodySkillsInlineTitle>
+                      <BodySkillsInlinePercent>90%</BodySkillsInlinePercent>
+                    </BodySkillsInlinePercentContainer>
+                    <BodySkillsInlineProgressBarContainer>
+                      <BodySkillsInlineProgressBar>
+                        <BodySkillsInlineCssProgress>
+                          <BodySkillsInlineProgressGlow />
+                        </BodySkillsInlineCssProgress>
+                      </BodySkillsInlineProgressBar>
+                    </BodySkillsInlineProgressBarContainer>
+                  </BodySkillsInlineContainer>
+
+                  {/* Js */}
+                  <BodySkillsInlineContainer>
+                    <BodySkillsInlinePercentContainer>
+                      <BodySkillsInlineTitle>JavaScript</BodySkillsInlineTitle>
+                      <BodySkillsInlinePercent>45%</BodySkillsInlinePercent>
+                    </BodySkillsInlinePercentContainer>
+                    <BodySkillsInlineProgressBarContainer>
+                      <BodySkillsInlineProgressBar>
+                        <BodySkillsInlineJsProgress>
+                          <BodySkillsInlineProgressGlow />
+                        </BodySkillsInlineJsProgress>
+                      </BodySkillsInlineProgressBar>
+                    </BodySkillsInlineProgressBarContainer>
+                  </BodySkillsInlineContainer>
+
+                  {/* Ts */}
+                  <BodySkillsInlineContainer>
+                    <BodySkillsInlinePercentContainer>
+                      <BodySkillsInlineTitle>TypeScript</BodySkillsInlineTitle>
+                      <BodySkillsInlinePercent>40%</BodySkillsInlinePercent>
+                    </BodySkillsInlinePercentContainer>
+                    <BodySkillsInlineProgressBarContainer>
+                      <BodySkillsInlineProgressBar>
+                        <BodySkillsInlineTsProgress>
+                          <BodySkillsInlineProgressGlow />
+                        </BodySkillsInlineTsProgress>
+                      </BodySkillsInlineProgressBar>
+                    </BodySkillsInlineProgressBarContainer>
+                  </BodySkillsInlineContainer>
+
+                  {/* React */}
+                  <BodySkillsInlineContainer>
+                    <BodySkillsInlinePercentContainer>
+                      <BodySkillsInlineTitle>React</BodySkillsInlineTitle>
+                      <BodySkillsInlinePercent>50%</BodySkillsInlinePercent>
+                    </BodySkillsInlinePercentContainer>
+                    <BodySkillsInlineProgressBarContainer>
+                      <BodySkillsInlineProgressBar>
+                        <BodySkillsInlineReactProgress>
+                          <BodySkillsInlineProgressGlow />
+                        </BodySkillsInlineReactProgress>
+                      </BodySkillsInlineProgressBar>
+                    </BodySkillsInlineProgressBarContainer>
+                  </BodySkillsInlineContainer>
                 </BodySkillsInlineWrapper>
               )}
             </BodySkillsCircle>
           </BodySkillsCircleContainer>
-          {/* <BodySkillsContainerInlineLeftIconBoxTopDiv>
-                    <BodySkillsContainerInlineTopHtmlIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkillsContainerInlineTopCssIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkillsContainerInlineTopJsIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                  </BodySkillsContainerInlineLeftIconBoxTopDiv>
-                  <BodySkillsContainerInlineLeftIconBoxBottomDiv>
-                    <BodySkillsContainerInlineBottomSassIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkillsContainerInlineBottomReactIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkillsContainerInlineBottomTypeScriptIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                  </BodySkillsContainerInlineLeftIconBoxBottomDiv> */}
-
-          {/* <BodySkillsContainerInlineRightIconBox>
-                  <BodySkillsContainerInlineSubTitle>
-                    Version Control
-                  </BodySkillsContainerInlineSubTitle>
-
-                  <BodySkillsContainerInlineRightIconBoxTopDiv>
-                    <BodySkillsContainerInlineGitIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                    <BodySkillsContainerInlineGithubIcon
-                      whileHover={{ y: "-20px" }}
-                    />
-                  </BodySkillsContainerInlineRightIconBoxTopDiv>
-                </BodySkillsContainerInlineRightIconBox> */}
         </BodySkillsContainer>
       </BodySkillsContainerInlineIconBox>
 

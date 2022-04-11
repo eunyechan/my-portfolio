@@ -95,8 +95,6 @@ const BodyContainerAboutMeImgCard = styled(motion.div)`
   transform-style: preserve-3d;
   transform: translateZ(-140px);
   transition: transform 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
-  cursor: pointer;
-  margin-top: -50px;
   .card_front,
   .card_right {
     position: absolute;
@@ -200,7 +198,7 @@ const BodyContainerAboutMeImgRightLi = styled.li`
 
 const BodyContainerAboutMeUlBox = styled(motion.div)`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: left;

@@ -61,9 +61,7 @@ body {
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.2;
-  overflow-x: hidden;
-  
-  
+  /* overflow-x: hidden; */
 }
 a {
   text-decoration:none;
