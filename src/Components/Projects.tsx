@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   motion,
   useAnimation,
@@ -34,87 +34,136 @@ const BodyProjectsOverlay = styled.div`
   width: 100%;
   height: 400vh;
   margin: 10px;
-  border: 4px solid #ccc;
   z-index: 4;
-  background: white;
 `;
 
-const BodyProjectsOverlayInlineBox = styled.div`
+const BodyProjectsOverlayInlineBox = styled(motion.div)`
   font-weight: bold;
-  /* width: 100%; */
-  /* height: 100%; */
+  width: 100%;
+  /* height: 10vh; */
   top: 0%;
-  z-index: 5;
+  z-index: 6;
+  background-color: transparent;
   position: sticky;
   position: -webkit-sticky;
 `;
 
-const BodyProjectsTextWrapper = styled.div`
+const BodyProjectsTextWrapper = styled(motion.div)`
   position: relative;
   text-align: center;
   font-weight: bold;
   font-family: "Yanone Kaffeesatz", "Lucida Grande", Lucida, Verdana, sans-serif;
   margin: 0 auto;
   width: 100%;
-  padding: 7em 0;
+  padding: 2em 0;
   border-radius: 4px;
   box-shadow: inset 0 -1px 0 hsla(0, 0%, 0%, 0.2),
     0 21px 8px -12px rgba(0, 0, 0, 0.2);
   perspective: 350;
-  &:focus {
-    outline: none;
-  }
+
   .first-title {
-    font-size: 10em;
+    /* -webkit-text-stroke: 1px white; */
+    font-size: 5em;
     margin: 0;
-    color: #fff;
+    /* color: #f1efef; */
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    text-shadow: rgba(0, 0, 0, 0.1) 0 20px 80px;
+    /* text-shadow: rgba(0, 0, 0, 0.1) 0 20px 80px; */
     -webkit-transition: -webkit-transform 0.1s ease-in; /* only WebKit because of performance */
     &:hover {
-      color: hsla(0, 0%, 0%, 0);
-      transform: rotate(6.5deg) rotateX(28deg) skewX(-4deg);
-      -webkit-transition: -webkit-transform 0.1s ease-out; /* only WebKit because of performance */
+      /* color: hsla(0, 0%, 0%, 1); */
+      transform: rotate(6.5deg) rotateX(28deg) skewX(-3deg);
+      -webkit-transition: -webkit-transform 0.3s ease-out; /* only WebKit because of performance */
     }
   }
   &:hover {
-    span {
-      transform: rotate(6.5deg) rotateX(28deg) skewX(-4deg);
-      -webkit-transition: -webkit-transform 0.1s ease-out;
+    p {
+      transform: rotate(6.5deg) rotateX(28deg) skewX(-3deg);
+      -webkit-transition: -webkit-transform 0.3s ease-out;
     }
     p:nth-child(1) {
-      font-size: 9em;
-      text-shadow: #fff 0 0 10px, #fff 0 4px 3px, #ddd 0 9px 3px,
-        #ccc 0 12px 1px, rgba(0, 0, 0, 0.2) 0 14px 5px,
-        rgba(0, 0, 0, 0.1) 0 20px 10px, rgba(0, 0, 100, 0.2) 0 15px 80px;
+      font-size: 5em;
+      text-shadow: #ffffff 0 0 10px, #ffffff 0 4px 3px, #dad7d7 0 9px 3px,
+        #ffffff 0 12px 1px, rgba(238, 238, 238, 0.2) 0 14px 5px,
+        rgba(243, 239, 239, 0.1) 0 20px 10px, rgba(0, 0, 100, 0.2) 0 15px 80px;
+      text-indent: 0.3em;
+    }
+    p:nth-child(2) {
+      font-size: 5em;
+      text-shadow: #ffffff 0 0 10px, #ffffff 0 4px 3px, #dad7d7 0 9px 3px,
+        #ffffff 0 12px 1px, rgba(238, 238, 238, 0.2) 0 14px 5px,
+        rgba(243, 239, 239, 0.1) 0 20px 10px, rgba(0, 0, 100, 0.2) 0 15px 80px;
       text-indent: 0.3em;
     }
   }
 `;
 
-const BodyProjectsOverlayInlineText = styled.span`
-  /* margin: auto 0 auto 0; */
-  /* line-height: 280px; */
-  font-size: 2em;
-
-  /* top: 25%; */
-
-  text-align: center;
-
-  color: white;
-  transform: rotate(90deg);
+const ProjectListInline = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000000;
+  width: 100%;
+  z-index: 4;
+  background-color: transparent;
+  border: 1px solid white;
+  margin-top: 6em;
 `;
 
-const BodyProjectsFixedTitleWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: url(${csslogo});
-  /* opacity: 0.2; */
-  background-repeat: no-repeat; /* 배경이미지X */
-  background-size: cover; /* 요소를 비율에 맞게 커버 */
-  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
-  background-attachment: fixed; /* 스크롤바 움직일때 이미지가 따라다님 */
+const ProjectListInlineNumberContainer = styled.div`
+  background: radial-gradient(#272727, #1b1b1b);
+  display: flex;
+  grid-template-areas: "overlap";
+  place-content: center;
+  text-transform: uppercase;
+`;
+
+const tipsy = keyframes`
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+`;
+
+const ProjectListInlineNumber = styled.div`
+  color: #fffbf1;
+  text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
+  font-size: 5em;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: -3px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  &::before,
+  &::after {
+    content: "";
+    padding: 0.9em 0.4em;
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    top: 50%;
+    display: block;
+    border: 15px solid red;
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    animation: 10s infinite alternate ease-in-out ${tipsy};
+  }
+  &::before {
+    border-color: #d9524a #d9524a rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    z-index: -1;
+  }
+  &::after {
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #d9524a #d9524a;
+    box-shadow: 25px 25px 25px rgba(46, 46, 49, 0.8);
+  }
+`;
+
+const ProjectListInlineImage = styled.div`
+  display: flex;
 `;
 
 const BodyProjectsTitle = styled(motion.span)`
@@ -312,6 +361,35 @@ const BodyProjectImagePrevSlideButton = styled(motion.button)`
   }
 `;
 
+const TextBoxShadowVariants = {
+  scrollbox: {
+    boxShadow:
+      "inset 0 -1px 0 hsla(0, 0%, 0%, 1) 0 21px 8px -12px rgba(0, 0, 0, 1)",
+    background: "transparent",
+  },
+
+  topbox: {
+    boxShadow:
+      "inset 0 -1px 0 hsla(0, 0%, 0%, 1) 0 21px 8px -12px rgba(255, 255, 255, 1)",
+    border: "2px solid black",
+    background: "rgba(0, 0, 0, 1)",
+  },
+};
+
+const TextBorderVariants = {
+  scroll: {
+    textShadow:
+      "-1px -1px 0 #000 1px -1px 0 #000 -1px 1px 0 #000 1px 1px 0 #000",
+    color: "black",
+  },
+
+  top: {
+    textShadow:
+      "-1px -1px 0 #fff 1px -1px 0 #fff -1px 1px 0 #fff 1px 1px 0 #fff",
+    color: "white",
+  },
+};
+
 const ImageSliderVariants = {
   next: (direction: number) => {
     return {
@@ -340,6 +418,21 @@ function Projects() {
   const [[netfilxpage, netfilxdirection], setNetfilxPage] = useState([0, 0]);
 
   const swipeConfidenceValue = 10000;
+
+  const textAnimation = useAnimation();
+  const { scrollY } = useViewportScroll();
+
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (2050 < scrollY.get() && scrollY.get() < 2350) {
+        textAnimation.start("scroll");
+        textAnimation.start("scrollbox");
+      } else if (2360 < scrollY.get() && scrollY.get() < 5000) {
+        textAnimation.start("top");
+        textAnimation.start("topbox");
+      }
+    });
+  }, [scrollY, textAnimation]);
 
   // const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
   // const youtubeImageIndex = wrap(0, youtubeImages.length, youtubepage);
@@ -372,21 +465,35 @@ function Projects() {
   };
   return (
     <>
-      <BodyProjectsTitleBox>
-        <BodyProjectsTitle>Project</BodyProjectsTitle>
-      </BodyProjectsTitleBox>
-
       <BodyProjectsOverlay>
-        <BodyProjectsOverlayInlineBox>
-          <BodyProjectsTextWrapper>
+        <BodyProjectsOverlayInlineBox
+          variants={TextBorderVariants}
+          animate={textAnimation}
+          initial="scroll"
+        >
+          <BodyProjectsTextWrapper
+            variants={TextBoxShadowVariants}
+            animate={textAnimation}
+            initial="scrollbox"
+          >
             <p className="first-title">PROJECT</p>
+            <p className="first-title">LIST</p>
           </BodyProjectsTextWrapper>
         </BodyProjectsOverlayInlineBox>
+        <ProjectListInline>
+          <ProjectListInlineNumberContainer>
+            <ProjectListInlineNumber className="bg">01</ProjectListInlineNumber>
+            <ProjectListInlineNumber className="fg">01</ProjectListInlineNumber>
+          </ProjectListInlineNumberContainer>
+          {/* <ProjectListInlineImage /> */}
+        </ProjectListInline>
       </BodyProjectsOverlay>
-      <BodyProjectsOverlayInlineText>PROJECT</BodyProjectsOverlayInlineText>
 
       {/* <BodyProjectsFixedTitleWrapper></BodyProjectsFixedTitleWrapper> */}
 
+      <BodyProjectsTitleBox>
+        <BodyProjectsTitle>Project</BodyProjectsTitle>
+      </BodyProjectsTitleBox>
       <BodyTotalProjectsBox>
         {/* vanillaJs Project */}
         <BodyTotalProjectsBoxInlineContainer>

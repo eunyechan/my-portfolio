@@ -19,13 +19,13 @@ const Container = styled.div`
   padding: 0;
   margin: 0;
   width: 100%;
-  /* overflow: hidden; */
-  background-color: rgba(0, 0, 0, 0.9);
+  /* background-color: rgba(0, 0, 0, 0.9); */
 `;
 
 const ContainerInline = styled.div`
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
   @media screen and (max-width: 600px) {
     flex-direction: column;
     overflow: hidden;
@@ -40,7 +40,8 @@ const ContainerInlineBox = styled.div`
 
 const HeaderNav = styled(motion.nav)`
   position: fixed;
-  display: flex;
+  display: none;
+  opacity: 0;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -58,6 +59,149 @@ const HeaderNav = styled(motion.nav)`
     align-items: flex-start;
     padding: 1rem;
     ckdrop-filter: blur(5px);
+  }
+`;
+
+const ColumnHeaderNav = styled(motion.div)`
+  position: fixed;
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  border: 2px solid white;
+  align-items: center;
+  /* width: 100%; */
+  font-size: 14px;
+  border: 1px solid white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  backdrop-filter: blur(5px);
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0%;
+  top: 0%;
+  /* transform-origin: (-50%, -50%); */
+  transform: rotate(90deg) translateX(40%) translateY(190%);
+  @media screen and (max-width: 600px) {
+    display: flex;
+    overflow: hidden;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 1rem;
+    ckdrop-filter: blur(5px);
+  }
+`;
+
+const ColumnHomeButtonBox = styled.div`
+  height: 100%;
+  margin: 20px 50px;
+`;
+
+const ColumnHomeButton = styled.button`
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 15px;
+  cursor: pointer;
+  color: white;
+  border: 4px solid white;
+  border-radius: 9999px;
+  transform: rotate(-90deg);
+`;
+
+const ColumnHeaderUl = styled.ul<IInerScreen>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    display: ${(props) => (props.isMenu ? "flex" : "none")};
+    opacity: ${(props) => (props.isMenu ? 1 : 0)};
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    width: 100%;
+  }
+`;
+
+const ColumnHeaderList = styled(motion.li)`
+  /* margin: 20px 50px 40px 20px; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media screen and (max-width: 600px) {
+    margin: 5px 30px;
+  }
+`;
+
+const ColumnHeaderListNumber = styled.span`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1em;
+  margin-bottom: 0.3em;
+  transform: rotate(-90deg) translate(0%, -200%);
+  /* background-color: white; */
+  border: 1px solid white;
+`;
+
+const ColumnHeaderListButton = styled(motion.button)`
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  padding: 0.5em 1.2em;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid white;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+  background: 150ms cubic-bezier(0, 0, 0.58, 1);
+  transform: rotate(-90deg);
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
+      0 0.625em 0 0 rgba(255, 255, 255, 0.8);
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    box-shadow: 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+  &:hover {
+    background: transparent;
+    transform: rotate(-90deg) translate(0, 0.25em);
+    &::before {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1),
+        0 0.5em 0 0 rgba(255, 255, 255, 0.8);
+      transform: translate3d(0, 0.5em, -1em);
+    }
+  }
+  &:active {
+    background: transparent;
+    transform: rotate(-90deg) translate(0em, 0.75em);
+    &::before {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
+        0 0 rgba(255, 255, 255, 0.8);
+      transform: translate3d(0, 0, -1em);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
   }
 `;
 
@@ -368,9 +512,8 @@ const BodyprojectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 4rem;
-  padding: 4rem 4rem;
-  background-color: transparent;
+  padding: 0 4rem;
+  background-color: rgba(0, 0, 0, 0.9);
   @media screen and (max-width: 600px) {
     padding: 1rem 2rem;
   }
@@ -381,13 +524,14 @@ const BodyprojectsContainer = styled.div`
 const BodyContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.9);
 `;
 
 const BodyContactSkilsWrapper = styled(motion.div)`
   width: 100%;
   height: 100vh;
   display: flex;
+  background-color: rgba(0, 0, 0, 0.9);
 `;
 
 // Body Contact Big
@@ -528,6 +672,46 @@ const BodySkilsCircleGlowVariants = {
   },
 };
 
+const NavAnimationVariants = {
+  scroll: {
+    display: "flex",
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+
+  top: {
+    display: "none",
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
+const NavAnimationColumnsVariants = {
+  columnscroll: {
+    display: "flex",
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+
+  columntop: {
+    display: "none",
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+  },
+};
+
 const BodySkilsCircleInlineVariants = {
   circleinlineopen: {
     width: "100%",
@@ -589,10 +773,12 @@ function Home() {
 
   useEffect(() => {
     scrollY.onChange(() => {
-      if (scrollY.get() > 80) {
+      if (80 < scrollY.get() && scrollY.get() < 2350) {
         navAnimation.start("scroll");
-      } else {
+      } else if (2350 < scrollY.get() && scrollY.get() < 4000) {
         navAnimation.start("top");
+      } else {
+        navAnimation.start("scroll");
       }
     });
   }, [scrollY, navAnimation]);
@@ -664,7 +850,12 @@ function Home() {
 
   return (
     <Container>
-      <HeaderNav>
+      <HeaderNav
+        variants={NavAnimationVariants}
+        animate={navAnimation}
+        initial="top"
+        whileInView="scroll"
+      >
         <HeaderMenubar
           onClick={() => setIsMenu(!isMenu)}
           style={
@@ -711,6 +902,52 @@ function Home() {
           </HeaderList>
         </HeaderUl>
       </HeaderNav>
+
+      {/* 세로해더 */}
+      <ColumnHeaderNav>
+        <HeaderMenubar
+          onClick={() => setIsMenu(!isMenu)}
+          style={
+            isMenu
+              ? { width: "", animationDuration: "5s" }
+              : { width: "100%", animationDuration: "45000ms" }
+          }
+        >
+          <FontAwesomeIcon
+            style={{ fontSize: "25px", color: "white" }}
+            icon={isMenu ? faClose : faBars}
+          />
+          <HeaderMenubarTitle>
+            <span>{isMenu ? "" : "Y.C Portfolio"}</span>
+          </HeaderMenubarTitle>
+        </HeaderMenubar>
+        <ColumnHomeButtonBox>
+          <ColumnHomeButton onClick={onHomeClick}>Y.C</ColumnHomeButton>
+        </ColumnHomeButtonBox>
+        <ColumnHeaderUl isMenu={isMenu}>
+          <ColumnHeaderList>
+            <ColumnHeaderListButton onClick={onAboutMeClick}>
+              <span>AboutMe</span>
+            </ColumnHeaderListButton>
+          </ColumnHeaderList>
+          <ColumnHeaderList>
+            <ColumnHeaderListButton onClick={onSkilsClick}>
+              <span>Skils</span>
+            </ColumnHeaderListButton>
+          </ColumnHeaderList>
+          <ColumnHeaderList>
+            <ColumnHeaderListButton onClick={onProjectClick}>
+              <span>Projects</span>
+            </ColumnHeaderListButton>
+          </ColumnHeaderList>
+          <ColumnHeaderList>
+            <ColumnHeaderListButton onClick={onContactClick}>
+              <span>Contact</span>
+            </ColumnHeaderListButton>
+          </ColumnHeaderList>
+        </ColumnHeaderUl>
+      </ColumnHeaderNav>
+
       <ContainerInline>
         <ContainerInlineBox ref={HomeRef}>
           <MainContainer>

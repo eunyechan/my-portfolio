@@ -10,7 +10,7 @@ import reactlogo from "../images/imagesLogo/react_logo.png";
 const BodySkillsContainerInlineBox = styled(motion.div)`
   width: 100%;
   height: 100%;
-  margin-top: 7rem;
+  /* margin-top: 7rem; */
   background-color: transparent;
 `;
 
@@ -239,7 +239,7 @@ const BodySkillsCircle = styled.div`
   width: 100%;
   height: 100%;
   color: white;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 `;
 
 const BodySkillsCircleWrapper = styled.div`
@@ -247,10 +247,10 @@ const BodySkillsCircleWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 `;
 
-const animate = keyframes`
+const animatetop = keyframes`
   0% {
   transform:scaleX(0);
   transform-origin: left;
@@ -266,7 +266,75 @@ const animate = keyframes`
   transform-origin: right;
     
   }
-  
+  100%
+  {
+    transform:scaleX(0);
+  transform-origin: right;
+    
+  }
+`;
+const animateright = keyframes`
+  0% {
+  transform:scaleX(0);
+  transform-origin: right;
+  }
+  50%
+  {
+    transform:scaleX(1);
+  transform-origin: right;
+  }
+  50.1%
+  {
+    transform:scaleX(1);
+  transform-origin: left;
+    
+  }
+  100%
+  {
+    transform:scaleX(0);
+  transform-origin: left;
+    
+  }
+`;
+const animatebottom = keyframes`
+  0% {
+  transform:scaleX(0);
+  transform-origin: left;
+  }
+  50%
+  {
+    transform:scaleX(1);
+  transform-origin: left;
+  }
+  50.1%
+  {
+    transform:scaleX(1);
+  transform-origin: right;
+    
+  }
+  100%
+  {
+    transform:scaleX(0);
+  transform-origin: right;
+    
+  }
+`;
+const animateleft = keyframes`
+  0% {
+  transform:scaleX(0);
+  transform-origin: left;
+  }
+  50%
+  {
+    transform:scaleX(1);
+  transform-origin: left;
+  }
+  50.1%
+  {
+    transform:scaleX(1);
+  transform-origin: right;
+    
+  }
   100%
   {
     transform:scaleX(0);
@@ -276,7 +344,7 @@ const animate = keyframes`
 `;
 
 const BodySkillsCircleGlow = styled(motion.div)`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   background: #1a1b22a6;
@@ -286,7 +354,7 @@ const BodySkillsCircleGlow = styled(motion.div)`
   color: white;
   padding: 20px;
   border: 2px solid #0f3535;
-  border-radius: 10px;
+  border-radius: 5px;
   &::before {
     content: "";
     position: absolute;
@@ -318,7 +386,7 @@ const BodySkillsCircleGlow = styled(motion.div)`
     box-shadow: 0 5px 10px rgba(9, 0, 0, 0.5);
   }
 
-  /* span {
+  p {
     position: absolute;
     top: 0;
     left: 0;
@@ -327,26 +395,41 @@ const BodySkillsCircleGlow = styled(motion.div)`
     display: block;
     box-sizing: border-box;
   }
-  span:nth-child(1) {
+  p:nth-child(1) {
     transform: rotate(0deg);
   }
-  span:nth-child(2) {
-    transform: rotate(90deg);
+  p:nth-child(2) {
+    transform-origin: right top;
+    transform: rotate(-90deg);
+    margin-left: -2px;
   }
-  span:nth-child(3) {
+  p:nth-child(3) {
     transform: rotate(180deg);
   }
-  span:nth-child(4) {
-    transform: rotate(270deg);
+  p:nth-child(4) {
+    transform-origin: left bottom;
+    transform: rotate(-270deg) translateY(100%) scaleX(-1);
+    margin-left: 2px;
   }
-  span::before {
+  p::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 2px;
     background: #50dfdb;
-    animation: ${animate} 4s linear;
-  } */
+  }
+  p:nth-child(1)::before {
+    animation: ${animatetop} 4s normal;
+  }
+  p:nth-child(2)::before {
+    animation: ${animateright} 4.5s normal;
+  }
+  p:nth-child(3)::before {
+    animation: ${animatebottom} 4s normal;
+  }
+  p:nth-child(4)::before {
+    animation: ${animateleft} 4.5s normal;
+  }
 `;
 
 const BodySkillsNameContainer = styled.div`
@@ -588,12 +671,6 @@ const BodySkillsInlineReactImg = styled.div`
   height: 24vh;
 `;
 
-const BodySkillsInlineChartContainer = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-`;
-
 function Skills() {
   const [IsOpen, setIsOpen] = useState(false);
 
@@ -612,42 +689,46 @@ function Skills() {
               {!IsOpen ? (
                 <BodySkillsCircleWrapper>
                   <BodySkillsCircleGlow>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
                     <BodySkillsCircleOpenBtnContainer>
                       <BodySkillsCircleOpenBtn
                         onClick={() => {
                           setIsOpen(!IsOpen);
                         }}
                       >
-                        <span>Skills Chart</span>
+                        <h4>Skills Chart</h4>
                       </BodySkillsCircleOpenBtn>
                     </BodySkillsCircleOpenBtnContainer>
                     <div className="content">
                       <SkillName>
-                        <span>Html</span>
+                        <h4>Html</h4>
                         <BodySkillsNameContainer>
                           <BodySkillsInlineHtmlImg />
                         </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
-                        <span>Css</span>
+                        <h4>Css</h4>
                         <BodySkillsNameContainer>
                           <BodySkillsInlineCssImg />
                         </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
-                        <span>JavaScript</span>
+                        <h4>JavaScript</h4>
                         <BodySkillsNameContainer>
                           <BodySkillsInlineJsImg />
                         </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
-                        <span>TypeScript</span>
+                        <h4>TypeScript</h4>
                         <BodySkillsNameContainer>
                           <BodySkillsInlineTsImg />
                         </BodySkillsNameContainer>
                       </SkillName>
                       <SkillName>
-                        <span>React</span>
+                        <h4>React</h4>
                         <BodySkillsNameContainer>
                           <BodySkillsInlineReactImg />
                         </BodySkillsNameContainer>

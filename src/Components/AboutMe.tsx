@@ -23,7 +23,7 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 8rem 6rem 0 6rem;
+  padding: 8rem 50px 0 50px;
   @media screen and (max-width: 600px) {
     padding: 1rem 4rem;
   }
@@ -38,8 +38,6 @@ const BodyContainerAboutMeTitleBox = styled.div`
   font-size: 60px;
   font-weight: bolder;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
   letter-spacing: 5px;
   z-index: 1;
 `;
@@ -67,7 +65,6 @@ const BodyContainerAboutMe = styled(motion.div)`
   width: 100%;
   height: 100%;
   color: white;
-  padding-top: 40px;
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
