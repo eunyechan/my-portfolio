@@ -14,6 +14,104 @@ import {
 } from "../data/imageData";
 import csslogo from "../images/imagesLogo/backgroundimg.jpg";
 import { useEffect, useRef, useState } from "react";
+import { wrap } from "popmotion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+
+const HeaderMenubar = styled(motion.div)`
+  display: none;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+const ColumnHeaderListInputButton = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: rotate(-90deg);
+  padding: 1em;
+
+  span {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-right: 2px;
+    text-align: center;
+  }
+
+  .hexagon-wrapper {
+    display: flex;
+    margin: auto;
+    text-align: initial;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+
+  .hexagon {
+    position: relative;
+    width: 46%;
+    height: 80%;
+    margin: auto;
+    color: white;
+    background: linear-gradient(-180deg, white, #f3c2cb);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    transition: 0.5s;
+  }
+
+  .hexagon:before,
+  .hexagon:after {
+    position: absolute;
+    content: "";
+    background: inherit;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    transition: 0.5s;
+    transform-origin: center;
+  }
+  .hexagon:before {
+    transform: rotateZ(60deg);
+  }
+  .hexagon:after {
+    transform: rotateZ(-60deg);
+  }
+  .hexagon:hover {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+  .hexagon:hover:before {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+  .hexagon:hover:after {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+`;
+
+const HeaderMenubarTitle = styled.div`
+  display: none;
+  @media screen and (max-width: 600px) {
+    display: flex;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;
 
 const BodyProjectsTitleBox = styled.div`
   width: 100%;
@@ -35,6 +133,7 @@ const BodyProjectsOverlay = styled.div`
   height: 400vh;
   margin: 10px;
   z-index: 4;
+  padding: 0 2rem 0 2rem;
 `;
 
 const BodyProjectsOverlayInlineBox = styled(motion.div)`
@@ -106,64 +205,37 @@ const ProjectListInline = styled.div`
   width: 100%;
   z-index: 4;
   background-color: transparent;
-  border: 1px solid white;
   margin-top: 6em;
 `;
 
 const ProjectListInlineNumberContainer = styled.div`
-  background: radial-gradient(#272727, #1b1b1b);
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   grid-template-areas: "overlap";
   place-content: center;
   text-transform: uppercase;
-`;
-
-const tipsy = keyframes`
-  0% {
-    transform: translateX(-50%) translateY(-50%) rotate(0deg);
-  }
-  100% {
-    transform: translateX(-50%) translateY(-50%) rotate(360deg);
-  }
+  padding-top: 8rem;
 `;
 
 const ProjectListInlineNumber = styled.div`
+  display: flex;
   color: #fffbf1;
-  text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
   font-size: 5em;
   font-weight: bold;
-  text-decoration: none;
-  letter-spacing: -3px;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  &::before,
-  &::after {
-    content: "";
-    padding: 0.9em 0.4em;
-    position: absolute;
-    left: 50%;
-    width: 100%;
-    top: 50%;
-    display: block;
-    border: 15px solid red;
-    transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    animation: 10s infinite alternate ease-in-out ${tipsy};
-  }
-  &::before {
-    border-color: #d9524a #d9524a rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
-    z-index: -1;
-  }
-  &::after {
-    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #d9524a #d9524a;
-    box-shadow: 25px 25px 25px rgba(46, 46, 49, 0.8);
-  }
+`;
+
+const ProjectListInlineStickyImage = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
 `;
 
 const ProjectListInlineImage = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
 `;
 
 const BodyProjectsTitle = styled(motion.span)`
@@ -205,25 +277,27 @@ const BodyTotalProjectsBoxInlineContainer = styled.div`
 `;
 
 const BodyProjectsImageDetailTitleBox = styled.div`
-  border: 5px solid black;
+  border: 2px solid white;
   width: 100%;
   display: flex;
-  padding: 8px;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
+  flex-direction: column;
   text-align: center;
+  justify-content: space-between;
   border-radius: 99px;
-  background-color: #f1eaea;
   letter-spacing: 0.3rem;
 `;
 
 const BodyProjectsImageDetailTitle = styled.span`
   width: 100%;
   height: 100%;
-  font-size: 25px;
+  font-size: 4em;
   font-weight: bold;
-  color: black;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: white;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  span {
+    padding: 20px;
+  }
 `;
 
 const BodyTotalProjectsBoxInline = styled.div`
@@ -270,7 +344,8 @@ const BodyProjectsDetailExplainTitle = styled.span`
 `;
 
 const BodyProjectsImageContainer = styled.div`
-  width: 100%;
+  width: 50vw;
+  height: 50vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -278,6 +353,8 @@ const BodyProjectsImageContainer = styled.div`
   background-color: #eee;
   border-radius: 10px;
   max-height: 60vh;
+  border: 2px solid white;
+  z-index: 4;
   @media screen and (max-width: 600px) {
     display: flex;
     height: 40vh;
@@ -408,6 +485,36 @@ const ImageSliderVariants = {
   },
 };
 
+interface IInerScreen {
+  isMenu: boolean;
+}
+
+const NavAnimationColumnsVariants = {
+  columnscroll: {
+    display: "flex",
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+    rotate: 90,
+    translate: "-37%, 148%",
+  },
+
+  columntop: {
+    display: "none",
+    x: -10,
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      type: "tween",
+    },
+    rotate: 90,
+    translate: "-50%, 148%",
+  },
+};
+
 function Projects() {
   const [[vanilajspage, vanillajsdirection], setVanillaJsPage] = useState([
     0, 0,
@@ -434,7 +541,7 @@ function Projects() {
     });
   }, [scrollY, textAnimation]);
 
-  // const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
+  const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
   // const youtubeImageIndex = wrap(0, youtubeImages.length, youtubepage);
   // const selectorImageIndex = wrap(0, selectorImages.length, selectorpage);
   // const coinImageIndex = wrap(0, coinImages.length, coinpage);
@@ -463,6 +570,7 @@ function Projects() {
   const swipePower = (offset: number, velocity: number) => {
     return Math.abs(offset) * velocity;
   };
+
   return (
     <>
       <BodyProjectsOverlay>
@@ -477,15 +585,70 @@ function Projects() {
             initial="scrollbox"
           >
             <p className="first-title">PROJECT</p>
-            <p className="first-title">LIST</p>
           </BodyProjectsTextWrapper>
         </BodyProjectsOverlayInlineBox>
         <ProjectListInline>
           <ProjectListInlineNumberContainer>
-            <ProjectListInlineNumber className="bg">01</ProjectListInlineNumber>
-            <ProjectListInlineNumber className="fg">01</ProjectListInlineNumber>
+            <BodyProjectsImageDetailTitleBox>
+              <BodyProjectsImageDetailTitle>
+                <span>01.</span>
+                <span>ToDoList</span>
+              </BodyProjectsImageDetailTitle>
+            </BodyProjectsImageDetailTitleBox>
+            <ProjectListInlineStickyImage>
+              <ProjectListInlineImage>
+                {/* 이미지 부분 */}
+                <BodyProjectsImageContainer>
+                  <>
+                    <AnimatePresence
+                      initial={false}
+                      custom={vanillajsdirection}
+                    >
+                      <BodyProjectsImage
+                        key={vanilajspage}
+                        src={vanillajsImages[vanillajsImageIndex]}
+                        custom={vanillajsdirection}
+                        variants={ImageSliderVariants}
+                        initial="next"
+                        animate="center"
+                        exit="prev"
+                        transition={{
+                          opacity: { duration: 0.2 },
+                        }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                          const swipe = swipePower(offset.x, velocity.x);
+
+                          if (swipe < -swipeConfidenceValue) {
+                            paginate(1);
+                          } else if (swipe > swipeConfidenceValue) {
+                            paginate(-1);
+                          }
+                        }}
+                      />
+                      <BodyProjectsImageTotalNumberBox>
+                        <BodyProjectsImageTotalNumber>
+                          {vanillajsImageIndex + 1} / {vanillajsImages.length}
+                        </BodyProjectsImageTotalNumber>
+                      </BodyProjectsImageTotalNumberBox>
+                    </AnimatePresence>
+                    <BodyProjectImageNextSlideButton
+                      onClick={() => paginate(1)}
+                    >
+                      {">"}
+                    </BodyProjectImageNextSlideButton>
+                    <BodyProjectImagePrevSlideButton
+                      onClick={() => paginate(-1)}
+                    >
+                      {">"}
+                    </BodyProjectImagePrevSlideButton>
+                  </>
+                </BodyProjectsImageContainer>
+              </ProjectListInlineImage>
+            </ProjectListInlineStickyImage>
           </ProjectListInlineNumberContainer>
-          {/* <ProjectListInlineImage /> */}
         </ProjectListInline>
       </BodyProjectsOverlay>
 
@@ -497,54 +660,8 @@ function Projects() {
       <BodyTotalProjectsBox>
         {/* vanillaJs Project */}
         <BodyTotalProjectsBoxInlineContainer>
-          <BodyProjectsImageDetailTitleBox>
-            <BodyProjectsImageDetailTitle>
-              ToDoList
-            </BodyProjectsImageDetailTitle>
-          </BodyProjectsImageDetailTitleBox>
           <BodyTotalProjectsBoxInline>
             {/* 프로젝트 이미지 부분 */}
-            <BodyProjectsImageContainer>
-              <>
-                <AnimatePresence initial={false} custom={vanillajsdirection}>
-                  <BodyProjectsImage
-                    key={vanilajspage}
-                    // src={vanillajsImages[vanillajsImageIndex]}
-                    custom={vanillajsdirection}
-                    variants={ImageSliderVariants}
-                    initial="next"
-                    animate="center"
-                    exit="prev"
-                    transition={{
-                      opacity: { duration: 0.2 },
-                    }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={1}
-                    onDragEnd={(e, { offset, velocity }) => {
-                      const swipe = swipePower(offset.x, velocity.x);
-
-                      if (swipe < -swipeConfidenceValue) {
-                        paginate(1);
-                      } else if (swipe > swipeConfidenceValue) {
-                        paginate(-1);
-                      }
-                    }}
-                  />
-                  <BodyProjectsImageTotalNumberBox>
-                    <BodyProjectsImageTotalNumber>
-                      {/* {vanillajsImageIndex + 1} / {vanillajsImages.length} */}
-                    </BodyProjectsImageTotalNumber>
-                  </BodyProjectsImageTotalNumberBox>
-                </AnimatePresence>
-                <BodyProjectImageNextSlideButton onClick={() => paginate(1)}>
-                  {">"}
-                </BodyProjectImageNextSlideButton>
-                <BodyProjectImagePrevSlideButton onClick={() => paginate(-1)}>
-                  {">"}
-                </BodyProjectImagePrevSlideButton>
-              </>
-            </BodyProjectsImageContainer>
 
             {/* 프로젝트 상세설명 부분 */}
             <BodyProjectsImageDetailExplainContainer>

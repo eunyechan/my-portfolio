@@ -13,6 +13,7 @@ const BodyContainerArrow = styled(motion.div)`
   transform: translate(-50%, -50%);
   font-size: 100px;
   font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
   @media screen and (max-width: 600px) {
     font-size: 50px;
   }
@@ -24,6 +25,7 @@ const BodyContainerAboutMeBox = styled(motion.div)`
   width: 100%;
   height: 100%;
   padding: 8rem 50px 0 50px;
+  overflow: hidden;
   @media screen and (max-width: 600px) {
     padding: 1rem 4rem;
   }
@@ -245,6 +247,7 @@ const BodyContainerAboutmeArrowVariants = {
 const BodyContainerAboutMeVariants = {
   aboutmeboxanimationvisible: {
     x: 0,
+    display: "flex",
     opacity: 1,
     transition: {
       duration: 0.5,
@@ -252,7 +255,8 @@ const BodyContainerAboutMeVariants = {
     },
   },
   aboutmeboxanimationinvisible: {
-    x: 800,
+    x: 1000,
+    display: "none",
     opacity: 0,
     transition: {
       duration: 0.5,

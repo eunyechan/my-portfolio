@@ -52,6 +52,7 @@ const HeaderNav = styled(motion.nav)`
   backdrop-filter: blur(5px);
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
   @media screen and (max-width: 600px) {
     display: flex;
     overflow: hidden;
@@ -64,12 +65,13 @@ const HeaderNav = styled(motion.nav)`
 
 const ColumnHeaderNav = styled(motion.div)`
   position: fixed;
-  display: flex;
-  opacity: 1;
-  justify-content: center;
+  display: none;
+  /* width: 40vw; */
+  padding: 20px 0 20px 20px;
+  opacity: 0;
+  align-items: center;
   border: 2px solid white;
   align-items: center;
-  /* width: 100%; */
   font-size: 14px;
   border: 1px solid white;
   border-bottom-left-radius: 5px;
@@ -77,9 +79,6 @@ const ColumnHeaderNav = styled(motion.div)`
   backdrop-filter: blur(5px);
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.4);
-  left: 0%;
-  top: 0%;
-  /* transform-origin: (-50%, -50%); */
   transform: rotate(90deg) translateX(40%) translateY(190%);
   @media screen and (max-width: 600px) {
     display: flex;
@@ -93,18 +92,18 @@ const ColumnHeaderNav = styled(motion.div)`
 
 const ColumnHomeButtonBox = styled.div`
   height: 100%;
-  margin: 20px 50px;
+  margin-right: 10px;
 `;
 
-const ColumnHomeButton = styled.button`
+const ColumnHomeButton = styled.div`
   background-color: transparent;
   font-size: 20px;
   font-weight: bold;
-  padding: 20px 15px;
   cursor: pointer;
   color: white;
-  border: 4px solid white;
-  border-radius: 9999px;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 20px;
   transform: rotate(-90deg);
 `;
 
@@ -123,81 +122,73 @@ const ColumnHeaderUl = styled.ul<IInerScreen>`
   }
 `;
 
-const ColumnHeaderList = styled(motion.li)`
-  /* margin: 20px 50px 40px 20px; */
-  position: relative;
+const ColumnHeaderListInputButton = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media screen and (max-width: 600px) {
-    margin: 5px 30px;
-  }
-`;
-
-const ColumnHeaderListNumber = styled.span`
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1em;
-  margin-bottom: 0.3em;
-  transform: rotate(-90deg) translate(0%, -200%);
-  /* background-color: white; */
-  border: 1px solid white;
-`;
-
-const ColumnHeaderListButton = styled(motion.button)`
+  align-items: center;
   position: relative;
-  display: flex;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: 600;
-  color: white;
-  text-transform: uppercase;
-  padding: 0.5em 1.2em;
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid white;
-  border-radius: 0.75em;
-  transform-style: preserve-3d;
-  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
-  background: 150ms cubic-bezier(0, 0, 0.58, 1);
   transform: rotate(-90deg);
-  &::before {
+  padding: 1em;
+
+  span {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-right: 2px;
+    text-align: center;
+  }
+
+  .hexagon-wrapper {
+    display: flex;
+    margin: auto;
+    text-align: initial;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+
+  .hexagon {
+    position: relative;
+    width: 46%;
+    height: 80%;
+    margin: auto;
+    color: white;
+    background: linear-gradient(-180deg, white, #f3c2cb);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    transition: 0.5s;
+  }
+
+  .hexagon:before,
+  .hexagon:after {
     position: absolute;
     content: "";
-    width: 100%;
+    background: inherit;
     height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: inherit;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
-      0 0.625em 0 0 rgba(255, 255, 255, 0.8);
-    transform: translate3d(0, 0.75em, -1em);
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
-    box-shadow: 150ms cubic-bezier(0, 0, 0.58, 1);
+    width: 100%;
+    border-radius: 0;
+    transition: 0.5s;
+    transform-origin: center;
   }
-  &:hover {
-    background: transparent;
-    transform: rotate(-90deg) translate(0, 0.25em);
-    &::before {
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1),
-        0 0.5em 0 0 rgba(255, 255, 255, 0.8);
-      transform: translate3d(0, 0.5em, -1em);
-    }
+  .hexagon:before {
+    transform: rotateZ(60deg);
   }
-  &:active {
-    background: transparent;
-    transform: rotate(-90deg) translate(0em, 0.75em);
-    &::before {
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8),
-        0 0 rgba(255, 255, 255, 0.8);
-      transform: translate3d(0, 0, -1em);
-    }
+  .hexagon:after {
+    transform: rotateZ(-60deg);
+  }
+  .hexagon:hover {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+  .hexagon:hover:before {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+  .hexagon:hover:after {
+    border-radius: 50px;
+    transition: 0.5s;
   }
 
   @media screen and (max-width: 600px) {
@@ -512,7 +503,7 @@ const BodyprojectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 4rem;
+  padding: 8em 8rem;
   background-color: rgba(0, 0, 0, 0.9);
   @media screen and (max-width: 600px) {
     padding: 1rem 2rem;
@@ -530,6 +521,7 @@ const BodyContainer = styled.div`
 const BodyContactSkilsWrapper = styled(motion.div)`
   width: 100%;
   height: 100vh;
+  padding-top: 4em;
   display: flex;
   background-color: rgba(0, 0, 0, 0.9);
 `;
@@ -695,20 +687,26 @@ const NavAnimationVariants = {
 const NavAnimationColumnsVariants = {
   columnscroll: {
     display: "flex",
+    x: 0,
     opacity: 1,
     transition: {
       duration: 0.5,
       type: "tween",
     },
+    rotate: 90,
+    translate: "-37%, 148%",
   },
 
   columntop: {
     display: "none",
+    x: -10,
     opacity: 0,
     transition: {
       duration: 0.5,
       type: "tween",
     },
+    rotate: 90,
+    translate: "-50%, 148%",
   },
 };
 
@@ -775,10 +773,13 @@ function Home() {
     scrollY.onChange(() => {
       if (80 < scrollY.get() && scrollY.get() < 2350) {
         navAnimation.start("scroll");
+        navAnimation.start("columntop");
       } else if (2350 < scrollY.get() && scrollY.get() < 4000) {
         navAnimation.start("top");
+        navAnimation.start("columnscroll");
       } else {
         navAnimation.start("scroll");
+        navAnimation.start("columntop");
       }
     });
   }, [scrollY, navAnimation]);
@@ -824,6 +825,7 @@ function Home() {
   const ProjectsRef = useRef<HTMLDivElement>(null);
   const SkilsRef = useRef<HTMLDivElement>(null);
   const ContactRef = useRef<HTMLDivElement>(null);
+
   const onHomeClick = () => {
     HomeRef.current?.scrollIntoView({ behavior: "smooth" });
     setIsMenu(false);
@@ -904,7 +906,12 @@ function Home() {
       </HeaderNav>
 
       {/* 세로해더 */}
-      <ColumnHeaderNav>
+      <ColumnHeaderNav
+        variants={NavAnimationColumnsVariants}
+        animate={navAnimation}
+        initial="columntop"
+        whileInView="columnscroll"
+      >
         <HeaderMenubar
           onClick={() => setIsMenu(!isMenu)}
           style={
@@ -922,29 +929,43 @@ function Home() {
           </HeaderMenubarTitle>
         </HeaderMenubar>
         <ColumnHomeButtonBox>
-          <ColumnHomeButton onClick={onHomeClick}>Y.C</ColumnHomeButton>
+          <ColumnHomeButton>Projects</ColumnHomeButton>
         </ColumnHomeButtonBox>
         <ColumnHeaderUl isMenu={isMenu}>
-          <ColumnHeaderList>
-            <ColumnHeaderListButton onClick={onAboutMeClick}>
-              <span>AboutMe</span>
-            </ColumnHeaderListButton>
-          </ColumnHeaderList>
-          <ColumnHeaderList>
-            <ColumnHeaderListButton onClick={onSkilsClick}>
-              <span>Skils</span>
-            </ColumnHeaderListButton>
-          </ColumnHeaderList>
-          <ColumnHeaderList>
-            <ColumnHeaderListButton onClick={onProjectClick}>
-              <span>Projects</span>
-            </ColumnHeaderListButton>
-          </ColumnHeaderList>
-          <ColumnHeaderList>
-            <ColumnHeaderListButton onClick={onContactClick}>
-              <span>Contact</span>
-            </ColumnHeaderListButton>
-          </ColumnHeaderList>
+          <ColumnHeaderListInputButton>
+            <span>ToDoList</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton>
+            <span>Youtube</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton>
+            <span>DadToDo</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton>
+            <span>Coin</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton>
+            <span>NexFilx</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
         </ColumnHeaderUl>
       </ColumnHeaderNav>
 
@@ -1015,6 +1036,7 @@ function Home() {
           <Project />
         </BodyprojectsContainer>
       </BodyContainerBox>
+
       <FooterContainer>
         <a href="https://github.com/eunyechan" target={"blank"}>
           <FooterContainerImg />
