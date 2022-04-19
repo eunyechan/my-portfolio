@@ -133,7 +133,7 @@ const BodyProjectsOverlay = styled.div`
   height: 400vh;
   margin: 10px;
   z-index: 4;
-  padding: 0 2rem 0 2rem;
+  padding: 0 2rem 0 0;
 `;
 
 const BodyProjectsOverlayInlineBox = styled(motion.div)`
@@ -147,53 +147,36 @@ const BodyProjectsOverlayInlineBox = styled(motion.div)`
   position: -webkit-sticky;
 `;
 
-const BodyProjectsTextWrapper = styled(motion.div)`
-  position: relative;
-  text-align: center;
-  font-weight: bold;
-  font-family: "Yanone Kaffeesatz", "Lucida Grande", Lucida, Verdana, sans-serif;
-  margin: 0 auto;
-  width: 100%;
-  padding: 2em 0;
-  border-radius: 4px;
-  box-shadow: inset 0 -1px 0 hsla(0, 0%, 0%, 0.2),
-    0 21px 8px -12px rgba(0, 0, 0, 0.2);
-  perspective: 350;
+const typewriter = keyframes`
+    from{width: 0}
+  to{width: 7em}
+`;
 
-  .first-title {
-    /* -webkit-text-stroke: 1px white; */
-    font-size: 5em;
-    margin: 0;
-    /* color: #f1efef; */
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    /* text-shadow: rgba(0, 0, 0, 0.1) 0 20px 80px; */
-    -webkit-transition: -webkit-transform 0.1s ease-in; /* only WebKit because of performance */
-    &:hover {
-      /* color: hsla(0, 0%, 0%, 1); */
-      transform: rotate(6.5deg) rotateX(28deg) skewX(-3deg);
-      -webkit-transition: -webkit-transform 0.3s ease-out; /* only WebKit because of performance */
-    }
+const blinkTextCursor = keyframes`
+   from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+`;
+
+const BodyProjectsTextWrapper = styled(motion.div)`
+  height: calc(100vh - 8em);
+  padding: 4em;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Anonymous Pro", monospace;
+  background-color: rgb(25, 25, 25);
+  .line-1 {
+    position: relative;
+    top: 50%;
+    width: 24em;
+    margin: 0 auto;
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
   }
-  &:hover {
-    p {
-      transform: rotate(6.5deg) rotateX(28deg) skewX(-3deg);
-      -webkit-transition: -webkit-transform 0.3s ease-out;
-    }
-    p:nth-child(1) {
-      font-size: 5em;
-      text-shadow: #ffffff 0 0 10px, #ffffff 0 4px 3px, #dad7d7 0 9px 3px,
-        #ffffff 0 12px 1px, rgba(238, 238, 238, 0.2) 0 14px 5px,
-        rgba(243, 239, 239, 0.1) 0 20px 10px, rgba(0, 0, 100, 0.2) 0 15px 80px;
-      text-indent: 0.3em;
-    }
-    p:nth-child(2) {
-      font-size: 5em;
-      text-shadow: #ffffff 0 0 10px, #ffffff 0 4px 3px, #dad7d7 0 9px 3px,
-        #ffffff 0 12px 1px, rgba(238, 238, 238, 0.2) 0 14px 5px,
-        rgba(243, 239, 239, 0.1) 0 20px 10px, rgba(0, 0, 100, 0.2) 0 15px 80px;
-      text-indent: 0.3em;
-    }
+  #anim-typewriter {
+    animation: ${typewriter} 4s steps(44) 1s 1 normal both,
+      ${blinkTextCursor} 500ms;
   }
 `;
 
@@ -209,17 +192,18 @@ const ProjectListInline = styled.div`
 `;
 
 const ProjectListInlineNumberContainer = styled.div`
+  /* height: 100%; */
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  grid-template-areas: "overlap";
-  place-content: center;
-  text-transform: uppercase;
   padding-top: 8rem;
+  border: 1px solid white;
 `;
 
 const ProjectListInlineNumber = styled.div`
   display: flex;
+
   color: #fffbf1;
   font-size: 5em;
   font-weight: bold;
@@ -227,9 +211,11 @@ const ProjectListInlineNumber = styled.div`
 
 const ProjectListInlineStickyImage = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  border: 2px solid red;
 `;
 
 const ProjectListInlineImage = styled.div`
@@ -247,7 +233,7 @@ const BodyProjectsTitle = styled(motion.span)`
   font-size: 1.5em;
   color: rgba(255, 255, 255, 0);
   letter-spacing: 4px;
-  background: linear-gradient(90deg, #fff, #000, #fff);
+
   background-repeat: no-repeat;
   background-size: 80%;
   -webkit-background-clip: text;
@@ -290,7 +276,7 @@ const BodyProjectsImageDetailTitleBox = styled.div`
 const BodyProjectsImageDetailTitle = styled.span`
   width: 100%;
   height: 100%;
-  font-size: 4em;
+  font-size: 3em;
   font-weight: bold;
   color: white;
   text-align: center;
@@ -344,16 +330,15 @@ const BodyProjectsDetailExplainTitle = styled.span`
 `;
 
 const BodyProjectsImageContainer = styled.div`
-  width: 50vw;
-  height: 50vh;
+  width: 45vw;
+  height: 60vh;
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  overflow: hidden;
-  background-color: #eee;
   border-radius: 10px;
   max-height: 60vh;
-  border: 2px solid white;
   z-index: 4;
   @media screen and (max-width: 600px) {
     display: flex;
@@ -584,7 +569,9 @@ function Projects() {
             animate={textAnimation}
             initial="scrollbox"
           >
-            <p className="first-title">PROJECT</p>
+            <p className="line-1" id="anim-typewriter">
+              PROJECT LIST
+            </p>
           </BodyProjectsTextWrapper>
         </BodyProjectsOverlayInlineBox>
         <ProjectListInline>
@@ -606,35 +593,17 @@ function Projects() {
                     >
                       <BodyProjectsImage
                         key={vanilajspage}
-                        src={vanillajsImages[vanillajsImageIndex]}
-                        custom={vanillajsdirection}
-                        variants={ImageSliderVariants}
-                        initial="next"
-                        animate="center"
-                        exit="prev"
-                        transition={{
-                          opacity: { duration: 0.2 },
-                        }}
-                        drag="x"
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={1}
-                        onDragEnd={(e, { offset, velocity }) => {
-                          const swipe = swipePower(offset.x, velocity.x);
-
-                          if (swipe < -swipeConfidenceValue) {
-                            paginate(1);
-                          } else if (swipe > swipeConfidenceValue) {
-                            paginate(-1);
-                          }
-                        }}
+                        src={vanillajsImages[0]}
+                        // custom={vanillajsdirection}
+                        // variants={ImageSliderVariants}
                       />
-                      <BodyProjectsImageTotalNumberBox>
+                      {/* <BodyProjectsImageTotalNumberBox>
                         <BodyProjectsImageTotalNumber>
                           {vanillajsImageIndex + 1} / {vanillajsImages.length}
                         </BodyProjectsImageTotalNumber>
-                      </BodyProjectsImageTotalNumberBox>
+                      </BodyProjectsImageTotalNumberBox> */}
                     </AnimatePresence>
-                    <BodyProjectImageNextSlideButton
+                    {/* <BodyProjectImageNextSlideButton
                       onClick={() => paginate(1)}
                     >
                       {">"}
@@ -643,8 +612,14 @@ function Projects() {
                       onClick={() => paginate(-1)}
                     >
                       {">"}
-                    </BodyProjectImagePrevSlideButton>
+                    </BodyProjectImagePrevSlideButton> */}
                   </>
+                  <a
+                    href="https://github.com/eunyechan/vanillaJS_app"
+                    target={"blank"}
+                  >
+                    github.com/eunyechan/vanillaJS_app
+                  </a>
                 </BodyProjectsImageContainer>
               </ProjectListInlineImage>
             </ProjectListInlineStickyImage>
@@ -722,12 +697,6 @@ function Projects() {
                       }}
                     >
                       <div>
-                        <a
-                          href="https://github.com/eunyechan/vanillaJS_app"
-                          target={"blank"}
-                        >
-                          github.com/eunyechan/vanillaJS_app
-                        </a>
                         &nbsp;
                         <span style={{ fontWeight: "bold" }}>(보기)</span>
                       </div>

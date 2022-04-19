@@ -1,7 +1,8 @@
 import AboutMe from "../Components/AboutMe";
 import Skills from "../Components/Skills";
 import Project from "../Components/Projects";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
 import {
   motion,
   useAnimation,
@@ -459,11 +460,47 @@ const MainIntroTitleBox = styled(motion.div)`
   }
 `;
 
-const MainIntroTitle = styled.h2`
-  color: rgba(255, 255, 255, 1);
-  font-size: 1.3em;
-  margin-top: 5px;
-  font-weight: bolder;
+const typewriter = keyframes`
+    from{width: 0}
+  to{width: 28em}
+`;
+
+const blinkTextCursor = keyframes`
+0%{border-right-color: rgba(0, 0, 0, 0)}
+50%{border-right-color: rgba(255, 255, 255, 75)}
+100%{border-right-color: transparent}
+`;
+
+const MainIntroTitle = styled.p`
+  .line-1 {
+    position: relative;
+    top: 50%;
+    padding: 5px 0 5px 7px;
+    font-size: 1.5em;
+    white-space: nowrap;
+    /* border-right: 1px solid rgba(255, 255, 255, 0.75); */
+    overflow: hidden;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+  }
+
+  #anim-typewriter {
+    animation: ${typewriter} 3s steps(44) 1s 1 normal both,
+      ${blinkTextCursor} 200ms;
+  }
+  #anim-typewriter2 {
+    animation: ${typewriter} 3s steps(44) 2.5s 1 normal both,
+      ${blinkTextCursor} 500ms;
+  }
+  #anim-typewriter3 {
+    animation: ${typewriter} 3s steps(44) 4.5s 1 normal both,
+      ${blinkTextCursor} 500ms;
+  }
+  #anim-typewriter4 {
+    animation: ${typewriter} 3s steps(44) 7.5s 1 normal both,
+      ${blinkTextCursor} 500ms;
+  }
   @media screen and (max-width: 600px) {
     font-size: 30px;
   }
@@ -503,7 +540,8 @@ const BodyprojectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 8em 8rem;
+  padding: 8em 0 8rem 9.5rem;
+  border: 2px solid green;
   background-color: rgba(0, 0, 0, 0.9);
   @media screen and (max-width: 600px) {
     padding: 1rem 2rem;
@@ -929,39 +967,39 @@ function Home() {
           </HeaderMenubarTitle>
         </HeaderMenubar>
         <ColumnHomeButtonBox>
-          <ColumnHomeButton>Projects</ColumnHomeButton>
+          <ColumnHomeButton>Header</ColumnHomeButton>
         </ColumnHomeButtonBox>
         <ColumnHeaderUl isMenu={isMenu}>
-          <ColumnHeaderListInputButton>
-            <span>ToDoList</span>
+          <ColumnHeaderListInputButton onClick={onHomeClick}>
+            <span>Home</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton onClick={onAboutMeClick}>
+            <span>AboutMe</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton onClick={onSkilsClick}>
+            <span>Skils</span>
+            <div className="hexagon-wrapper">
+              <div className="hexagon"></div>
+            </div>
+          </ColumnHeaderListInputButton>
+
+          <ColumnHeaderListInputButton onClick={onProjectClick}>
+            <span>Projects</span>
             <div className="hexagon-wrapper">
               <div className="hexagon"></div>
             </div>
           </ColumnHeaderListInputButton>
 
           <ColumnHeaderListInputButton>
-            <span>Youtube</span>
-            <div className="hexagon-wrapper">
-              <div className="hexagon"></div>
-            </div>
-          </ColumnHeaderListInputButton>
-
-          <ColumnHeaderListInputButton>
-            <span>DadToDo</span>
-            <div className="hexagon-wrapper">
-              <div className="hexagon"></div>
-            </div>
-          </ColumnHeaderListInputButton>
-
-          <ColumnHeaderListInputButton>
-            <span>Coin</span>
-            <div className="hexagon-wrapper">
-              <div className="hexagon"></div>
-            </div>
-          </ColumnHeaderListInputButton>
-
-          <ColumnHeaderListInputButton>
-            <span>NexFilx</span>
+            <span>Git</span>
             <div className="hexagon-wrapper">
               <div className="hexagon"></div>
             </div>
@@ -992,15 +1030,19 @@ function Home() {
                 </MainTitleSpanTopBox>
 
                 <MainIntroTitleBox>
-                  <MainIntroTitle>안녕하세요 은예찬입니다.</MainIntroTitle>
                   <MainIntroTitle>
-                    제 포트폴리오를 봐주셔서 감사합니다.
-                  </MainIntroTitle>
-                  <MainIntroTitle>
-                    지금까지 개발자를 준비하면서 만든 프로젝트들 입니다.
-                  </MainIntroTitle>
-                  <MainIntroTitle>
-                    부족한 부분이 있으시면 피드백 남겨주세요 감사합니다.
+                    <p className="line-1" id="anim-typewriter">
+                      안녕하세요 은예찬입니다.
+                    </p>
+                    <p className="line-1" id="anim-typewriter2">
+                      제 포트폴리오를 봐주셔서 감사합니다.
+                    </p>
+                    <p className="line-1" id="anim-typewriter3">
+                      지금까지 개발자를 준비하면서 만든 프로젝트들 입니다.
+                    </p>
+                    <p className="line-1" id="anim-typewriter4">
+                      부족한 부분이 있으시면 피드백 남겨주세요 감사합니다.
+                    </p>
                   </MainIntroTitle>
                 </MainIntroTitleBox>
               </MainTitleBox>
@@ -1026,12 +1068,12 @@ function Home() {
           <AboutMe />
         </BodyContainer>
 
-        {/****************************  skill 부분 ***************************/}
+        {/****************************  skill 부분 ******************** */}
         <BodyContactSkilsWrapper ref={SkilsRef}>
           <Skills />
         </BodyContactSkilsWrapper>
 
-        {/*************************** project 부분 ***********************  */}
+        {/*************************** project 부분 *******************  */}
         <BodyprojectsContainer ref={ProjectsRef}>
           <Project />
         </BodyprojectsContainer>
