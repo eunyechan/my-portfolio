@@ -541,7 +541,6 @@ const BodyprojectsContainer = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 8em 0 8rem 9.5rem;
-  border: 2px solid green;
   background-color: rgba(0, 0, 0, 0.9);
   @media screen and (max-width: 600px) {
     padding: 1rem 2rem;
@@ -812,7 +811,7 @@ function Home() {
       if (80 < scrollY.get() && scrollY.get() < 2350) {
         navAnimation.start("scroll");
         navAnimation.start("columntop");
-      } else if (2350 < scrollY.get() && scrollY.get() < 4000) {
+      } else if (2350 < scrollY.get() && scrollY.get() < 8500) {
         navAnimation.start("top");
         navAnimation.start("columnscroll");
       } else {
