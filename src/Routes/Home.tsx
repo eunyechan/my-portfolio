@@ -2,6 +2,7 @@ import AboutMe from "../Components/AboutMe";
 import Skills from "../Components/Skills";
 import Project from "../Components/Projects";
 import Git from "../Components/Git";
+import ScrollProgress from "../Components/ScrollY";
 import styled, { keyframes } from "styled-components";
 
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
@@ -41,7 +42,6 @@ const HeaderNav = styled(motion.nav)`
   align-items: center;
   width: 100%;
   font-size: 14px;
-  border: 1px solid white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   backdrop-filter: blur(5px);
@@ -61,26 +61,19 @@ const HeaderNav = styled(motion.nav)`
 const ColumnHeaderNav = styled(motion.div)`
   position: fixed;
   display: none;
-  padding: 20px 0 20px 20px;
+  padding: 14px 0 20px 17px;
   opacity: 0;
   align-items: center;
-  border: 2px solid white;
-  align-items: center;
   font-size: 14px;
-  border: 1px solid white;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   backdrop-filter: blur(5px);
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.4);
   transform: rotate(90deg) translateX(40%) translateY(190%);
   @media screen and (max-width: 600px) {
-    display: flex;
+    display: none;
     overflow: hidden;
-    justify-content: start;
-    align-items: flex-start;
-    padding: 1rem;
-    ckdrop-filter: blur(5px);
   }
 `;
 
@@ -246,6 +239,12 @@ const HeaderListNumber = styled.span`
 const HomeButtonBox = styled.div`
   height: 100%;
   margin: 20px 50px;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const HomeButton = styled.button`
@@ -337,10 +336,11 @@ const MainContainer = styled.div`
 const MainContainerInline = styled.div`
   width: 100%;
   height: 100%;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 480px) {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    padding-right: 0;
   }
 `;
 
@@ -352,21 +352,26 @@ const MainTitleBox = styled(motion.div)`
   height: 100%;
   padding: 0 70px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
+  }
+
+  @media screen and (max-width: 480px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    padding-right: 0;
-    padding-top: 2rem;
+    font-size: 10px;
   }
 `;
 
 const MainTitleSpanTopBox = styled.div`
-  width: 100%;
-  height: 100%;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+  }
 `;
 
 const MainTitleSpanTop = styled.div`
@@ -411,8 +416,13 @@ const MainTitleSpanTop = styled.div`
     opacity: 1;
     left: 0;
   }
-  @media screen and (max-width: 600px) {
-    font-size: 20px;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+    text-align: center;
+    margin: 0px;
+    font-size: 2em;
   }
 `;
 
@@ -437,17 +447,25 @@ const MainTitleSpanBottom = styled.div`
   -ms-transition: 1s;
   opacity: 0.1;
   width: 100%;
-  @media screen and (max-width: 600px) {
-    font-size: 20px;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    font-size: 1em;
+    padding-right: 30px;
   }
 `;
 
 const MainIntroTitleBox = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: 600px) {
-    font-size: 20px;
-    display: block;
+
+  @media screen and (max-width: 480px) {
+    font-size: 2em;
+    border: 1px solid white;
+  }
+  @media screen and (max-width: 768px) {
     padding-top: 2rem;
     padding-left: 0;
   }
@@ -464,14 +482,13 @@ const blinkTextCursor = keyframes`
 100%{border-right-color: transparent}
 `;
 
-const MainIntroTitle = styled.p`
+const MainIntroTitle = styled.div`
   .line-1 {
     position: relative;
     top: 50%;
     padding: 5px 0 5px 7px;
     font-size: 1.5em;
     white-space: nowrap;
-    /* border-right: 1px solid rgba(255, 255, 255, 0.75); */
     overflow: hidden;
     transform: translateY(-50%);
     color: rgba(255, 255, 255, 0.8);
@@ -494,8 +511,14 @@ const MainIntroTitle = styled.p`
     animation: ${typewriter} 3s steps(44) 7.5s 1 normal both,
       ${blinkTextCursor} 500ms;
   }
-  @media screen and (max-width: 600px) {
-    font-size: 30px;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.4em;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 2rem;
+    padding-left: 0;
   }
 `;
 
@@ -771,6 +794,7 @@ function Home() {
 
   return (
     <Container>
+      <ScrollProgress />
       <HeaderNav
         variants={NavAnimationVariants}
         animate={navAnimation}
@@ -831,22 +855,6 @@ function Home() {
         initial="columntop"
         whileInView="columnscroll"
       >
-        <HeaderMenubar
-          onClick={() => setIsMenu(!isMenu)}
-          style={
-            isMenu
-              ? { width: "", animationDuration: "5s" }
-              : { width: "100%", animationDuration: "45000ms" }
-          }
-        >
-          <FontAwesomeIcon
-            style={{ fontSize: "25px", color: "white" }}
-            icon={isMenu ? faClose : faBars}
-          />
-          <HeaderMenubarTitle>
-            <span>{isMenu ? "" : "Y.C Portfolio"}</span>
-          </HeaderMenubarTitle>
-        </HeaderMenubar>
         <ColumnHomeButtonBox>
           <ColumnHomeButton>Header</ColumnHomeButton>
         </ColumnHomeButtonBox>
@@ -902,7 +910,7 @@ function Home() {
                 <MainTitleSpanTopBox>
                   <MainTitleSpanTop>
                     <MainTiTleSpan>
-                      YECHAN'S PORTFOLIO
+                      <p>YECHAN'S PORTFOLIO</p>
                       <MainTitleSpanBottom>
                         <span>WELCOME TO</span>
                       </MainTitleSpanBottom>

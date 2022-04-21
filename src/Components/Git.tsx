@@ -126,8 +126,6 @@ const SiteBtn = styled.a`
   letter-spacing: 1px;
   background: none;
   position: absolute;
-  right: 10%;
-  bottom: 40%;
   outline: none;
   border: none;
   width: 200px;
@@ -181,16 +179,6 @@ function Git() {
         <GitTitle>Git</GitTitle>
       </GitTitleContainer>
       <GitBodyContainer>
-        <div id="nc-main" className="nc-main bg-cover bg-cc">
-          <div className="full-wh">
-            <div className="bg-animation">
-              <div id="stars"></div>
-              <div id="stars2"></div>
-              <div id="stars3"></div>
-              <div id="stars4"></div>
-            </div>
-          </div>
-        </div>
         <GitLeftContainer>
           <div className="cta__button">
             <FooterContainerImg />
@@ -198,7 +186,7 @@ function Git() {
         </GitLeftContainer>
         <GitRightContainer>
           <GitRightSpanContainer>
-            <span>지금까지 했던 프로젝트를 정리해둔 깃사이트 입니다.</span>
+            <span>- 은예찬의 깃사이트 구경하기 -</span>
           </GitRightSpanContainer>
           <SiteBtnBox>
             <SiteBtn
