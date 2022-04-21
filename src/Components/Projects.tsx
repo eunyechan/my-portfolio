@@ -1,10 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import {
-  motion,
-  useAnimation,
-  useViewportScroll,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import {
   vanillajsImages,
   youtubeImages,
@@ -12,95 +7,7 @@ import {
   coinImages,
   netfilxImages,
 } from "../data/imageData";
-import csslogo from "../images/imagesLogo/backgroundimg.jpg";
-import { useEffect, useRef, useState } from "react";
-import { wrap } from "popmotion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-
-const HeaderMenubar = styled(motion.div)`
-  display: none;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    background-color: transparent;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
-
-const ColumnHeaderListInputButton = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  transform: rotate(-90deg);
-  padding: 1em;
-
-  span {
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding-right: 2px;
-    text-align: center;
-  }
-
-  .hexagon-wrapper {
-    display: flex;
-    margin: auto;
-    text-align: initial;
-    width: 70px;
-    height: 70px;
-    cursor: pointer;
-  }
-
-  .hexagon {
-    position: relative;
-    width: 46%;
-    height: 80%;
-    margin: auto;
-    color: white;
-    background: linear-gradient(-180deg, white, #f3c2cb);
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    transition: 0.5s;
-  }
-
-  .hexagon:before,
-  .hexagon:after {
-    position: absolute;
-    content: "";
-    background: inherit;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
-    transition: 0.5s;
-    transform-origin: center;
-  }
-  .hexagon:before {
-    transform: rotateZ(60deg);
-  }
-  .hexagon:after {
-    transform: rotateZ(-60deg);
-  }
-  .hexagon:hover {
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-  .hexagon:hover:before {
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-  .hexagon:hover:after {
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 15px;
-  }
-`;
+import { useEffect } from "react";
 
 const BodyProjectsOverlay = styled.div`
   width: 100%;
@@ -113,7 +20,6 @@ const BodyProjectsOverlay = styled.div`
 const BodyProjectsOverlayInlineBox = styled(motion.div)`
   font-weight: bold;
   width: 100%;
-  /* height: 10vh; */
   top: 0%;
   z-index: 6;
   background-color: transparent;
@@ -143,10 +49,10 @@ const BodyProjectsTextWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8em 2em;
+  padding: 0.6em 2em;
   text-align: center;
   border-radius: 10px;
-
+  backdrop-filter: blur(10px);
   p {
     margin: 4px;
     animation-name: ${wiggleWiggle};
@@ -241,10 +147,11 @@ const ProjectsTitleBox = styled.div`
 `;
 
 const ProjectsTitle = styled.span`
-  width: 100%;
+  width: 90%;
   height: 100%;
   font-size: 3em;
   font-weight: bold;
+  margin-left: 0.7em;
   color: white;
   text-align: center;
   border: 1px solid white;
@@ -257,7 +164,7 @@ const ProjectsTitle = styled.span`
 
 const SiteBtnBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: white;
   margin-top: 9em;
@@ -265,10 +172,58 @@ const SiteBtnBox = styled.div`
 `;
 
 const SiteBtn = styled.a`
-  border: 1px solid white;
-  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  letter-spacing: 1px;
+  background: none;
+  position: relative;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 190px;
+  color: white;
+  font-size: 25px;
   font-weight: bold;
-  padding: 10px;
+  z-index: 2;
+  transition: 0.01s 0.23s ease-out all;
+  overflow: hidden;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 55%;
+    background: #202020;
+    z-index: -1;
+    transition: 0.3s ease-in all;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: -5%;
+    top: 5%;
+    height: 90%;
+    width: 5%;
+    background: white;
+    z-index: -1;
+    transition: 0.4s 0.02s ease-in all;
+  }
+  &:hover {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.3);
+    &:before {
+      left: 100%;
+      width: 25%;
+    }
+    &:after {
+      left: 100%;
+      width: 70%;
+    }
+  }
 `;
 
 const ProjectListInlineStickyImage = styled.div`
@@ -287,7 +242,7 @@ const BodyProjectsImageContainer = styled.div`
   height: 60vh;
   max-height: 60vh;
   z-index: 4;
-  top: 23%;
+  top: 25%;
   position: sticky;
   position: -webkit-sticky;
   @media screen and (max-width: 600px) {
@@ -311,15 +266,6 @@ const BodyProjectsTitle = styled(motion.span)`
   background-repeat: no-repeat;
   background-size: 80%;
   -webkit-background-clip: text;
-`;
-
-const BodyTotalProjectsBox = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 1rem 2rem;
-  @media screen and (max-width: 600px) {
-    padding: 1rem;
-  }
 `;
 
 const BodyTotalProjectsBoxInlineContainer = styled.div`
@@ -460,7 +406,7 @@ const TextBoxShadowVariants = {
   },
 
   topbox: {
-    background: "rgba(0, 0, 0, 1)",
+    background: "rgba(0, 0, 0, 0.5)",
   },
 };
 
@@ -474,109 +420,21 @@ const TextBorderVariants = {
   },
 };
 
-const ImageSliderVariants = {
-  next: (direction: number) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-  },
-  prev: (direction: number) => {
-    return {
-      // zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-    };
-  },
-};
-
-interface IInerScreen {
-  isMenu: boolean;
-}
-
-const NavAnimationColumnsVariants = {
-  columnscroll: {
-    display: "flex",
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-    rotate: 90,
-    translate: "-37%, 148%",
-  },
-
-  columntop: {
-    display: "none",
-    x: -10,
-    opacity: 0,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-    rotate: 90,
-    translate: "-50%, 148%",
-  },
-};
-
 function Projects() {
-  const [[vanilajspage, vanillajsdirection], setVanillaJsPage] = useState([
-    0, 0,
-  ]);
-  const [[youtubepage, youtubedirection], setYoutubePage] = useState([0, 0]);
-  const [[selectorpage, selectordirection], setSelectorPage] = useState([0, 0]);
-  const [[coinpage, coindirection], setCoinPage] = useState([0, 0]);
-  const [[netfilxpage, netfilxdirection], setNetfilxPage] = useState([0, 0]);
-
-  const swipeConfidenceValue = 10000;
-
   const textAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
 
   useEffect(() => {
     scrollY.onChange(() => {
-      if (2050 < scrollY.get() && scrollY.get() < 2350) {
+      if (2050 < scrollY.get() && scrollY.get() < 2150) {
         textAnimation.start("scroll");
         textAnimation.start("scrollbox");
-      } else if (2360 < scrollY.get() && scrollY.get() < 5000) {
+      } else if (2160 < scrollY.get() && scrollY.get() < 5000) {
         textAnimation.start("top");
         textAnimation.start("topbox");
       }
     });
   }, [scrollY, textAnimation]);
-
-  const vanillajsImageIndex = wrap(0, vanillajsImages.length, vanilajspage);
-  // const youtubeImageIndex = wrap(0, youtubeImages.length, youtubepage);
-  // const selectorImageIndex = wrap(0, selectorImages.length, selectorpage);
-  // const coinImageIndex = wrap(0, coinImages.length, coinpage);
-  // const netfilxImageIndex = wrap(0, netfilxImages.length, netfilxpage);
-
-  const paginate = (newDirection: number) => {
-    setVanillaJsPage([vanilajspage + newDirection, newDirection]);
-  };
-
-  const youtubepagenate = (newDirection: number) => {
-    setYoutubePage([youtubepage + newDirection, newDirection]);
-  };
-
-  const selectorpagenate = (newDirection: number) => {
-    setSelectorPage([selectorpage + newDirection, newDirection]);
-  };
-
-  const coinpagenate = (newDirection: number) => {
-    setCoinPage([coinpage + newDirection, newDirection]);
-  };
-
-  const netfilxpagenate = (newDirection: number) => {
-    setNetfilxPage([netfilxpage + newDirection, newDirection]);
-  };
-
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
 
   return (
     <>
@@ -621,7 +479,14 @@ function Projects() {
                     href="https://github.com/eunyechan/vanillaJS_app"
                     target={"blank"}
                   >
-                    Go Site
+                    <span>Git Site</span>
+                  </SiteBtn>
+
+                  <SiteBtn
+                    href="https://eunyechan.github.io/vaillajs_app.github.io"
+                    target={"blank"}
+                  >
+                    <span>View Site</span>
                   </SiteBtn>
                 </SiteBtnBox>
               </ProjectsTitleBox>
@@ -660,10 +525,17 @@ function Projects() {
                 </ProjectsTitle>
                 <SiteBtnBox>
                   <SiteBtn
-                    href="https://github.com/eunyechan/vanillaJS_app"
+                    href="https://github.com/eunyechan/wetube-reloaded"
                     target={"blank"}
                   >
-                    Go Site
+                    <span>Git Site</span>
+                  </SiteBtn>
+
+                  <SiteBtn
+                    href="https://wetubecloneapp.herokuapp.com"
+                    target={"blank"}
+                  >
+                    <span>View Site</span>
                   </SiteBtn>
                 </SiteBtnBox>
               </ProjectsTitleBox>
@@ -681,14 +553,21 @@ function Projects() {
               </ProjectsOrderTitle>
               <ProjectsTitleBox>
                 <ProjectsTitle>
-                  <span>Coin</span>
+                  <span>Selector</span>
                 </ProjectsTitle>
                 <SiteBtnBox>
                   <SiteBtn
-                    href="https://github.com/eunyechan/vanillaJS_app"
+                    href="https://github.com/eunyechan/masterclass-react-selector-app"
                     target={"blank"}
                   >
-                    Go Site
+                    <span>Git Site</span>
+                  </SiteBtn>
+
+                  <SiteBtn
+                    href="https://eunyechan.github.io/masterclass-react-selector-app"
+                    target={"blank"}
+                  >
+                    <span>View Site</span>
                   </SiteBtn>
                 </SiteBtnBox>
               </ProjectsTitleBox>
@@ -720,7 +599,6 @@ function Projects() {
               </ProjectListInlineImage>
             </ProjectListInlineStickyImage>
 
-            {/* netfilx */}
             <ProjectsTitleContainer>
               <ProjectsOrderTitle>
                 <span>Fourth</span>
@@ -728,14 +606,21 @@ function Projects() {
               </ProjectsOrderTitle>
               <ProjectsTitleBox>
                 <ProjectsTitle>
-                  <span>NetFilx</span>
+                  <span>Coin</span>
                 </ProjectsTitle>
                 <SiteBtnBox>
                   <SiteBtn
-                    href="https://github.com/eunyechan/vanillaJS_app"
+                    href="https://github.com/eunyechan/masterclass-react-coin-app"
                     target={"blank"}
                   >
-                    Go Site
+                    <span>Git Site</span>
+                  </SiteBtn>
+
+                  <SiteBtn
+                    href="https://eunyechan.github.io/masterclass-react-coin-app"
+                    target={"blank"}
+                  >
+                    <span>View Site</span>
                   </SiteBtn>
                 </SiteBtnBox>
               </ProjectsTitleBox>
@@ -743,6 +628,7 @@ function Projects() {
           </ProjectTitleImageContainer>
         </ProjectListInline>
 
+        {/* NetFilx */}
         <ProjectListInline>
           <ProjectTitleImageContainer>
             <ProjectsTitleContainer>
@@ -756,10 +642,17 @@ function Projects() {
                 </ProjectsTitle>
                 <SiteBtnBox>
                   <SiteBtn
-                    href="https://github.com/eunyechan/vanillaJS_app"
+                    href="https://github.com/eunyechan/masterclass-react-notflix"
                     target={"blank"}
                   >
-                    Go Site
+                    <span>Git Site</span>
+                  </SiteBtn>
+
+                  <SiteBtn
+                    href="https://eunyechan.github.io/masterclass-react-notflix"
+                    target={"blank"}
+                  >
+                    <span>View Site</span>
                   </SiteBtn>
                 </SiteBtnBox>
               </ProjectsTitleBox>

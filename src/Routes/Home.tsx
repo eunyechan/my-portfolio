@@ -1,26 +1,20 @@
 import AboutMe from "../Components/AboutMe";
 import Skills from "../Components/Skills";
 import Project from "../Components/Projects";
+import Git from "../Components/Git";
 import styled, { keyframes } from "styled-components";
 
-import {
-  motion,
-  useAnimation,
-  useViewportScroll,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import githubimage from "../images/imagesLogo/githubImage.png";
 import { faArrowUp, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
   padding: 0;
   margin: 0;
   width: 100%;
-  /* background-color: rgba(0, 0, 0, 0.9); */
 `;
 
 const ContainerInline = styled.div`
@@ -67,7 +61,6 @@ const HeaderNav = styled(motion.nav)`
 const ColumnHeaderNav = styled(motion.div)`
   position: fixed;
   display: none;
-  /* width: 40vw; */
   padding: 20px 0 20px 20px;
   opacity: 0;
   align-items: center;
@@ -410,7 +403,7 @@ const MainTitleSpanTop = styled.div`
     top: 0;
   }
   &:hover {
-    letter-spacing: 15px;
+    letter-spacing: 10px;
   }
   &:hover::before,
   &:hover::after {
@@ -567,26 +560,15 @@ const BodyContactSkilsWrapper = styled(motion.div)`
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 18vh;
-  background-color: #302727;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem 3rem;
+  padding: 4rem 50px 0 50px;
   color: white;
-  a {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    &:hover {
-      z-index: 1;
-      transform: translateY(-10px);
-    }
-  }
+
   @media screen and (max-width: 600px) {
     height: 8vh;
     padding: 2rem 0;
@@ -594,20 +576,6 @@ const FooterContainer = styled.div`
       width: 30px;
       height: 30px;
     }
-  }
-`;
-
-const FooterContainerImg = styled.img`
-  background: url(${githubimage});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  @media screen and (max-width: 600px) {
-    width: 30px;
-    height: 30px;
   }
 `;
 
@@ -657,50 +625,6 @@ const ScrollTopButtonVariants = {
 
 // project Variants
 
-// skils variants
-const BodySkilsContainerVariants = {
-  skilsopenmenu: {
-    flex: 6,
-    opcity: 1,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-  },
-  skilsclosemenu: {
-    flex: 1,
-    opcity: 0,
-    transition: {
-      duration: 0.5,
-      type: "tween",
-    },
-  },
-};
-
-const BodySkilsCircleGlowVariants = {
-  circleglowopen: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    opacity: 1,
-    transition: {
-      duration: 1,
-      type: "tween",
-    },
-  },
-
-  circleglowclose: {
-    width: "0%",
-    height: "0%",
-    display: "none",
-    opacity: 0,
-    transition: {
-      duration: 1,
-      type: "tween",
-    },
-  },
-};
-
 const NavAnimationVariants = {
   scroll: {
     display: "flex",
@@ -747,48 +671,6 @@ const NavAnimationColumnsVariants = {
   },
 };
 
-const BodySkilsCircleInlineVariants = {
-  circleinlineopen: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    opacity: 1,
-    transition: {
-      duration: 1,
-      type: "tween",
-    },
-  },
-
-  circleinlineclose: {
-    width: "0%",
-    height: "0%",
-    display: "none",
-    opacity: 0,
-    transition: {
-      duration: 1,
-      type: "tween",
-    },
-  },
-};
-
-const ImageSliderVariants = {
-  next: (direction: number) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-  },
-  prev: (direction: number) => {
-    return {
-      // zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-    };
-  },
-};
-
 interface IInerScreen {
   isMenu: boolean;
 }
@@ -808,10 +690,10 @@ function Home() {
 
   useEffect(() => {
     scrollY.onChange(() => {
-      if (80 < scrollY.get() && scrollY.get() < 2350) {
+      if (80 < scrollY.get() && scrollY.get() < 2100) {
         navAnimation.start("scroll");
         navAnimation.start("columntop");
-      } else if (2350 < scrollY.get() && scrollY.get() < 8500) {
+      } else if (2110 < scrollY.get() && scrollY.get() < 8200) {
         navAnimation.start("top");
         navAnimation.start("columnscroll");
       } else {
@@ -861,7 +743,7 @@ function Home() {
   const AboutRef = useRef<HTMLDivElement>(null);
   const ProjectsRef = useRef<HTMLDivElement>(null);
   const SkilsRef = useRef<HTMLDivElement>(null);
-  const ContactRef = useRef<HTMLDivElement>(null);
+  const GitRef = useRef<HTMLDivElement>(null);
 
   const onHomeClick = () => {
     HomeRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -882,8 +764,8 @@ function Home() {
     setIsMenu(false);
   };
 
-  const onContactClick = () => {
-    ContactRef.current?.scrollIntoView({ behavior: "smooth" });
+  const onGitClick = () => {
+    GitRef.current?.scrollIntoView({ behavior: "smooth" });
     setIsMenu(false);
   };
 
@@ -935,8 +817,8 @@ function Home() {
           </HeaderList>
           <HeaderList>
             <HeaderListNumber>04</HeaderListNumber>
-            <HeaderListButton onClick={onContactClick}>
-              <span>Contact</span>
+            <HeaderListButton onClick={onGitClick}>
+              <span>Git</span>
             </HeaderListButton>
           </HeaderList>
         </HeaderUl>
@@ -997,7 +879,7 @@ function Home() {
             </div>
           </ColumnHeaderListInputButton>
 
-          <ColumnHeaderListInputButton>
+          <ColumnHeaderListInputButton onClick={onGitClick}>
             <span>Git</span>
             <div className="hexagon-wrapper">
               <div className="hexagon"></div>
@@ -1078,13 +960,15 @@ function Home() {
         </BodyprojectsContainer>
       </BodyContainerBox>
 
-      <FooterContainer>
-        <a href="https://github.com/eunyechan" target={"blank"}>
+      {/************************* Git **********************/}
+      <FooterContainer ref={GitRef}>
+        <Git />
+        {/* <a href="https://github.com/eunyechan" target={"blank"}>
           <FooterContainerImg />
         </a>
         <div>
           <FooterTitle>© 2022 Yechan's PortFolio</FooterTitle>
-        </div>
+        </div> */}
       </FooterContainer>
     </Container>
   );
