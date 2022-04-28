@@ -48,144 +48,25 @@ const HeaderNav = styled(motion.nav)`
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  @media screen and (max-width: 600px) {
+  @media screen and(max-width: 480px) {
+    display: flex;
+  }
+  @media screen and (max-width: 768px) {
     display: flex;
     overflow: hidden;
     justify-content: start;
     align-items: flex-start;
     padding: 1rem;
-    ckdrop-filter: blur(5px);
-  }
-`;
-
-const ColumnHeaderNav = styled(motion.div)`
-  position: fixed;
-  display: none;
-  padding: 14px 0 20px 17px;
-  opacity: 0;
-  align-items: center;
-  font-size: 14px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  backdrop-filter: blur(5px);
-  z-index: 99;
-  background-color: rgba(0, 0, 0, 0.4);
-  transform: rotate(90deg) translateX(40%) translateY(190%);
-  @media screen and (max-width: 600px) {
-    display: none;
-    overflow: hidden;
-  }
-`;
-
-const ColumnHomeButtonBox = styled.div`
-  height: 100%;
-  margin-right: 10px;
-`;
-
-const ColumnHomeButton = styled.div`
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-  padding: 10px;
-  border: 2px solid white;
-  border-radius: 20px;
-  transform: rotate(-90deg);
-`;
-
-const ColumnHeaderUl = styled.ul<IInerScreen>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-    display: ${(props) => (props.isMenu ? "flex" : "none")};
-    opacity: ${(props) => (props.isMenu ? 1 : 0)};
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    width: 100%;
-  }
-`;
-
-const ColumnHeaderListInputButton = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  transform: rotate(-90deg);
-  padding: 1em;
-
-  span {
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding-right: 2px;
-    text-align: center;
-  }
-
-  .hexagon-wrapper {
-    display: flex;
-    margin: auto;
-    text-align: initial;
-    width: 70px;
-    height: 70px;
-    cursor: pointer;
-  }
-
-  .hexagon {
-    position: relative;
-    width: 46%;
-    height: 80%;
-    margin: auto;
-    color: white;
-    background: linear-gradient(-180deg, white, #f3c2cb);
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    transition: 0.5s;
-  }
-
-  .hexagon:before,
-  .hexagon:after {
-    position: absolute;
-    content: "";
-    background: inherit;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
-    transition: 0.5s;
-    transform-origin: center;
-  }
-  .hexagon:before {
-    transform: rotateZ(60deg);
-  }
-  .hexagon:after {
-    transform: rotateZ(-60deg);
-  }
-  .hexagon:hover {
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-  .hexagon:hover:before {
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-  .hexagon:hover:after {
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 15px;
+    backdrop-filter: blur(5px);
   }
 `;
 
 const HeaderMenubar = styled(motion.div)`
   display: none;
-  @media screen and (max-width: 600px) {
+  @media screen and(max-width: 480px) {
+    display: flex;
+  }
+  @media screen and (max-width: 768px) {
     display: flex;
     background-color: transparent;
     align-items: center;
@@ -195,11 +76,11 @@ const HeaderMenubar = styled(motion.div)`
 
 const HeaderMenubarTitle = styled.div`
   display: none;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
     display: flex;
     background-color: transparent;
     color: white;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
   }
 `;
@@ -208,7 +89,7 @@ const HeaderUl = styled.ul<IInerScreen>`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
     flex-direction: column;
     display: ${(props) => (props.isMenu ? "flex" : "none")};
     opacity: ${(props) => (props.isMenu ? 1 : 0)};
@@ -225,8 +106,8 @@ const HeaderList = styled(motion.li)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media screen and (max-width: 600px) {
-    margin: 5px 30px;
+  @media screen and (max-width: 768px) {
+    margin: 20px;
   }
 `;
 
@@ -234,6 +115,12 @@ const HeaderListNumber = styled.span`
   color: rgba(255, 255, 255, 0.9);
   font-size: 1em;
   margin-bottom: 0.5em;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const HomeButtonBox = styled.div`
@@ -314,6 +201,135 @@ const HeaderListButton = styled(motion.button)`
     }
   }
 
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+  }
+`;
+
+const ColumnHeaderNav = styled(motion.div)`
+  position: fixed;
+  display: none;
+  padding: 14px 0 20px 17px;
+  opacity: 0;
+  align-items: center;
+  font-size: 14px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  backdrop-filter: blur(5px);
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.4);
+  transform: rotate(90deg) translateX(40%) translateY(190%);
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    display: none;
+    opacity: 0;
+    transform: none;
+    border: 1px solid white;
+  }
+`;
+
+const ColumnHomeButtonBox = styled.div`
+  height: 100%;
+  margin-right: 10px;
+`;
+
+const ColumnHomeButton = styled.div`
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 20px;
+  transform: rotate(-90deg);
+`;
+
+const ColumnHeaderUl = styled.ul<IInerScreen>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    /* flex-direction: column;
+    display: ${(props) => (props.isMenu ? "flex" : "none")};
+    opacity: ${(props) => (props.isMenu ? 1 : 0)};
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    width: 100%; */
+    display: none;
+  }
+`;
+
+const ColumnHeaderListInputButton = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: rotate(-90deg);
+  padding: 1em;
+
+  span {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-right: 2px;
+    text-align: center;
+  }
+
+  .hexagon-wrapper {
+    display: flex;
+    margin: auto;
+    text-align: initial;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+
+  .hexagon {
+    position: relative;
+    width: 46%;
+    height: 80%;
+    margin: auto;
+    color: white;
+    background: linear-gradient(-180deg, white, #f3c2cb);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    transition: 0.5s;
+  }
+
+  .hexagon:before,
+  .hexagon:after {
+    position: absolute;
+    content: "";
+    background: inherit;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    transition: 0.5s;
+    transform-origin: center;
+  }
+  .hexagon:before {
+    transform: rotateZ(60deg);
+  }
+  .hexagon:after {
+    transform: rotateZ(-60deg);
+  }
+  .hexagon:hover {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+  .hexagon:hover:before {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+  .hexagon:hover:after {
+    border-radius: 50px;
+    transition: 0.5s;
+  }
+
   @media screen and (max-width: 600px) {
     font-size: 15px;
   }
@@ -323,7 +339,7 @@ const MainContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 100px 70px 0px 70px;
+  /* padding: 100px 70px 0px 70px; */
   @media screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -337,6 +353,12 @@ const MainContainerInline = styled.div`
   width: 100%;
   height: 100%;
   @media screen and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,7 +389,12 @@ const MainTitleBox = styled(motion.div)`
 `;
 
 const MainTitleSpanTopBox = styled.div`
+  width: 100%;
+  height: 100%;
   @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   @media screen and (max-width: 480px) {
     display: flex;
@@ -376,7 +403,7 @@ const MainTitleSpanTopBox = styled.div`
 
 const MainTitleSpanTop = styled.div`
   width: 100%;
-  font-size: 5em;
+  font-size: 4em;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
   text-align: center;
@@ -386,7 +413,7 @@ const MainTitleSpanTop = styled.div`
   -webkit-transition: 1s;
   -ms-transition: 1s;
   position: relative;
-  margin: 10px 0 150px 180px;
+  margin: 10px 0 30px 180px;
   padding: 10px;
   &::before,
   &::after {
@@ -417,13 +444,16 @@ const MainTitleSpanTop = styled.div`
     left: 0;
   }
   @media screen and (max-width: 768px) {
+    text-align: center;
+    font-size: 3em;
+    margin: 0;
   }
-  @media screen and (max-width: 480px) {
+  /* @media screen and (max-width: 480px) {
     display: flex;
     text-align: center;
     margin: 0px;
     font-size: 2em;
-  }
+  } */
 `;
 
 const MainTiTleSpan = styled(motion.span)`
@@ -448,26 +478,28 @@ const MainTitleSpanBottom = styled.div`
   opacity: 0.1;
   width: 100%;
   @media screen and (max-width: 768px) {
+    bottom: 160px;
   }
-  @media screen and (max-width: 480px) {
+  /* @media screen and (max-width: 480px) {
     display: flex;
     justify-content: center;
     font-size: 1em;
     padding-right: 30px;
-  }
+  } */
 `;
 
 const MainIntroTitleBox = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   @media screen and (max-width: 480px) {
     font-size: 2em;
-    border: 1px solid white;
   }
   @media screen and (max-width: 768px) {
     padding-top: 2rem;
     padding-left: 0;
+    font-size: 12px;
   }
 `;
 
@@ -558,9 +590,13 @@ const BodyprojectsContainer = styled.div`
   width: 100%;
   padding: 8em 0 8rem 9.5rem;
   background-color: rgba(0, 0, 0, 0.9);
-  @media screen and (max-width: 600px) {
-    padding: 1rem 2rem;
+  @media screen and (max-width: 768px) {
+    padding: 0;
   }
+`;
+
+const BodyBoardContainer = styled.div`
+  display: flex;
 `;
 
 // BodyContactSkilContainer
@@ -665,6 +701,15 @@ const NavAnimationVariants = {
       duration: 0.5,
       type: "tween",
     },
+  },
+};
+
+const NavAnimationColumnsWidth768 = {
+  columnscroll: {
+    display: "none",
+  },
+  columntop: {
+    display: "none",
   },
 };
 
@@ -847,8 +892,8 @@ function Home() {
           </HeaderList>
         </HeaderUl>
       </HeaderNav>
-
       {/* 세로해더 */}
+
       <ColumnHeaderNav
         variants={NavAnimationColumnsVariants}
         animate={navAnimation}
@@ -895,7 +940,6 @@ function Home() {
           </ColumnHeaderListInputButton>
         </ColumnHeaderUl>
       </ColumnHeaderNav>
-
       <ContainerInline>
         <ContainerInlineBox ref={HomeRef}>
           <MainContainer>
@@ -950,7 +994,6 @@ function Home() {
           </MainContainer>
         </ContainerInlineBox>
       </ContainerInline>
-
       {/* **********************body AboutMe 부분********************* */}
       <BodyContainerBox>
         <BodyContainer ref={AboutRef}>
@@ -967,7 +1010,6 @@ function Home() {
           <Project />
         </BodyprojectsContainer>
       </BodyContainerBox>
-
       {/************************* Git **********************/}
       <FooterContainer ref={GitRef}>
         <Git />

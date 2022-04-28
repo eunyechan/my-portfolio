@@ -15,6 +15,12 @@ const BodyProjectsOverlay = styled.div`
   margin: 10px;
   z-index: 4;
   padding: 0 2rem 0 0;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border: 1px solid white;
+  }
 `;
 
 const BodyProjectsOverlayInlineBox = styled(motion.div)`
@@ -250,78 +256,6 @@ const BodyProjectsImageContainer = styled.div`
     height: 40vh;
     max-height: 40vh;
     flex-direction: column;
-  }
-`;
-
-const BodyProjectsTitle = styled(motion.span)`
-  position: relative;
-  display: flex;
-  align-items: center;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-size: 1.5em;
-  color: rgba(255, 255, 255, 0);
-  letter-spacing: 4px;
-
-  background-repeat: no-repeat;
-  background-size: 80%;
-  -webkit-background-clip: text;
-`;
-
-const BodyTotalProjectsBoxInlineContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 4rem;
-  margin-bottom: 4rem;
-  border-radius: 10px;
-  @media screen and (max-width: 600px) {
-    padding: 2rem;
-    display: block;
-  }
-`;
-
-const BodyTotalProjectsBoxInline = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background-color: white;
-  grid-gap: 2rem;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const BodyProjectsImageDetailExplainContainer = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const BodyProjectsDetailExplainContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const BodyProjectsDetailExplainTitle = styled.span`
-  font-size: 16px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  display: flex;
-  line-height: 1.8rem;
-  word-break: break-all;
-  a {
-    color: #3f3fec;
-  }
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
   }
 `;
 

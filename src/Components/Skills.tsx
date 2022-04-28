@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { motion, useAnimation, useViewportScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import htmllogo from "../images/imagesLogo/html_logo.png";
 import csslogo from "../images/imagesLogo/css_logo.png";
@@ -10,7 +10,6 @@ import reactlogo from "../images/imagesLogo/react_logo.png";
 const BodySkillsContainerInlineBox = styled(motion.div)`
   width: 100%;
   height: 100%;
-  /* margin-top: 7rem; */
   background-color: transparent;
 `;
 
@@ -52,9 +51,8 @@ const BodySkillsContainerInlineTitle = styled.span`
   background-repeat: no-repeat;
   background-size: 80%;
   -webkit-background-clip: text;
-  @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
+  @media screen and (max-width: 768px) {
+    font-size: 40px;
   }
 `;
 
@@ -85,6 +83,9 @@ const BodySkillsCircleOpenBtnContainer = styled.div`
   justify-content: flex-end;
   z-index: 3;
   padding: 20px;
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const BodySkillsCircleOpenBtn = styled.div`
@@ -140,6 +141,10 @@ const BodySkillsCircleOpenBtn = styled.div`
       opacity: 0;
       transform: scale(0.1, 1);
     }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 1rem 1.5rem;
+    font-size: 12px;
   }
 `;
 
@@ -447,6 +452,13 @@ const SkillName = styled.div`
   font-size: 1.8em;
   font-weight: bold;
   padding-top: 1rem;
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 50px;
+  }
 `;
 
 const BodySkillsInlineWrapper = styled.div`
@@ -617,15 +629,6 @@ const BodySkillsInlineProgressGlow = styled.div`
   }
 `;
 
-const BodySkillsInlineImgContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  width: 100%;
-  height: 100%;
-`;
-
 const BodySkillsInlineHtmlImg = styled.div`
   background: url(${htmllogo});
   background-position: center;
@@ -633,6 +636,10 @@ const BodySkillsInlineHtmlImg = styled.div`
   background-repeat: no-repeat;
   width: 15vw;
   height: 22vh;
+  @media screen and (max-width: 768px) {
+    width: 12vw;
+    height: 14vh;
+  }
 `;
 
 const BodySkillsInlineCssImg = styled.div`
@@ -642,6 +649,10 @@ const BodySkillsInlineCssImg = styled.div`
   background-repeat: no-repeat;
   width: 15vw;
   height: 22vh;
+  @media screen and (max-width: 768px) {
+    width: 12vw;
+    height: 14vh;
+  }
 `;
 
 const BodySkillsInlineJsImg = styled.div`
@@ -651,6 +662,10 @@ const BodySkillsInlineJsImg = styled.div`
   background-repeat: no-repeat;
   width: 15vw;
   height: 22vh;
+  @media screen and (max-width: 768px) {
+    width: 12vw;
+    height: 14vh;
+  }
 `;
 
 const BodySkillsInlineTsImg = styled.div`
@@ -660,6 +675,10 @@ const BodySkillsInlineTsImg = styled.div`
   background-repeat: no-repeat;
   width: 15vw;
   height: 22vh;
+  @media screen and (max-width: 768px) {
+    width: 12vw;
+    height: 14vh;
+  }
 `;
 
 const BodySkillsInlineReactImg = styled.div`
@@ -669,6 +688,10 @@ const BodySkillsInlineReactImg = styled.div`
   background-repeat: no-repeat;
   width: 15vw;
   height: 24vh;
+  @media screen and (max-width: 768px) {
+    width: 12vw;
+    height: 14vh;
+  }
 `;
 
 function Skills() {

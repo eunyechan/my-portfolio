@@ -14,7 +14,7 @@ const BodyContainerArrow = styled(motion.div)`
   font-size: 100px;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.8);
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
     font-size: 50px;
   }
 `;
@@ -22,12 +22,14 @@ const BodyContainerArrow = styled(motion.div)`
 const BodyContainerAboutMeBox = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
   padding: 8rem 50px 0 50px;
   overflow: hidden;
-  @media screen and (max-width: 600px) {
-    padding: 1rem 4rem;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
   }
 `;
 
@@ -42,6 +44,10 @@ const BodyContainerAboutMeTitleBox = styled.div`
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   letter-spacing: 5px;
   z-index: 1;
+  @media screen and (max-width: 768px) {
+    height: 10vh;
+    font-size: 40px;
+  }
 `;
 
 const BodyContainerAboutMeTitle = styled.h2`
@@ -57,6 +63,9 @@ const BodyContainerAboutMeTitle = styled.h2`
   background-repeat: no-repeat;
   background-size: 80%;
   -webkit-background-clip: text;
+  @media screen and (max-width: 768px) {
+    font-size: 40px;
+  }
 `;
 
 const BodyContainerAboutMe = styled(motion.div)`
@@ -67,7 +76,7 @@ const BodyContainerAboutMe = styled(motion.div)`
   width: 100%;
   height: 100%;
   color: white;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
   }
@@ -85,6 +94,11 @@ const BodyContainerAboutMeImgWrapper = styled.div`
   height: 350px;
   perspective: 800px;
   position: relative;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const BodyContainerAboutMeImgCard = styled(motion.div)`
@@ -113,10 +127,33 @@ const BodyContainerAboutMeImgCard = styled(motion.div)`
       opacity: 1;
     }
   }
-  @media screen and (max-width: 600px) {
-    width: 100%;
-    height: 20vh;
+  @media screen and (max-width: 768px) {
     margin-bottom: 4rem;
+    transform-style: none;
+    transform: translateZ(-0px);
+    transition: transform 350ms cubic-bezier(0);
+    width: 350px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    .card_front,
+    .card_right {
+      position: relative;
+      width: 300px;
+      height: 250px;
+
+      transition: none;
+    }
+    &:hover {
+      transform: translateZ(0) rotateY(0);
+      .card_front {
+        opacity: 1;
+      }
+
+      .card_right {
+        opacity: 1;
+      }
+    }
   }
 `;
 
@@ -131,18 +168,25 @@ const BodyContainerAboutMeImgFront = styled.div`
   );
   transform: rotateY(0deg) translateZ(160px);
   border-radius: 34px 3px 0 0;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const BodyContainerAboutMeImg = styled.div`
   display: flex;
   width: 320px;
-  height: 400px;
+  height: 260px;
   background-repeat: no-repeat;
   background-image: url(${profile});
   background-position: center center;
   transform-origin: top right;
   transition-delay: 100ms;
   pointer-events: none;
+  @media screen and (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const BodyContainerAboutMeImgFrontTitle = styled.div`
@@ -165,6 +209,11 @@ const BodyContainerAboutMeImgRight = styled.div`
   opacity: 0.08;
   transform: rotateY(90deg) translateZ(160px);
   border-radius: 34px 3px 0 0;
+
+  @media screen and (max-width: 768px) {
+    transform: none;
+    opacity: 1;
+  }
 `;
 
 const BodyContainerAboutMeImgRightUl = styled.ul`
@@ -187,12 +236,19 @@ const BodyContainerAboutMeImgRightUlTitle = styled.h2`
   border-radius: 9999px;
   padding: 5px;
   margin-bottom: 18px;
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const BodyContainerAboutMeImgRightLi = styled.li`
   padding: 12px 2px;
   position: relative;
   font-size: 17px;
+  @media screen and (max-width: 768px) {
+    padding: 6px 2px;
+    font-size: 15px;
+  }
 `;
 
 const BodyContainerAboutMeUlBox = styled(motion.div)`
@@ -207,6 +263,11 @@ const BodyContainerAboutMeUlTitle = styled.h2`
   font-size: 30px;
   margin-bottom: 3rem;
   font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    margin: 0;
+  }
 `;
 
 const BodyContainerAboutMeUl = styled.ul`
@@ -223,6 +284,11 @@ const BodyContainerAboutMeList = styled.li`
   font-size: 17px;
   font-weight: bold;
   margin-right: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    margin: 0;
+  }
 `;
 
 const BodyContainerAboutmeArrowVariants = {
